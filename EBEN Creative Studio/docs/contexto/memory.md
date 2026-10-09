@@ -81,3 +81,27 @@ Impacto: prd.md, design.md, content/site.ts e tarefas 12 e 13 do task.md.
 Decisão: a linha de crédito exibe o número sem o código do país, no texto "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093". O link continua https://wa.me/5561994227093, porque o WhatsApp exige o código 55 para abrir a conversa.
 Motivo: pedido do responsável pelo projeto. Ajusta o texto da entrada anterior sobre o crédito do desenvolvedor.
 Impacto: prd.md, design.md e tarefa 12 do task.md.
+
+### 2026-10-09: copy da landing page e novo escopo da primeira versão
+
+Decisão: a copy enviada pelo responsável pelo projeto virou o arquivo copy.md, reescrita na voz da agência, com a headline "Postar todo dia não é ter presença.", sem nome de método e com as três frentes Social Media, Videomaker e Storymaker. A primeira versão passa a ser uma landing page de página única que converte só pelo WhatsApp, sem formulário, com GA4 e Pixel da Meta carregados depois do aceite no aviso de cookies e o evento Lead em todo clique de WhatsApp. O formulário, as páginas de detalhe do portfólio e a seção sobre foram para depois.
+Motivo: decisões do responsável pelo projeto sobre formulário, headline, nome do método e rastreamento, e a estrutura de blocos definida na copy.
+Impacto: prd.md, rules.md, design.md e task.md reescritos ou ajustados. O Resend e a entrada sobre o destino provisório do formulário deixam de valer para a primeira versão.
+
+### 2026-10-09: exportação estática
+
+Decisão: o site é gerado como exportação estática do Next.js, com output "export" e otimização de imagens desligada, e as imagens entram no repositório já em WebP no tamanho de uso.
+Motivo: sem formulário, nada precisa rodar em servidor, e a exportação estática permite hospedagem gratuita sem adaptador e com transferência ilimitada na Cloudflare.
+Impacto: architecture.md, rules.md e tarefas 2 e 35 do task.md. Quando o formulário entrar, essa decisão precisa ser revista.
+
+### 2026-10-09: UTM no link do site e não no WhatsApp
+
+Decisão: a origem da visita é medida por parâmetros UTM no link que leva ao site, e o utm_source vai junto com o evento Lead. O link do WhatsApp não leva UTM.
+Motivo: a copy original sugeria UTM no link wa.me, mas o WhatsApp ignora esses parâmetros e nada seria medido.
+Impacto: architecture.md, rules.md e tarefa 15 do task.md.
+
+### 2026-10-09: horário, cases, depoimentos, rastreamento e responsável pelos dados
+
+Decisão: o horário de atendimento é de segunda a sábado, das 8h às 18h, e a página promete resposta em até 2 horas dentro dele. O case da Sued Silva aconteceu em 1 ano e a gestão da Juliana Arantes durou 3 meses, com uso de nome e números autorizado pelas duas. A primeira versão vai ao ar sem depoimentos em frase, porque ainda não existem. As contas do GA4 e do Pixel ainda não existem, e o site pode ir ao ar com o rastreamento desligado até os IDs chegarem. O responsável pelos dados na Política de Privacidade é uma pessoa física.
+Motivo: respostas do responsável pelo projeto.
+Impacto: copy.md, architecture.md, design.md e tarefas 15 e 31 do task.md.

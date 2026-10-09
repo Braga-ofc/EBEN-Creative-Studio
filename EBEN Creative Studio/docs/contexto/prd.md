@@ -2,60 +2,56 @@
 
 ## Produto
 
-A EBEN Creative Studio é uma agência de comunicação criativa e audiovisual especializada em Social Media, produção de vídeos, Storymaker e criação de conteúdo digital. Este projeto é o site da agência, construído em TypeScript, React, Next.js e Tailwind CSS, e tem a função de apresentar a agência, mostrar o trabalho já produzido e transformar visitantes em pedidos de orçamento. O conceito que guia todo o conteúdo e o visual é a frase "Não capturamos momentos. Eternizamos histórias".
-
-Pergunta para você: o produto é de fato um site institucional com portfólio e captação de contatos, ou existe também a intenção de ter um sistema interno, como área do cliente ou painel de gestão de pedidos, já na primeira versão?
+A EBEN Creative Studio é uma agência de comunicação criativa e audiovisual que trabalha com três frentes: Social Media, Videomaker e Storymaker. Este projeto é a landing page da agência, construída em TypeScript, React, Next.js e Tailwind CSS, pensada primeiro para o celular, com a função de transformar visitantes em conversas no WhatsApp. O conceito que guia o visual é a frase "Não capturamos momentos. Eternizamos histórias", e o texto completo da página está em copy.md.
 
 ## Problema
 
-Empresas, empreendedores, profissionais e marcas têm dificuldade de transformar ideias, serviços e momentos importantes em conteúdos criativos, estratégicos e visualmente profissionais. Do lado da agência, o problema que o site resolve é a falta de um lugar próprio, rápido e bem apresentado onde o potencial cliente entende o que a EBEN faz, vê a qualidade das produções em vídeo e consegue pedir um orçamento sem atrito.
+Empreendedores, profissionais e empresas sabem que precisam estar nas redes, mas não conseguem começar, manter o ritmo ou fazer o conteúdo parecer com o que o negócio realmente é. O resultado são perfis sem constância, com conteúdo genérico, que não mostram o valor do trabalho. Do lado da agência, a página resolve a falta de um lugar próprio onde o potencial cliente entende o jeito EBEN de trabalhar, vê resultados reais e chama no WhatsApp sem atrito.
 
-Pergunta para você: hoje os clientes chegam principalmente por onde, Instagram, indicação ou WhatsApp, e qual desses canais o site precisa alimentar primeiro?
+Pergunta para você: hoje os clientes chegam principalmente por onde, Instagram, indicação ou anúncio?
 
 ## Usuário alvo
 
-O usuário principal é o dono ou responsável pela comunicação de uma empresa, um empreendedor ou um profissional liberal que quer fortalecer a presença digital da marca e precisa de alguém que produza vídeos, cuide das redes sociais ou registre um evento. Ele chega ao site quase sempre pelo celular, vindo de um link no Instagram ou de uma indicação, e decide em poucos segundos se o trabalho tem a qualidade que ele procura. O usuário secundário é a própria equipe da EBEN, que precisa atualizar portfólio e textos sem depender de um desenvolvedor a cada mudança.
+O usuário principal é o empresário, a clínica, a marca pessoal ou a empresa que quer crescer no digital e valoriza estratégia, criatividade e uma comunicação bem construída, além de quem precisa de cobertura de eventos sociais, corporativos e institucionais. Ele chega quase sempre pelo celular, vindo do Instagram, de uma indicação ou de um anúncio. A página atende dois perfis: quem já conhece a EBEN e vai direto ao botão, e quem não conhece e precisa ler a dor, o jeito de trabalhar e a prova antes de chamar.
 
-Perguntas para você: existe um segmento prioritário, como eventos, gastronomia, saúde ou varejo, que deve aparecer em destaque? Qual é a cidade ou região de atuação, e a agência atende fora dela? O público é só pessoa jurídica ou também pessoa física, por exemplo casamentos e aniversários?
+Pergunta para você: qual é a cidade ou região de atuação para gravações presenciais, e a agência atende fora dela?
 
 ## Funcionalidades da primeira versão
 
-A primeira versão é um site de uma página principal com seções e algumas páginas internas, todo com conteúdo estático versionado no próprio repositório.
+A primeira versão é uma página única com os blocos de copy.md na ordem definida, com todo o conteúdo estático versionado no repositório e conversão somente pelo WhatsApp.
 
-1. Página inicial com uma seção de abertura que exibe um vídeo curto em loop sem som, o conceito "Não capturamos momentos. Eternizamos histórias" e um botão de pedido de orçamento.
-2. Seção de serviços que apresenta Social Media, produção de vídeos, Storymaker e criação de conteúdo digital, cada um com descrição curta e o que está incluído.
-3. Seção de portfólio com uma grade de trabalhos filtrável por tipo de serviço, em que cada item abre o vídeo ou as imagens em uma janela sobreposta.
-4. Página de detalhe de cada projeto do portfólio, com contexto do cliente, o que foi feito e o resultado, em endereço próprio para poder ser compartilhado.
-5. Seção sobre a agência, com a história, o conceito e a equipe.
-6. Seção de depoimentos de clientes.
-7. Formulário de contato com nome, empresa, WhatsApp, e-mail, serviço de interesse e mensagem, validado no cliente e no servidor.
-8. Botão fixo de WhatsApp visível em todas as páginas no celular e no computador.
-9. Rodapé com redes sociais, contato, informações legais e a linha de crédito do desenvolvedor, BRAGA SYSTEMS.
-10. Metadados de SEO, imagem de compartilhamento para redes sociais, sitemap e robots.
-11. Página de política de privacidade, necessária porque o formulário coleta dados pessoais.
-12. Páginas de erro 404 e de erro genérico no visual da marca.
+1. Abertura com vídeo curto em loop sem som, headline, subheadline, proposta resumida e botão de WhatsApp com microcopy.
+2. Blocos de proposta de valor, dor, jeito EBEN de trabalhar com as três frentes e benefícios, em que cada frente tem o próprio botão de WhatsApp com a mensagem daquele serviço.
+3. Prova social com números em destaque, cases com resultado, portfólio filtrável por serviço com vídeo em janela sobreposta e faixa de logos de clientes.
+4. Oferta com o que entra, as cinco etapas de como funciona, investimento sob medida e botão de proposta.
+5. Quebra de objeções e perguntas frequentes em formato de sanfona, que abre uma resposta por vez.
+6. Garantia de processo, aviso de vagas limitadas e oferta do diagnóstico gratuito do perfil com botão próprio.
+7. Chamada final e PS, cada um com botão de WhatsApp.
+8. Botão fixo de WhatsApp visível o tempo todo.
+9. Rodapé com slogan, WhatsApp, Instagram, links legais e a linha de crédito do desenvolvedor.
+10. Google Analytics 4 e Pixel da Meta, carregados só depois que o visitante aceita os cookies, com o evento Lead disparado em todo clique de botão de WhatsApp.
+11. Aviso de cookies com os botões Aceitar e Recusar e opção de mudar a escolha depois pelo rodapé.
+12. Página de Política de Privacidade, exigida pela LGPD por causa dos cookies de rastreamento.
+13. Metadados de SEO, imagem de compartilhamento para redes sociais, sitemap e robots.
+14. Página 404 no visual da marca.
 
-O projeto tem dois números de WhatsApp com papéis separados. O número da agência, +55 61 99454-1957, com o link https://wa.me/5561994541957, é o número usado em todos os botões e contatos do site e recebe todo contato de clientes. O número do responsável pelo código, pela criação e pela manutenção do site é +55 61 99422-7093 e é usado só para assuntos técnicos e aparece no site em um único lugar, a linha de crédito do rodapé, no texto "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093", com o número levando ao link https://wa.me/5561994227093. O formulário envia os pedidos, por enquanto, para o e-mail gubragah.oficiaal@gmail.com.
+O projeto tem dois números de WhatsApp com papéis separados. O número da agência, +55 61 99454-1957, com o link https://wa.me/5561994541957, é o número usado em todos os botões e contatos da página. O número do responsável pelo código, pela criação e pela manutenção do site é +55 61 99422-7093, é usado só para assuntos técnicos e aparece em um único lugar, a linha de crédito do rodapé, no texto "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093", com o número levando ao link https://wa.me/5561994227093. As mensagens que abrem preenchidas em cada botão estão na tabela do início de copy.md.
 
-A mensagem que abre preenchida no WhatsApp é "Oii, EBEN! Vim pela página e quero saber mais sobre [serviço].", em que [serviço] é trocado pelo nome do serviço quando o visitante toca no botão de um serviço específico, como Social Media ou Storymaker.
-
-No botão fixo de WhatsApp e nos botões gerais, onde não há um serviço escolhido, a mensagem é "Oii, EBEN! Vim pela página e quero saber mais sobre os serviços de vocês." Onde os vídeos do portfólio estão hospedados hoje, YouTube, Vimeo ou só em arquivo? Essa resposta ficou de chegar em breve. Quantos projetos de portfólio existem prontos para publicar, e vocês têm autorização dos clientes para exibir cada um? Existem depoimentos reais já coletados? A equipe deve aparecer com nome e foto?
+Perguntas para você: onde os vídeos do portfólio e da abertura estão hospedados hoje, YouTube, Vimeo ou só em arquivo? Quantos projetos de portfólio existem prontos para publicar? As demais perguntas de conteúdo estão no fim de copy.md.
 
 ## Funcionalidades para depois
 
-1. Blog ou área de conteúdos com dicas de comunicação, para atrair visitantes por busca orgânica.
-2. Gerenciador de conteúdo externo, como Sanity ou outro CMS, para a equipe editar portfólio e textos sem mexer no código.
-3. Páginas de destino separadas por serviço ou por segmento, pensadas para anúncios pagos.
-4. Pacotes e preços publicados, caso a agência decida mostrar valores.
-5. Agendamento de reunião integrado a uma agenda.
-6. Versão do site em inglês ou espanhol.
-7. Área do cliente para aprovação de conteúdos e entrega de arquivos.
-8. Integração com analytics e pixel de anúncios com painel de conversões.
-
-Pergunta para você: alguma dessas funcionalidades precisa subir para a primeira versão por causa de uma campanha ou prazo comercial já marcado?
+1. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
+2. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
+3. Seção sobre a agência, com história e equipe.
+4. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
+5. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
+6. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
+7. Agendamento de reunião integrado a uma agenda.
+8. Área do cliente para aprovação de conteúdos e entrega de arquivos.
 
 ## Critério de sucesso
 
-O sucesso da primeira versão é medido pelo número de pedidos de orçamento recebidos pelo formulário e pelo WhatsApp a partir do site, e pela nota de desempenho do Lighthouse no celular igual ou acima de 90.
+O sucesso da primeira versão é medido pelo número de eventos Lead registrados no GA4 e no Pixel da Meta, ou seja, cliques em botões de WhatsApp, e pela nota de desempenho do Lighthouse no celular igual ou acima de 90.
 
-Perguntas para você: existe uma meta numérica de pedidos por mês? Existe data limite para o site estar no ar?
+Perguntas para você: existe uma meta de conversas por mês vindas da página? Existe data limite para a página estar no ar, por exemplo o início de uma campanha de tráfego pago?

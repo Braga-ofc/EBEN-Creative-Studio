@@ -1,57 +1,62 @@
 # Tarefas: EBEN Creative Studio
 
-Cada tarefa gera uma única entrega verificável e só começa depois que a anterior estiver concluída. Ao terminar uma tarefa, a caixa é marcada e qualquer decisão tomada durante ela é registrada no memory.md.
+Cada tarefa gera uma única entrega verificável e só começa depois que a anterior estiver concluída. Ao terminar uma tarefa, a caixa é marcada e qualquer decisão tomada durante ela é registrada no memory.md. Todo texto visível vem de copy.md, e trechos marcados como PENDENTE entram no código com um comentário TODO e ficam escondidos até a resposta chegar.
 
 ## Fase 1: base do projeto
 
 - [ ] 1. Criar o projeto Next.js com TypeScript, App Router, Tailwind CSS e ESLint dentro da pasta src. Entrega: o comando de desenvolvimento abre a página padrão sem erros.
-- [ ] 2. Configurar Prettier com o plugin do Tailwind e ativar strict no tsconfig. Entrega: os comandos de lint, de formatação e de checagem de tipos passam sem erro.
-- [ ] 3. Criar a árvore de pastas descrita em architecture.md com arquivos vazios onde for preciso e copiar os SVGs de docs/marca para public/images/brand. Entrega: estrutura de pastas igual à do documento.
-- [ ] 4. Criar lib/env.ts com validação Zod e o arquivo .env.example. Entrega: o build falha com mensagem clara quando falta uma variável obrigatória.
+- [ ] 2. Configurar output "export" e images.unoptimized no next.config.ts, Prettier com o plugin do Tailwind e strict no tsconfig. Entrega: o build gera a pasta out e os comandos de lint, formatação e checagem de tipos passam sem erro.
+- [ ] 3. Criar a árvore de pastas descrita em architecture.md e copiar os SVGs de docs/marca para public/images/brand. Entrega: estrutura de pastas igual à do documento.
+- [ ] 4. Criar lib/env.ts com validação Zod de NEXT_PUBLIC_GA_ID e NEXT_PUBLIC_META_PIXEL_ID, opcionais, e o arquivo .env.example. Entrega: o build passa sem os IDs, com um aviso no terminal.
 - [ ] 5. Declarar no globals.css os tokens de cor, fonte, raio e movimento de design.md, incluindo os três temas de seção, e carregar Fraunces e Manrope pelo next/font. Entrega: página de teste exibindo as cores, os três temas e a escala tipográfica.
 - [ ] 6. Criar a função cn em lib/utils.ts. Entrega: função exportada e usada em um componente de teste.
-- [ ] 6b. Criar os componentes Logo, com as variantes monograma e assinatura completa, Star, EditorialLine e o contorno circular decorativo descritos em design.md. Entrega: os quatro elementos exibidos nos três temas na página de teste.
+- [ ] 7. Criar os componentes Logo, com as variantes monograma e assinatura completa, Star, EditorialLine e o contorno circular decorativo. Entrega: os quatro elementos exibidos nos três temas na página de teste.
 
 ## Fase 2: componentes básicos
 
-- [ ] 7. Criar o componente Button com as variantes primary, secondary e ghost e o estado desativado. Entrega: as três variantes renderizadas na página de teste.
-- [ ] 8. Criar os componentes de campo de texto, área de texto e seleção com label e mensagem de erro. Entrega: campos renderizados na página de teste com e sem erro.
-- [ ] 9. Criar o componente Modal acessível, com fechamento pela tecla Esc e por toque fora, e foco preso dentro dele. Entrega: modal funcionando pelo teclado na página de teste.
+- [ ] 8. Criar o componente Button com as variantes primary, secondary e ghost nos três temas. Entrega: as três variantes renderizadas nos três temas na página de teste.
+- [ ] 9. Criar o componente Accordion acessível, com um item aberto por vez. Entrega: sanfona funcionando pelo mouse e pelo teclado na página de teste.
+- [ ] 10. Criar o componente Modal acessível, com fechamento pela tecla Esc e por toque fora, e foco preso dentro dele. Entrega: modal funcionando pelo teclado na página de teste.
 
-## Fase 3: estrutura das páginas
+## Fase 3: conteúdo, WhatsApp e consentimento
 
-- [ ] 10. Criar os tipos de conteúdo em types/content.ts e preencher src/content/site.ts com nome, contatos e redes sociais. Entrega: arquivo tipado, com perguntas marcadas como TODO onde o dado real ainda não chegou.
-- [ ] 11. Criar o Header com menu de computador e menu em tela cheia no celular. Entrega: cabeçalho funcionando nos tamanhos de 375px e 1280px.
-- [ ] 12. Criar o Footer, incluindo a linha de crédito "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093" com link para o WhatsApp técnico. Entrega: rodapé exibido em todas as páginas pelo layout raiz.
-- [ ] 13. Criar o WhatsAppButton e a função que monta o link wa.me com a mensagem "Oii, EBEN! Vim pela página e quero saber mais sobre [serviço]." a partir de site.ts. Entrega: botão fixo e botões de serviço abrindo a conversa com o texto certo.
+- [ ] 11. Criar os tipos em types/content.ts e preencher site.ts com nome, números, links e a tabela de mensagens do WhatsApp de copy.md. Entrega: arquivo tipado e sem erro de tipo.
+- [ ] 12. Preencher landing.ts com o texto de todos os blocos de copy.md, e cases.ts, projects.ts e clients.ts com o que já for real. Entrega: todo o texto de copy.md presente em content, com TODO nos pendentes.
+- [ ] 13. Criar lib/whatsapp.ts, que monta o link wa.me a partir de uma chave de mensagem. Entrega: os cinco links da tabela de copy.md abrindo com o texto certo.
+- [ ] 14. Criar lib/consent.ts e o componente CookieBanner, com Aceitar, Recusar e reabertura pelo rodapé. Entrega: a escolha fica salva e o aviso some e volta conforme as regras de rules.md.
+- [ ] 15. Criar lib/analytics.ts e o ConsentManager, que carrega GA4 e Pixel só depois do aceite, guarda o utm_source e expõe trackLead. Entrega: com aceite, o evento Lead aparece no DebugView do GA4 e no Meta Pixel Helper, e sem aceite nenhuma requisição de rastreamento sai do navegador. Pode ser feita com IDs de teste. Sem os IDs reais, o site vai ao ar com o rastreamento desligado.
+- [ ] 16. Criar o WhatsAppButton, que chama trackLead e abre o link, e o botão fixo. Entrega: todos os botões abrem a conversa certa, com e sem bloqueador de anúncio.
 
-## Fase 4: seções da página inicial
+## Fase 4: estrutura da página
 
-- [ ] 14. Criar a seção Hero com vídeo em loop, imagem de capa e respeito ao movimento reduzido. Entrega: seção de abertura publicada na página inicial.
-- [ ] 15. Preencher content/services.ts e criar a seção de serviços com ServiceCard. Entrega: os quatro serviços exibidos.
-- [ ] 16. Preencher content/projects.ts e criar a seção de portfólio com PortfolioCard e PortfolioFilter. Entrega: grade filtrável por serviço.
-- [ ] 17. Ligar o PortfolioCard ao Modal para reproduzir o vídeo do projeto. Entrega: vídeo abrindo e fechando a partir da grade.
-- [ ] 18. Criar a seção sobre com história, conceito e equipe a partir de content/team.ts. Entrega: seção sobre publicada.
-- [ ] 19. Preencher content/testimonials.ts e criar a seção de depoimentos. Entrega: depoimentos exibidos.
+- [ ] 17. Criar o Header com âncoras, botão de WhatsApp e menu em tela cheia no celular. Entrega: cabeçalho funcionando nos tamanhos de 375px e 1280px.
+- [ ] 18. Criar o Footer com slogan, contato, links legais, Preferências de cookies e a linha de crédito da BRAGA SYSTEMS. Entrega: rodapé exibido em todas as páginas pelo layout raiz.
 
-## Fase 5: contato
+## Fase 5: blocos da página
 
-- [ ] 20. Criar o esquema Zod do formulário em lib/schemas.ts. Entrega: esquema exportado com mensagens de erro em português.
-- [ ] 21. Criar o formulário de contato com validação no cliente e estado de envio. Entrega: formulário mostrando erros por campo sem enviar nada.
-- [ ] 22. Criar a Server Action em actions/contact.ts com validação, envio para o destino escolhido e retorno tipado. Entrega: um envio de teste chega a gubragah.oficiaal@gmail.com pelo Resend e o formulário mostra a mensagem de sucesso. Bloqueada até a confirmação do Resend e a criação da conta.
+- [ ] 19. Criar o bloco 1, abertura com vídeo, imagem de capa e respeito ao movimento reduzido. Entrega: headline e botão visíveis sem rolar em 375px por 667px.
+- [ ] 20. Criar os blocos 2 e 3, proposta de valor e dor, com SplitStatement e PainList. Entrega: os dois blocos publicados na página.
+- [ ] 21. Criar o bloco 4, jeito EBEN de trabalhar, com StepList e os três ServiceCard. Entrega: cada cartão abre o WhatsApp com a mensagem do seu serviço.
+- [ ] 22. Criar o bloco 5, benefícios, com BenefitList. Entrega: os oito benefícios publicados.
+- [ ] 23. Criar a parte de números e cases do bloco 6, com StatNumber e CaseCard. Entrega: números e cases publicados, com os pendentes escondidos.
+- [ ] 24. Criar o portfólio do bloco 6 com PortfolioCard, PortfolioFilter e o vídeo no Modal. Entrega: grade filtrável abrindo os vídeos. Bloqueada até a resposta sobre a hospedagem dos vídeos.
+- [ ] 25. Criar o LogoStrip do bloco 6. Entrega: logos dos clientes publicados. Bloqueada até o envio dos logos.
+- [ ] 26. Criar o bloco 7, oferta, com a lista do que entra, o StepList das cinco etapas, investimento e botão. Entrega: bloco de oferta publicado.
+- [ ] 27. Criar os blocos 8 e 11, objeções e perguntas frequentes, com Accordion. Entrega: os dois blocos publicados.
+- [ ] 28. Criar o bloco 9, garantia, com GuaranteeList. Entrega: os quatro compromissos publicados.
+- [ ] 29. Criar o bloco 10, vagas e diagnóstico, com DiagnosticBanner. Entrega: botão do diagnóstico abrindo a mensagem certa.
+- [ ] 30. Criar o bloco 12, chamada final e PS, com FinalCta. Entrega: bloco publicado com os dois botões.
 
-## Fase 6: páginas internas
+## Fase 6: páginas de apoio
 
-- [ ] 23. Criar a página /portfolio com a lista completa de projetos. Entrega: página publicada.
-- [ ] 24. Criar a página /portfolio/[slug] com generateStaticParams e notFound para slugs inexistentes. Entrega: uma página estática por projeto.
-- [ ] 25. Criar a página de política de privacidade. Entrega: página publicada com o texto aprovado. Bloqueada até a pergunta sobre quem redige ou revisa esse texto.
-- [ ] 26. Criar not-found.tsx e error.tsx no visual da marca. Entrega: as duas telas aparecem nos casos de erro.
+- [ ] 31. Criar a página de Política de Privacidade, cobrindo cookies, GA4, Pixel da Meta e o contato pelo WhatsApp. Entrega: página publicada com o texto aprovado. Bloqueada até o nome do responsável pelos dados, que é pessoa física, e o e-mail para pedidos dos titulares.
+- [ ] 32. Criar a not-found.tsx no visual da marca. Entrega: a tela aparece em um endereço inexistente.
+- [ ] 33. Configurar metadados, imagem de compartilhamento, sitemap.ts e robots.ts. Entrega: link compartilhado no WhatsApp exibe título, descrição e imagem.
 
 ## Fase 7: publicação
 
-- [ ] 27. Configurar metadados, imagem de compartilhamento, sitemap.ts e robots.ts. Entrega: link compartilhado no WhatsApp exibe título, descrição e imagem.
-- [ ] 28. Rodar o Lighthouse no celular e corrigir o que impedir nota 90 em desempenho, acessibilidade e SEO. Entrega: relatório com as três notas iguais ou acima de 90.
-- [ ] 29. Publicar o site na hospedagem escolhida, entre Vercel Pro, Cloudflare e Netlify, com as variáveis de ambiente configuradas. Entrega: site acessível no endereço provisório da hospedagem. Bloqueada até a escolha da hospedagem.
-- [ ] 30. Registrar e apontar o domínio, verificar o domínio no Resend e testar formulário e WhatsApp em produção. Entrega: pedido de teste recebido a partir do domínio oficial. Bloqueada até a definição do domínio.
+- [ ] 34. Rodar o Lighthouse no celular e corrigir o que impedir nota 90 em desempenho, acessibilidade e SEO. Entrega: relatório com as três notas iguais ou acima de 90.
+- [ ] 35. Publicar a pasta out na hospedagem escolhida, com os IDs de rastreamento configurados. Entrega: site acessível no endereço provisório da hospedagem. Bloqueada até a escolha da hospedagem.
+- [ ] 36. Registrar e apontar o domínio e testar todos os botões de WhatsApp e o rastreamento em produção. Entrega: evento Lead registrado a partir do domínio oficial, com a origem certa vinda de um link com UTM. Bloqueada até a definição do domínio.
 
-Perguntas para você: quem vai escrever os textos finais de serviços, sobre e política de privacidade, a agência ou eu a partir de um rascunho seu? Existe algum prazo que mude a ordem dessas tarefas?
+Pergunta para você: existe algum prazo que mude a ordem dessas tarefas?
