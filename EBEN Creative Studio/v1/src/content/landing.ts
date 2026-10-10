@@ -15,8 +15,8 @@ export const hero = {
   subtitle:
     "Social media, vídeo e bastidores em tempo real, com estratégia e a cara do seu negócio. A consultoria é gratuita.",
   secondaryCta: { label: "Ver portfólio", href: "#portfolio" },
-  /** Legendas que passam dentro do quadro, uma por segmento do Story. */
-  storyBeats: ["Social media com direção.", "Vídeo com a cara da marca.", "Bastidores em tempo real."],
+  /** Legendas do Story, uma por foto, na mesma ordem de `heroSlides` (site.ts). */
+  storyBeats: ["Social media com direção.", "Bastidores em tempo real.", "Vídeo com a cara da marca."],
 } as const;
 
 export const manifesto = {

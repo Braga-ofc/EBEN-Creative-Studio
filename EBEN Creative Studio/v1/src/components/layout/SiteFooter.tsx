@@ -1,5 +1,12 @@
 import { Lockup } from "@/components/brand/Lockup";
-import { brand, contact, developerCredit, instagram, navigation } from "@/content/site";
+import {
+  brand,
+  contact,
+  developerCredit,
+  agencyInstagram,
+  navigation,
+  portfolioInstagram,
+} from "@/content/site";
 import { consultationLink, whatsappLink } from "@/lib/whatsapp";
 
 export function SiteFooter() {
@@ -26,15 +33,18 @@ export function SiteFooter() {
             WhatsApp {contact.whatsapp.display}
             <span className="sr-only"> (abre em uma nova aba)</span>
           </a>
-          <a
-            href={instagram.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 block type-body underline decoration-gold/60 transition-colors hover:text-gold"
-          >
-            Instagram {instagram.handle}
-            <span className="sr-only"> (abre em uma nova aba)</span>
-          </a>
+          {[agencyInstagram, portfolioInstagram].map((profile) => (
+            <a
+              key={profile.handle}
+              href={profile.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 block type-body underline decoration-gold/60 transition-colors hover:text-gold"
+            >
+              Instagram {profile.handle}
+              <span className="sr-only"> (abre em uma nova aba)</span>
+            </a>
+          ))}
         </div>
 
         <nav aria-label="Rodapé" className="md:col-span-3 lg:col-span-2">

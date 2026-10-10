@@ -1,4 +1,4 @@
-@import "tailwindcss";
+ @import "tailwindcss";
 
 /*
  * Sistema visual da landing page v1 da EBEN Creative Studio.
@@ -396,13 +396,20 @@
 }
 
 /* Story da hero -------------------------------------------------------------
- * Três segmentos se completam uma vez, como um Story, e o quadro termina com a
- * assinatura da marca, como o brandkit pede para vídeos. Hover e foco pausam.
+ * Três fotos, uma por barra, passando lado a lado em carrossel. O ciclo dura
+ * 12 s: cada foto fica 3,2 s parada e desliza em 0,8 s para a próxima, no
+ * instante em que a sua barra termina de encher. Os percentuais dos keyframes
+ * saem dessa conta (4 s por foto). Mouse em cima, foco pelo teclado e o botão
+ * de pausa congelam a trilha e as barras juntas.
+ *
+ * Sem bloco de movimento reduzido de propósito, como no Instagram: o
+ * responsável pelo projeto quer o carrossel rodando mesmo com as animações do
+ * sistema desligadas. O botão de pausa atende quem precisa parar o movimento.
  */
 
 .story {
-  --beat: 3.2s;
   --lead-in: 0.8s;
+  --cycle: 12s;
   container-type: inline-size;
   isolation: isolate;
   overflow: hidden;
@@ -413,14 +420,32 @@
   position: relative;
 }
 
-.story__placeholder {
+/* A trilha sobra 1px de cada lado do quadro: com largura fracionada, o
+   arredondamento dos pixels mostraria um fio da foto vizinha na borda. */
+.story__track {
+  position: absolute;
+  inset: 0 -1px;
+  display: flex;
+  will-change: transform;
+  animation: story-track var(--cycle) cubic-bezier(0.65, 0, 0.35, 1) var(--lead-in) infinite both;
+}
+
+.story__slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+/* Sombra de leitura de cada foto: escurece o topo (barras) e a base (legenda). */
+.story__slide::after {
+  content: "";
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
+  z-index: 1;
+  pointer-events: none;
   background:
-    radial-gradient(120% 70% at 50% 38%, rgb(85 62 64 / 0.55) 0%, rgb(33 25 26 / 0) 70%),
-    var(--color-charcoal);
+    linear-gradient(to bottom, rgb(33 25 26 / 0.55) 0%, rgb(33 25 26 / 0) 18%),
+    linear-gradient(to top, rgb(33 25 26 / 0.82) 0%, rgb(33 25 26 / 0) 42%);
 }
 
 .story__media {
@@ -431,26 +456,27 @@
   object-fit: cover;
 }
 
-.story__scrim {
+.story__beat {
   position: absolute;
-  inset: 0;
-  z-index: 1;
+  inset-inline: 22px;
+  bottom: 26px;
+  z-index: 2;
+}
+
+/* Marca d'água: a estrela da marca fica parada enquanto as fotos passam, bem
+   apagada. O contorno escuro e fino a deixa perceptível também sobre roupa e
+   pele claras. */
+.story__watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 22%;
+  translate: -50% -50%;
+  color: var(--color-ivory);
+  opacity: 0.18;
+  filter: drop-shadow(0 0 1px rgb(33 25 26 / 0.9)) drop-shadow(0 0 2px rgb(33 25 26 / 0.5));
   pointer-events: none;
-  background:
-    linear-gradient(to bottom, rgb(33 25 26 / 0.55) 0%, rgb(33 25 26 / 0) 18%),
-    linear-gradient(to top, rgb(33 25 26 / 0.82) 0%, rgb(33 25 26 / 0) 42%);
-}
-
-.story__tap {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .story__tap {
-    cursor: pointer;
-  }
 }
 
 .story__bars {
@@ -475,101 +501,174 @@
   background-color: var(--color-ivory);
   transform-origin: left center;
   transform: scaleX(0);
-  animation: story-fill var(--beat) linear forwards;
-  animation-delay: calc(var(--i) * var(--beat) + var(--lead-in));
+  animation: var(--cycle) linear var(--lead-in) infinite both;
 }
 
-.story__beat,
-.story__end {
+.story__bar:nth-child(1) > span {
+  animation-name: story-bar-1;
+}
+
+.story__bar:nth-child(2) > span {
+  animation-name: story-bar-2;
+}
+
+.story__bar:nth-child(3) > span {
+  animation-name: story-bar-3;
+}
+
+.story__tap {
   position: absolute;
-  inset-inline: 22px;
-  bottom: 26px;
-  z-index: 2;
+  inset: 0;
+  z-index: 4;
+  cursor: pointer;
 }
 
-.story__beat {
-  opacity: 0;
-  animation: story-beat var(--beat) var(--ease-out-quart) forwards;
-  animation-delay: calc(var(--i) * var(--beat) + var(--lead-in));
+.story__pause {
+  position: absolute;
+  top: 22px;
+  right: 8px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  color: var(--color-ivory);
+  filter: drop-shadow(0 1px 2px rgb(33 25 26 / 0.6));
+  opacity: 0.85;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-.story__signature {
-  font-size: clamp(0.75rem, 5cqi, 0.9375rem);
+.story__pause:hover {
+  opacity: 1;
 }
 
-.story__end {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  opacity: 0;
-  animation: story-end 1.4s var(--ease-out-expo) forwards;
-  animation-delay: calc(3 * var(--beat) + var(--lead-in));
-}
-
-.story:hover .story__bar > span,
-.story:hover .story__beat,
-.story:hover .story__end,
-.story:focus-within .story__bar > span,
-.story:focus-within .story__beat,
-.story:focus-within .story__end {
+.story[data-paused] :is(.story__track, .story__bar > span),
+.story:has(:focus-visible) :is(.story__track, .story__bar > span) {
   animation-play-state: paused;
 }
 
-@keyframes story-fill {
-  to {
-    transform: scaleX(1);
+/* Só pausa com o mouse em cima onde existe mouse: no celular, o toque deixaria o carrossel parado. */
+@media (hover: hover) {
+  .story:hover :is(.story__track, .story__bar > span) {
+    animation-play-state: paused;
   }
 }
 
-@keyframes story-beat {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
+@keyframes story-track {
+  0%,
+  26.667% {
+    transform: translateX(0);
   }
-  12%,
-  82% {
-    opacity: 1;
-    transform: translateY(0);
+  33.333%,
+  60% {
+    transform: translateX(-100%);
+  }
+  66.667%,
+  93.333% {
+    transform: translateX(-200%);
   }
   100% {
-    opacity: 0;
-    transform: translateY(-6px);
+    transform: translateX(-300%);
   }
 }
 
-@keyframes story-end {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-    filter: blur(6px);
+@keyframes story-bar-1 {
+  0% {
+    transform: scaleX(0);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-@media (max-width: 767px) {
-  .story__beat,
-  .story__end {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .story__bar > span {
-    animation: none;
+  33.333%,
+  100% {
     transform: scaleX(1);
   }
+}
 
+@keyframes story-bar-2 {
+  0%,
+  33.333% {
+    transform: scaleX(0);
+  }
+  66.667%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes story-bar-3 {
+  0%,
+  66.667% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* No celular o texto da hero ocupa a base do quadro: a legenda sai. */
+@media (max-width: 767px) {
   .story__beat {
     display: none;
   }
+}
 
-  .story__end {
-    animation: none;
-    opacity: 1;
+/* Manifesto -----------------------------------------------------------------
+ * A foto da Geovana em segundo plano, do lado esquerdo, grande e encostada na
+ * borda da tela. Ela mora no bloco que vem logo depois do título e é
+ * posicionada pela altura da cabeça: na foto (2:3), o alto do cabelo fica a
+ * 37% da altura, então a imagem sobe 0,555 vez a própria largura (1,5 x 37%)
+ * acima do ponto em que a cabeça deve começar (--head-y, um pouco abaixo do
+ * título). Os braços e o celular podem subir atrás do título, apagados pela
+ * máscara; a cabeça, nunca.
+ *
+ * O modo de mistura "luminosity" pinta a foto com o burgundy da seção, e as
+ * máscaras dissolvem o topo, a base e a borda direita, que encosta nos
+ * parágrafos.
+ */
+
+.manifesto {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--color-burgundy);
+}
+
+/* Até 1023px o texto ocupa a largura toda: a foto aparece numa faixa entre o
+   título e os parágrafos (o bloco dos parágrafos ganha um respiro em cima, no
+   componente), e o texto começa sobre a parte escura da jaqueta. Contraste
+   medido no celular: 3,2:1 no título dourado e 5,2:1 ou mais nos parágrafos. */
+.manifesto__portrait {
+  --portrait-w: min(100vw, 560px);
+  --head-y: -24px;
+  position: absolute;
+  top: calc(var(--head-y) - var(--portrait-w) * 0.555);
+  /* Encosta na borda esquerda da tela, saindo da margem do conteúdo. */
+  left: calc((100% - 100vw) / 2);
+  z-index: -1;
+  width: var(--portrait-w);
+  aspect-ratio: 2 / 3;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: luminosity;
+  filter: brightness(0.75);
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.12) 28%, #000 41%, #000 78%, transparent 98%),
+    linear-gradient(to left, transparent 0%, #000 30%);
+  mask-composite: intersect;
+}
+
+/* No computador, do lado esquerdo, ao lado dos parágrafos. Contraste medido:
+   3,1:1 ou mais no título dourado (texto grande), 7,5:1 no título marfim e
+   4,6:1 ou mais nos parágrafos. */
+@media (min-width: 1024px) {
+  .manifesto__portrait {
+    --portrait-w: min(52vw, 760px);
+    --head-y: -16px;
+    opacity: 0.55;
+    filter: brightness(0.8);
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.12) 28%, #000 41%, #000 76%, transparent 98%),
+      linear-gradient(to left, transparent 0%, transparent 18%, #000 60%);
   }
 }
 
@@ -630,157 +729,550 @@
   }
 }
 
+/* Portfólio -----------------------------------------------------------------
+ * Abas iguais às pastas do Drive, miniaturas verticais e o visualizador de
+ * fotos e vídeos (um <dialog> em tela cheia). Na camada de componentes, para
+ * as classes utilitárias (aspect, rounded) continuarem valendo.
+ */
+
+@layer components {
+  .portfolio-tabs {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    border-bottom: 1px solid rgb(247 234 215 / 0.15);
+    scrollbar-width: none;
+  }
+
+  .portfolio-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-tab {
+    position: relative;
+    flex-shrink: 0;
+    padding-block: 14px;
+    color: var(--color-ash);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .portfolio-tab::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s var(--ease-out-expo);
+  }
+
+  .portfolio-tab:hover,
+  .portfolio-tab[aria-selected="true"] {
+    color: var(--color-ivory);
+  }
+
+  .portfolio-tab[aria-selected="true"]::after {
+    transform: scaleX(1);
+  }
+
+  /* A lista rola de lado no celular e cortaria o contorno de foco por fora. */
+  .portfolio-tab:focus-visible {
+    outline-offset: -2px;
+  }
+
+  .tile {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--color-charcoal-raised);
+    cursor: pointer;
+  }
+
+  .tile__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.6s var(--ease-out-expo);
+  }
+
+  button:hover .tile__image,
+  button:focus-visible .tile__image {
+    scale: 1.04;
+  }
+
+  .tile__play {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background-color: rgb(247 234 215 / 0.92);
+    color: var(--color-burgundy);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  button:hover .tile__play {
+    background-color: var(--color-gold);
+    color: var(--color-charcoal);
+  }
+
+  /* Vídeo principal rodando sem som: aviso de que o clique abre com som. */
+  .tile__sound {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background-color: rgb(33 25 26 / 0.72);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  button:hover .tile__sound,
+  button:focus-visible .tile__sound {
+    background-color: var(--color-gold);
+    color: var(--color-charcoal);
+  }
+
+  /* Vídeo principal de um case: play grande, no centro da capa. */
+  .tile__play--lead {
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    width: 76px;
+    height: 76px;
+    translate: -50% -50%;
+  }
+
+  .viewer {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    background: transparent;
+    color: var(--color-ivory);
+  }
+
+  .viewer[open] {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+
+  @starting-style {
+    .viewer[open] {
+      opacity: 0;
+    }
+  }
+
+  .viewer::backdrop {
+    background-color: rgb(20 14 15 / 0.97);
+  }
+
+  .viewer__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px clamp(12px, 3vw, 32px);
+  }
+
+  .viewer__bar--bottom {
+    justify-content: center;
+    gap: 28px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  /* O palco é um contêiner de tamanho: as unidades cqw e cqh encaixam a mídia
+     inteira na área livre, na proporção certa, em qualquer tela. */
+  .viewer__stage {
+    display: grid;
+    place-items: center;
+    min-height: 0;
+    padding-inline: clamp(12px, 3vw, 32px);
+    container-type: size;
+  }
+
+  .viewer__media {
+    display: block;
+    border: 0;
+    background-color: #000;
+  }
+
+  .viewer__media--portrait {
+    height: min(100cqh, 100cqw * 16 / 9);
+    aspect-ratio: 9 / 16;
+  }
+
+  .viewer__media--landscape {
+    width: min(100cqw, 1120px, 100cqh * 16 / 9);
+    aspect-ratio: 16 / 9;
+  }
+
+  .viewer__media--image {
+    width: auto;
+    height: auto;
+    max-width: 100cqw;
+    max-height: 100cqh;
+    object-fit: contain;
+    background-color: transparent;
+  }
+
+  .viewer__button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 999px;
+    color: var(--color-ivory);
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .viewer__button:hover:not(:disabled) {
+    background-color: rgb(247 234 215 / 0.1);
+  }
+
+  .viewer__button:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+/* Com o visualizador aberto, a página por trás não rola. */
+html:has(.viewer[open]) {
+  overflow: hidden;
+}
+
+/* Botão da consultoria -------------------------------------------------------
+ * Adaptado do botão enviado pelo responsável pelo projeto: pílula com um brilho
+ * desfocado girando no centro, que encolhe quando o mouse passa. Mudanças: o
+ * marfim da marca no lugar do cinza do brilho, o texto por cima do brilho (no
+ * original ficava por baixo e perdia contraste) e, no hover, o rosa da marca
+ * com texto charcoal no lugar do roxo. Fica na camada de componentes para as
+ * classes utilitárias de cada lugar (hidden, w-full) continuarem valendo.
+ */
+
+@layer components {
+  .cta {
+    --cta-bg: var(--color-ivory);
+    --cta-fg: #570606; /* 12,3 sobre o marfim; 5,0 no ponto mais vermelho do brilho */
+    --cta-glow: linear-gradient(90deg, #db0000 0%, var(--color-ivory) 49%, #c38522 100%);
+    --cta-glow-opacity: 0.5;
+    position: relative;
+    z-index: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    overflow: hidden;
+    border-radius: 10rem;
+    background-color: var(--cta-bg);
+    color: var(--cta-fg);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.5;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: 0 0 7px -5px rgb(0 0 0 / 0.5);
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.1s ease;
+  }
+
+  /* No papel marfim da consultoria: burgundy, com um brilho mais escuro para o texto marfim ler bem (5,2 ou mais). */
+  .cta--dark {
+    --cta-bg: var(--color-burgundy);
+    --cta-fg: var(--color-ivory);
+    --cta-glow: linear-gradient(90deg, #db0000 0%, var(--color-gold) 49%, var(--color-burgundy-deep) 100%);
+    --cta-glow-opacity: 0.4;
+  }
+
+  .cta--sm {
+    padding: 9px 20px;
+    font-size: 0.875rem;
+  }
+
+  /* Rosa da marca com texto charcoal: 6,2 no fundo liso, 4,5 ou mais com o brilho por trás. */
+  .cta:hover {
+    --cta-glow: linear-gradient(90deg, #db0000 0%, var(--color-ivory) 49%, #c38522 100%);
+    --cta-glow-opacity: 0.3;
+    background-color: var(--color-rose);
+    color: var(--color-charcoal);
+  }
+
+  .cta:active {
+    transform: scale(0.97);
+  }
+
+  .cta__glow {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .cta__glow > span {
+    flex-shrink: 0;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 40rem;
+    background: var(--cta-glow);
+    filter: blur(20px);
+    opacity: var(--cta-glow-opacity);
+    animation: cta-glow 3s linear infinite;
+    transition:
+      width 0.4s ease,
+      height 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  .cta:hover .cta__glow > span {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .cta__label {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (forced-colors: active) {
+    .cta {
+      border: 1px solid ButtonText;
+    }
+
+    .cta__glow {
+      display: none;
+    }
+  }
+}
+
+@keyframes cta-glow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Instagram --------------------------------------------------------------
- * Camadas que se abrem em leque no hover ou no foco, rótulo embaixo e cartão
- * do perfil em cima. Cantos retos e paleta da marca, sem sombras.
+ * Reprodução do componente original (vídeo de referência do responsável pelo
+ * projeto): ícone com o gradiente do Instagram, camadas que sobem em leque,
+ * rótulo laranja e cartão de perfil que sobe de trás do ícone.
  */
 
 .ig {
   position: relative;
   display: inline-block;
-  padding: 24px 24px 0 0;
+  font-size: 17px;
+}
+
+.ig__tooltip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 5;
+  padding: 10px;
+  border-radius: 15px;
+  translate: -50% 0;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow:
+    inset 5px 5px 5px rgb(0 0 0 / 0.2),
+    inset -5px -5px 15px rgb(255 255 255 / 0.1),
+    5px 5px 15px rgb(0 0 0 / 0.3),
+    -5px -5px 15px rgb(255 255 255 / 0.1);
+  transition:
+    top 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.ig:hover .ig__tooltip,
+.ig:focus-within .ig__tooltip {
+  top: -150px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ig__profile {
+  padding: 10px;
+  white-space: nowrap;
+  border: 1px solid #52382f;
+  border-radius: 10px 15px;
+  background-color: #2a2b2f;
+}
+
+.ig__profile p {
+  text-wrap: nowrap;
+}
+
+.ig__user {
+  display: flex;
+  gap: 10px;
+}
+
+.ig__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  color: var(--color-burgundy);
+  border: 1px solid #e6683c;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.ig__name {
+  color: #e6683c;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.ig__username {
+  color: #fff;
+  line-height: 1.4;
+}
+
+.ig__about {
+  padding-top: 5px;
+  color: #ccc;
 }
 
 .ig__link {
   position: relative;
   display: block;
-  width: 56px;
-  height: 56px;
-  color: var(--color-burgundy);
+  color: #fff;
+  text-decoration: none;
 }
 
 .ig__layers {
-  position: absolute;
-  inset: 0;
-  transition: transform 0.4s var(--ease-out-expo);
+  position: relative;
+  display: block;
+  width: 55px;
+  height: 55px;
+  transition: transform 0.3s;
 }
 
 .ig__layers > span {
   position: absolute;
   inset: 0;
-  border: 1px solid var(--color-gold);
-  transition:
-    transform 0.4s var(--ease-out-expo),
-    opacity 0.4s var(--ease-out-expo);
+  border: 1px solid #e6683c;
+  border-radius: 15px;
+  transition: all 0.3s;
 }
 
 .ig__face {
-  display: grid;
-  place-items: center;
-  border-color: var(--color-ivory) !important;
-  background-color: var(--color-ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
 }
 
 .ig__face svg {
-  width: 26px;
-  height: 26px;
-  fill: currentColor;
+  height: 1.5em;
+  fill: #fff;
 }
 
 .ig__label {
   position: absolute;
-  bottom: -6px;
+  bottom: -5px;
   left: 50%;
   translate: -50% 0;
   opacity: 0;
+  color: #e6683c;
+  font-weight: 500;
   white-space: nowrap;
-  color: var(--color-gold);
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   transition:
-    bottom 0.3s var(--ease-out-expo),
-    opacity 0.3s var(--ease-out-expo);
+    bottom 0.3s ease,
+    opacity 0.3s ease;
 }
 
-.ig__card {
-  position: absolute;
-  bottom: calc(100% - 8px);
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px 14px 14px;
-  white-space: nowrap;
-  border: 1px solid rgb(247 234 215 / 0.15);
-  background-color: var(--color-charcoal-raised);
-  translate: 0 12px;
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    translate 0.35s var(--ease-out-expo),
-    opacity 0.35s var(--ease-out-expo);
-}
-
-/* O text-wrap: pretty dos parágrafos religaria a quebra de linha dentro do cartão. */
-.ig__card p {
-  text-wrap: nowrap;
-}
-
-.ig:hover .ig__card,
-.ig:focus-within .ig__card {
-  translate: 0 -8px;
-  opacity: 1;
-}
-
-.ig:hover .ig__label,
-.ig:focus-within .ig__label {
-  bottom: -34px;
-  opacity: 1;
-}
-
-.ig:hover .ig__layers,
-.ig:focus-within .ig__layers {
+.ig__link:hover .ig__layers,
+.ig__link:focus-visible .ig__layers {
   transform: rotate(-35deg) skew(20deg);
 }
 
-.ig:hover .ig__layers > span:nth-child(1),
-.ig:focus-within .ig__layers > span:nth-child(1) {
+.ig__link:hover .ig__label,
+.ig__link:focus-visible .ig__label {
+  bottom: -35px;
+  opacity: 1;
+}
+
+.ig__link:hover .ig__layers > span:nth-child(1),
+.ig__link:focus-visible .ig__layers > span:nth-child(1) {
   opacity: 0.2;
 }
 
-.ig:hover .ig__layers > span:nth-child(2),
-.ig:focus-within .ig__layers > span:nth-child(2) {
+.ig__link:hover .ig__layers > span:nth-child(2),
+.ig__link:focus-visible .ig__layers > span:nth-child(2) {
   opacity: 0.4;
   transform: translate(5px, -5px);
 }
 
-.ig:hover .ig__layers > span:nth-child(3),
-.ig:focus-within .ig__layers > span:nth-child(3) {
+.ig__link:hover .ig__layers > span:nth-child(3),
+.ig__link:focus-visible .ig__layers > span:nth-child(3) {
   opacity: 0.6;
   transform: translate(10px, -10px);
 }
 
-.ig:hover .ig__layers > span:nth-child(4),
-.ig:focus-within .ig__layers > span:nth-child(4) {
+.ig__link:hover .ig__layers > span:nth-child(4),
+.ig__link:focus-visible .ig__layers > span:nth-child(4) {
   opacity: 0.8;
   transform: translate(15px, -15px);
 }
 
-.ig:hover .ig__layers > span:nth-child(5),
-.ig:focus-within .ig__layers > span:nth-child(5) {
+.ig__link:hover .ig__layers > span:nth-child(5),
+.ig__link:focus-visible .ig__layers > span:nth-child(5) {
+  opacity: 1;
   transform: translate(20px, -20px);
 }
 
-/* Celular e tablet sem mouse: o cartão não abre; o @ já aparece no texto ao lado. */
+/* Telas sem mouse: o cartão não abre; o @ já aparece no texto ao lado. */
 @media (hover: none) {
-  .ig__card {
+  .ig__tooltip {
     display: none;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ig__layers,
-  .ig__layers > span,
-  .ig__label,
-  .ig__card {
-    transition: none;
-  }
-
-  .ig__layers,
-  .ig__layers > span {
-    transform: none !important;
-  }
-}
+/* Sem bloco de movimento reduzido de propósito: o leque só se move quando a
+   pessoa passa o mouse ou foca o ícone, e o responsável pelo projeto quer o
+   efeito do vídeo de referência mesmo com as animações do sistema desligadas. */

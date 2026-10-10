@@ -1,6 +1,6 @@
 import { approach, consultation, faq, howItWorks, services } from "@/content/landing";
-import { portfolioItems } from "@/content/portfolio";
-import { brand, contact, instagram } from "@/content/site";
+import { portfolioCategories } from "@/content/portfolio";
+import { agencyInstagram, brand, contact, portfolioInstagram } from "@/content/site";
 import { absoluteUrl } from "@/lib/env";
 import { consultationLink } from "@/lib/whatsapp";
 
@@ -15,7 +15,12 @@ function lowerFirst(text: string): string {
  */
 export function buildLlmsTxt(): string {
   const home = absoluteUrl("/");
-  const cases = portfolioItems.filter((item) => item.figure);
+  const cases = portfolioCategories.flatMap((category) =>
+    category.groups.flatMap((group) =>
+      group.name && group.result ? [{ category: category.label, name: group.name, result: group.result }] : [],
+    ),
+  );
+  const fronts = portfolioCategories.filter((category) => !category.groups.some((group) => group.result));
 
   const lines = [
     `# ${brand.name}`,
@@ -26,7 +31,8 @@ export function buildLlmsTxt(): string {
     "",
     `- Atendimento: ${lowerFirst(contact.hours.label)}, com resposta em até 2 horas nesse horário.`,
     `- WhatsApp: ${contact.whatsapp.display}`,
-    `- Instagram: [${instagram.handle}](${instagram.url})`,
+    `- Instagram da agência: [${agencyInstagram.handle}](${agencyInstagram.url})`,
+    `- Instagram com a maior parte dos trabalhos: [${portfolioInstagram.handle}](${portfolioInstagram.url})`,
     "- Idioma: português do Brasil",
     "",
     "## Página",
@@ -43,8 +49,13 @@ export function buildLlmsTxt(): string {
     "",
     ...cases.map(
       (item) =>
-        `- [${item.title}, ${item.service}](${absoluteUrl("/#portfolio")}): ${item.figure?.value} ${item.figure?.label}. ${item.text}`,
+        `- [${item.name}, ${item.category}](${absoluteUrl("/#portfolio")}): ${item.result.value} ${item.result.label}. ${item.result.text}`,
     ),
+    ...fronts.map((category) => {
+      const names = category.groups.flatMap((group) => (group.name ? [group.name] : []));
+      const projects = names.length > 0 ? ` Projetos: ${names.join(", ")}.` : "";
+      return `- [${category.label}](${absoluteUrl("/#portfolio")}): ${category.text}${projects}`;
+    }),
     "",
     "## Como funciona",
     "",

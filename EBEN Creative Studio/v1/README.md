@@ -6,7 +6,7 @@ O objetivo principal da página é levar o visitante a **agendar uma consultoria
 
 ## Direção visual
 
-A primeira tela é um Story: um quadro vertical 9:16, o formato que o público consome todo dia, fica no centro e a headline atravessa a página dos dois lados. Os três segmentos do Story se completam uma vez e o quadro termina com o monograma e o slogan, como o brandkit pede para o encerramento de vídeos. Um toque ou clique no quadro avança para o próximo segmento.
+A primeira tela é um Story: um quadro vertical 9:16, o formato que o público consome todo dia, fica no centro e a headline atravessa a página dos dois lados. Três fotos da Geovana passam lado a lado em carrossel, uma por barra, com a estrela da marca parada por cima como marca-d'água. Um toque ou clique no quadro pula para a próxima foto, e o botão no canto de cima pausa. Logo abaixo, o manifesto traz a foto da Geovana em segundo plano, pintada com o burgundy da página.
 
 Cores e fontes seguem o brandkit oficial: burgundy como chão da página, charcoal como sala de exibição, marfim para texto e para o convite da consultoria, dourado só em detalhes, Fraunces nos títulos e Manrope no texto. O sistema completo está em [DESIGN.md](DESIGN.md), e o contexto de produto em [PRODUCT.md](PRODUCT.md).
 
@@ -44,29 +44,22 @@ npm run preview
 
 Abre em http://localhost:4173. Para testar localmente, faça o build com `NEXT_PUBLIC_SITE_URL=http://localhost:4173`.
 
-## Como trocar a imagem da hero
+## Como trocar as fotos da hero
 
-O quadro da hero já tem o tamanho e a proporção da imagem definitiva, então nada no layout muda quando ela entrar.
+As três fotos do Story ficam em `public/images/hero/` e são listadas, na ordem em que passam, em `heroSlides`, em [src/content/site.ts](src/content/site.ts). Cada uma tem a sua legenda em `hero.storyBeats`, em [src/content/landing.ts](src/content/landing.ts), na mesma ordem.
 
-1. Exporte a imagem em WebP, na vertical, com proporção 9:16 e pelo menos 1080 x 1920 px. Deixe o assunto principal perto do centro: no celular o quadro ocupa a tela inteira e o recorte muda um pouco.
-2. Salve em `public/images/hero.webp`.
-3. Em [src/content/site.ts](src/content/site.ts), troque `heroMedia` de `null` para:
+1. Exporte a foto em WebP, na vertical, com proporção 9:16 (900 x 1600 px é suficiente). Deixe a pessoa perto do centro: no celular o quadro ocupa a tela inteira e o recorte fecha um pouco nas laterais.
+2. Salve em `public/images/hero/` e troque `src` e `alt` do item em `heroSlides`. O campo `position` ajusta o ponto de foco do recorte, se precisar.
 
-```ts
-export const heroMedia: HeroMedia | null = {
-  src: "/images/hero.webp",
-  alt: "Descreva o que aparece na imagem",
-  width: 1080,
-  height: 1920,
-  position: "50% 50%",
-};
-```
+A primeira foto também aparece em segundo plano no manifesto (`manifestoPortrait`, no mesmo arquivo), sem download extra.
 
-O campo `position` ajusta o ponto de foco do recorte, se precisar.
+## Como mexer no portfólio
 
-## Como publicar o portfólio
+O portfólio segue a pasta "vídeos Portfolio" do Google Drive da EBEN: uma aba por serviço (Social Media, Videomaker, Storymaker e Mobile Photo), um cartão por subpasta (cliente ou projeto) e, dentro dele, os arquivos, que abrem num visualizador sem sair da página. Tudo fica em [src/content/portfolio.ts](src/content/portfolio.ts).
 
-Cada item do portfólio tem um quadro no formato em que a mídia é publicada (4:5 para feed, 9:16 para Story e Reels, 16:9 para filme). Para colocar a mídia, salve o arquivo em `public/images/portfolio/` e preencha o campo `media` do item em [src/content/portfolio.ts](src/content/portfolio.ts). Os itens "Bastidores de eventos" e "Vídeos de marca" descrevem frentes reais da EBEN sem citar cliente e podem virar projetos com nome quando os cases forem escolhidos.
+As mídias continuam no Drive. A página mostra a miniatura que o próprio Drive gera e toca os vídeos no player do Drive, que converte os arquivos do celular (.mov, .mp4) para tocar em qualquer navegador. Por isso, os arquivos precisam continuar compartilhados como "qualquer pessoa com o link". Para incluir um arquivo, copie o ID do link dele no Drive (o trecho entre `/d/` e `/view`) e acrescente no grupo certo, com `kind` igual a `"video"`, `"photo"` ou `"screen"` (print de tela). Fotos e prints precisam de `alt`, a descrição do que aparece. A primeira mídia de cada grupo é a capa do cartão.
+
+Um arquivo também pode ficar no próprio site, com `src` e `poster` no lugar de `driveId`. É o caso do vídeo principal da Sued, em [public/videos/](public/videos/), com a capa em [public/images/portfolio/](public/images/portfolio/). Nos cases de Social Media, quando a primeira mídia é um vídeo, ele aparece grande ao lado do texto, e os prints ficam embaixo do texto. Para vídeos assim, use MP4 em H.264, que toca em qualquer navegador. No vídeo da Sued, o índice do arquivo foi movido para o começo (sem recodificar), para ele começar a tocar sem esperar o download do fim.
 
 ## Onde editar os textos
 
@@ -109,6 +102,7 @@ v1/
 ├── DESIGN.md              sistema visual desta versão
 ├── PRODUCT.md             contexto de produto usado no design
 ├── public/brand/          logo, sprite do monograma e da estrela
+├── public/images/         fotos da hero e do cartão do Instagram
 ├── scripts/               preview local e verificação de SEO
 └── src/
     ├── app/               layout, página, 404, robots, sitemap, llms.txt e ícone
@@ -116,7 +110,7 @@ v1/
     │   ├── brand/         monograma, estrela e assinatura
     │   ├── layout/        cabeçalho, menu, rodapé e barra fixa do celular
     │   ├── sections/      cada bloco da página
-    │   └── ui/            botão da consultoria
+    │   └── ui/            botão da consultoria e ícone do Instagram
     ├── content/           textos, contatos e portfólio
     └── lib/               ambiente, WhatsApp, JSON-LD e llms.txt
 ```
@@ -124,6 +118,10 @@ v1/
 ## Decisões desta versão
 
 - O botão principal abre o WhatsApp; não há formulário nem agenda externa.
+- O botão "Agendar uma consultoria" é uma pílula com um brilho girando por trás do texto, adaptada do botão escolhido pelo responsável pelo projeto (cores da marca, texto por cima do brilho para manter o contraste). Fica em [src/components/ui/ConsultationButton.tsx](src/components/ui/ConsultationButton.tsx) e no bloco "Botão da consultoria" de [src/app/globals.css](src/app/globals.css).
+- O carrossel da hero, o brilho do botão e o ícone do Instagram continuam animados mesmo quando o sistema pede movimento reduzido, por decisão do responsável pelo projeto. O carrossel tem botão de pausa e para com o mouse em cima ou com o foco do teclado.
+- Quase todas as mídias do portfólio são carregadas do Google Drive, sem cópia no site. Miniaturas e players só carregam quando a aba ou o visualizador abre.
+- O vídeo principal da Sued (16 s, 11,7 MB) fica no próprio site, porque veio direto do computador do responsável pelo projeto. Ele só é baixado quando alguém dá play, e cabe no limite de arquivo das hospedagens estáticas (25 MB na Cloudflare).
 - A consultoria é gratuita, confirmado pelo responsável pelo projeto.
 - O brandkit manda nas cores e fontes; não foi usada referência visual externa.
 - A headline é a aprovada na copy: "Postar todo dia não é ter presença."
@@ -133,12 +131,12 @@ v1/
 
 ## Instagram
 
-O perfil [@geoo.silvaz](https://www.instagram.com/geoo.silvaz/) aparece em três lugares: no fim do portfólio, com o ícone animado ([src/components/ui/InstagramLink.tsx](src/components/ui/InstagramLink.tsx)), no rodapé, como link simples, e no JSON-LD (`sameAs`) e no `llms.txt`. O @ e o endereço ficam em [src/content/site.ts](src/content/site.ts).
+Dois perfis, cada um com o ícone animado ([src/components/ui/InstagramLink.tsx](src/components/ui/InstagramLink.tsx)) no fim do portfólio e um link simples no rodapé: [@geoo.silvaz](https://www.instagram.com/geoo.silvaz/), com a maior parte dos trabalhos (rótulo "BackStage"), e [@eben.creative_](https://www.instagram.com/eben.creative_/), o perfil da agência (rótulo "Agência"). Só o perfil da agência entra no JSON-LD (`sameAs`); os dois entram no `llms.txt`. Nomes, @ e textos dos cartões ficam em [src/content/site.ts](src/content/site.ts).
 
 ## Pendências
 
-- Imagem definitiva da hero.
-- Mídias do portfólio e, se houver, um terceiro case e depoimentos em frase.
+- Hospedar as mídias do portfólio junto com o site, em vez de buscar no Google Drive (mais rápido e sem depender do compartilhamento da pasta).
+- Depoimentos em frase, se houver.
 - Logos de clientes.
 - Domínio final, para o build de produção e a validação de SEO publicada.
 - Política de Privacidade, necessária quando o rastreamento entrar.

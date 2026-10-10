@@ -1,79 +1,70 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
-import { Monogram } from "@/components/brand/Monogram";
 import { Star } from "@/components/brand/Star";
 import { hero } from "@/content/landing";
-import { brand, heroMedia } from "@/content/site";
+import { heroSlides } from "@/content/site";
 import { cn } from "@/lib/cn";
-import { StoryTap } from "./StoryTap";
+import { StoryControls } from "./StoryControls";
 
 type StoryFrameProps = {
   className?: string;
 };
 
-const SEGMENTS = [0, 1, 2] as const;
+const SIZES = "(min-width: 1024px) 380px, (min-width: 768px) 300px, 100vw";
 
 /**
- * Quadro vertical 9:16 da hero, no formato de um Story.
+ * Quadro vertical 9:16 da hero, no formato de um Story: três fotos, uma por
+ * barra, passando lado a lado em carrossel. A animação é só CSS (globals.css,
+ * bloco "Story da hero"): cada barra enche enquanto a sua foto está na tela e,
+ * no fim dela, a trilha desliza para a próxima.
  *
- * Enquanto `heroMedia` for `null`, mostra o bloco reservado em CSS com as
- * mesmas dimensões da imagem definitiva. A animação é só CSS (globals.css):
- * os segmentos se completam uma vez e o quadro termina com a assinatura.
+ * A primeira foto se repete no fim da trilha. Quando a terceira desliza, entra
+ * essa cópia, e o ciclo recomeça do ponto idêntico, sem o carrossel voltar
+ * correndo para o começo.
  */
 export function StoryFrame({ className }: StoryFrameProps) {
+  const track = [...heroSlides, heroSlides[0]];
+
   return (
     <figure className={cn("story m-0", className)}>
-      {heroMedia ? (
-        <Image
-          src={heroMedia.src}
-          alt={heroMedia.alt}
-          width={heroMedia.width}
-          height={heroMedia.height}
-          preload
-          sizes="(min-width: 1024px) 380px, (min-width: 768px) 62vw, 100vw"
-          className="story__media"
-          style={{ objectPosition: heroMedia.position ?? "50% 50%" }}
-        />
-      ) : (
-        // Espaço reservado para a imagem da hero (9:16, mínimo 1080 x 1920 px).
-        <div className="story__placeholder" aria-hidden="true">
-          <Star className="w-[18%] text-gold opacity-25" />
-        </div>
-      )}
+      <div className="story__track">
+        {track.map((slide, index) => {
+          const isCopy = index === heroSlides.length;
+          return (
+            <div key={isCopy ? "copia" : slide.src} className="story__slide" aria-hidden={isCopy || undefined}>
+              <Image
+                src={slide.src}
+                alt={isCopy ? "" : slide.alt}
+                width={slide.width}
+                height={slide.height}
+                sizes={SIZES}
+                preload={index === 0}
+                // As outras fotos ficam fora do quadro até deslizarem: com
+                // carregamento preguiçoso, só começariam a baixar na hora de aparecer.
+                loading={index === 0 ? undefined : "eager"}
+                fetchPriority={index === 0 ? undefined : "low"}
+                className="story__media"
+                style={{ objectPosition: slide.position ?? "50% 50%" }}
+              />
+              <p className="story__beat type-quote text-ivory" aria-hidden="true">
+                {hero.storyBeats[index % heroSlides.length]}
+              </p>
+            </div>
+          );
+        })}
+      </div>
 
       <div className="story__scrim" aria-hidden="true" />
-      <StoryTap />
+      <Star className="story__watermark" />
 
-      <div aria-hidden="true">
-        <div className="story__bars">
-          {SEGMENTS.map((index) => (
-            <div key={index} className="story__bar" style={{ "--i": index } as CSSProperties}>
-              <span />
-            </div>
-          ))}
-        </div>
-
-        {hero.storyBeats.map((beat, index) => (
-          <p
-            key={beat}
-            className="story__beat type-quote text-ivory"
-            style={{ "--i": index } as CSSProperties}
-          >
-            {beat}
-          </p>
+      <div className="story__bars" aria-hidden="true">
+        {heroSlides.map((slide) => (
+          <div key={slide.src} className="story__bar">
+            <span />
+          </div>
         ))}
-
-        <div className="story__end text-ivory">
-          <Monogram className="size-11 shrink-0" />
-          <p className="story__signature font-display leading-snug italic">
-            {brand.slogan.split(". ").map((sentence, index, all) => (
-              <span key={sentence} className="block">
-                {index < all.length - 1 ? `${sentence}.` : sentence}
-              </span>
-            ))}
-          </p>
-        </div>
       </div>
+
+      <StoryControls />
     </figure>
   );
 }

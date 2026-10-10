@@ -37,11 +37,37 @@ export const contact = {
   responseTime: "Resposta em até 2 horas, de segunda a sábado, das 8h às 18h.",
 } as const;
 
-export const instagram = {
+export type InstagramProfile = {
+  /** Nome em destaque no cartão. */
+  name: string;
+  handle: string;
+  url: string;
+  /** Linha de baixo do cartão. Troque pelo número real de seguidores, se quiser mostrar. */
+  about: string;
+  /** Rótulo que aparece embaixo do ícone no hover. */
+  label: string;
+  /** Foto do cartão. Sem foto, o cartão mostra o monograma da EBEN. */
+  avatar?: { src: string; alt: string };
+};
+
+/** Perfil da agência: entra no rodapé e nos dados estruturados (sameAs). */
+export const agencyInstagram: InstagramProfile = {
+  name: "EBEN Creative Studio",
+  handle: "@eben.creative_",
+  url: "https://www.instagram.com/eben.creative_/",
+  about: "Perfil oficial da agência",
+  label: "Agência",
+};
+
+/** Perfil pessoal, onde está a maior parte dos trabalhos. */
+export const portfolioInstagram: InstagramProfile = {
+  name: "Mais trabalhos",
   handle: "@geoo.silvaz",
   url: "https://www.instagram.com/geoo.silvaz/",
-  about: "Bastidores e projetos da EBEN",
-} as const;
+  about: "Portfólio e bastidores",
+  label: "BackStage",
+  avatar: { src: "/images/instagram/geo.jpg", alt: "Foto do perfil @geoo.silvaz" },
+};
 
 export const developerCredit = {
   name: "BRAGA SYSTEMS",
@@ -49,17 +75,7 @@ export const developerCredit = {
   whatsappNumber: "5561994227093",
 } as const;
 
-/**
- * Imagem definitiva da hero. Enquanto for `null`, o quadro mostra o bloco
- * reservado em CSS, com as mesmas dimensões. Para trocar, coloque o arquivo em
- * public/images/ e preencha os campos abaixo. Nada no layout precisa mudar.
- *
- * Proporção do quadro: 9:16 (vertical, como um Story). Envie pelo menos
- * 1080 x 1920 px, com o assunto principal perto do centro.
- */
-export const heroMedia: HeroMedia | null = null;
-
-export type HeroMedia = {
+export type HeroSlide = {
   src: string;
   alt: string;
   width: number;
@@ -67,6 +83,44 @@ export type HeroMedia = {
   /** Ponto de foco no recorte, em CSS. Exemplo: "50% 35%". */
   position?: string;
 };
+
+/**
+ * As três fotos do Story da hero, uma por barra, na ordem em que passam.
+ * Ficam em public/images/hero/, em WebP 9:16 (900 x 1600 px), com a pessoa
+ * perto do centro: no celular o quadro ocupa a tela e o recorte fecha um pouco.
+ */
+export const heroSlides: readonly [HeroSlide, HeroSlide, HeroSlide] = [
+  {
+    src: "/images/hero/geo-estudio.webp",
+    alt: "Geovana sorrindo com a mão na cintura em um estúdio de fundo vermelho, ao lado de um ring light",
+    width: 900,
+    height: 1600,
+  },
+  {
+    src: "/images/hero/geo-evento.webp",
+    alt: "Geovana, em preto e branco, filmando com o celular erguido durante um evento",
+    width: 900,
+    height: 1600,
+  },
+  {
+    src: "/images/hero/geo-celular.webp",
+    alt: "Geovana sorrindo e segurando o celular no estúdio de fundo vermelho, ao lado do ring light",
+    width: 900,
+    height: 1600,
+  },
+];
+
+/**
+ * Foto da Geovana em segundo plano no manifesto, do lado esquerdo: ela filmando
+ * com o celular erguido num evento, espelhada para olhar para o texto. É a
+ * imagem inteira (2:3), sem recorte, porque o CSS posiciona a foto pela altura
+ * da cabeça (bloco "Manifesto" em globals.css). Decorativa.
+ */
+export const manifestoPortrait = {
+  src: "/images/manifesto/geo-evento.webp",
+  width: 1000,
+  height: 1500,
+} as const;
 
 export const navigation = [
   { href: "#portfolio", label: "Portfólio" },

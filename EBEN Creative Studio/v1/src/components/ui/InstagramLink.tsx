@@ -1,29 +1,45 @@
+import Image from "next/image";
 import { Monogram } from "@/components/brand/Monogram";
-import { instagram } from "@/content/site";
+import type { InstagramProfile } from "@/content/site";
 import { cn } from "@/lib/cn";
 
 type InstagramLinkProps = {
+  profile: InstagramProfile;
   className?: string;
 };
 
 /**
- * Ícone animado do Instagram. No hover ou no foco, as camadas se abrem em leque,
- * aparece o rótulo embaixo e um cartão com o perfil em cima. A animação é só
- * CSS (globals.css, bloco "Instagram") e fica parada com movimento reduzido.
- *
- * Adaptado de um componente com styled-components para a paleta da marca:
- * sem o gradiente roxo do Instagram, sem cantos arredondados e sem sombras.
+ * Ícone animado do Instagram, reproduzindo o componente do vídeo de referência:
+ * no hover, as camadas sobem em leque, o rótulo aparece embaixo e o cartão do
+ * perfil sobe de trás do ícone (e continua aberto com o mouse em cima dele).
+ * A animação é só CSS (globals.css, bloco "Instagram").
  * Desenho do ícone: Font Awesome Free (CC BY 4.0).
  */
-export function InstagramLink({ className }: InstagramLinkProps) {
+export function InstagramLink({ profile: instagram, className }: InstagramLinkProps) {
   return (
     <div className={cn("ig", className)}>
-      {/* No celular o ícone fica à esquerda da linha; a partir de 640px, à direita. */}
-      <div className="ig__card left-0 sm:right-0 sm:left-auto" aria-hidden="true">
-        <Monogram className="size-10 shrink-0 text-ivory" />
-        <div>
-          <p className="font-display text-lg leading-tight text-ivory">{instagram.handle}</p>
-          <p className="mt-1 type-small text-ash">{instagram.about}</p>
+      <div className="ig__tooltip" aria-hidden="true">
+        <div className="ig__profile">
+          <div className="ig__user">
+            <div className="ig__avatar">
+              {instagram.avatar ? (
+                <Image
+                  src={instagram.avatar.src}
+                  alt=""
+                  width={100}
+                  height={100}
+                  className="size-full object-cover object-top"
+                />
+              ) : (
+                <Monogram className="size-9" />
+              )}
+            </div>
+            <div>
+              <p className="ig__name">{instagram.name}</p>
+              <p className="ig__username">{instagram.handle}</p>
+            </div>
+          </div>
+          <p className="ig__about">{instagram.about}</p>
         </div>
       </div>
 
@@ -40,9 +56,11 @@ export function InstagramLink({ className }: InstagramLinkProps) {
           </span>
         </span>
         <span className="ig__label" aria-hidden="true">
-          Instagram
+          {instagram.label}
         </span>
-        <span className="sr-only">Instagram da EBEN, {instagram.handle} (abre em uma nova aba)</span>
+        <span className="sr-only">
+          Instagram {instagram.handle}, {instagram.about} (abre em uma nova aba)
+        </span>
       </a>
     </div>
   );

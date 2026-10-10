@@ -1,6 +1,6 @@
 ---
 name: EBEN Creative Studio, landing page v1
-description: Campo burgundy, sala de exibição charcoal e um Story vertical que termina com a assinatura da marca.
+description: Campo burgundy, sala de exibição charcoal e um Story vertical com três fotos passando em carrossel.
 colors:
   burgundy: "#8f0012"
   burgundy-deep: "#6e000e"
@@ -79,6 +79,8 @@ typography:
     letterSpacing: "0.14em"
 rounded:
   none: "0px"
+  screen: "14px"
+  pill: "10rem"
   lens: "9999px"
 spacing:
   gutter: "clamp(20px, 4vw, 48px)"
@@ -88,27 +90,25 @@ spacing:
 components:
   button-primary:
     backgroundColor: "{colors.ivory}"
-    textColor: "{colors.burgundy}"
-    rounded: "{rounded.none}"
-    padding: "0 28px"
-    height: "56px"
+    textColor: "#570606"
+    rounded: "{rounded.pill}"
+    padding: "15px 30px"
   button-primary-hover:
-    backgroundColor: "{colors.gold}"
+    backgroundColor: "{colors.rose}"
     textColor: "{colors.charcoal}"
   button-on-ivory:
     backgroundColor: "{colors.burgundy}"
     textColor: "{colors.ivory}"
-    rounded: "{rounded.none}"
-    padding: "0 28px"
-    height: "56px"
+    rounded: "{rounded.pill}"
+    padding: "15px 30px"
   button-on-ivory-hover:
-    backgroundColor: "{colors.burgundy-deep}"
+    backgroundColor: "{colors.rose}"
+    textColor: "{colors.charcoal}"
   button-compact:
     backgroundColor: "{colors.ivory}"
-    textColor: "{colors.burgundy}"
-    rounded: "{rounded.none}"
-    padding: "0 20px"
-    height: "40px"
+    textColor: "#570606"
+    rounded: "{rounded.pill}"
+    padding: "9px 20px"
   story-frame:
     backgroundColor: "{colors.charcoal}"
     rounded: "{rounded.none}"
@@ -131,7 +131,7 @@ components:
 
 **Creative North Star: "O Story que fica"**
 
-A página inteira mora no campo burgundy da marca, a cor que carrega a versão principal do logo, e abre com um Story vertical no formato que o público consome todo dia. Os três segmentos se completam e o quadro termina com o monograma e o slogan, como o brandkit pede para encerramentos de vídeo: o que seria efêmero vira permanente. Esse é o gesto do sistema, e ele aparece uma vez.
+A página inteira mora no campo burgundy da marca, a cor que carrega a versão principal do logo, e abre com um Story vertical no formato que o público consome todo dia: três fotos da Geovana passam lado a lado, uma por barra, com a estrela da marca parada por cima como marca-d'água. Esse é o gesto do sistema, e ele aparece uma vez.
 
 A densidade é baixa e o ritmo é de cinema: blocos de texto curtos com muito espaço, uma sala de exibição charcoal para o portfólio e o processo, e um único objeto de papel marfim, o convite da consultoria, onde a oferta vira ação. O tom é calmo e confiante, sem os exageros de páginas de software: nada de gradiente roxo, 3D brilhante, cantos amigáveis ou grade de ícones.
 
@@ -141,7 +141,7 @@ Fraunces dá a emoção nos títulos e Manrope dá a clareza no texto, como defi
 - Campo burgundy dominante, com charcoal como sala de exibição e marfim como papel.
 - Um Story 9:16 na primeira tela, com a headline atravessando a página dos dois lados.
 - Fraunces com eixo óptico e sem letras "wonky"; Manrope no texto e nos botões.
-- Cantos retos em tudo; círculos só como forma de lente da marca.
+- Cantos retos em quadros e cartões; a exceção é o botão da consultoria, uma pílula com brilho girando por trás do texto.
 - Grão de filme fixo e sutil sobre a página inteira.
 
 ## Colors
@@ -153,19 +153,19 @@ Uma cor principal dominante, burgundy, com dois neutros de mundo (charcoal e mar
 - **Burgundy Profundo** (burgundy-deep): seções alternadas no mesmo campo (serviços e objeções) e hover dos botões burgundy.
 
 ### Secondary
-- **Ouro Champanhe** (gold): fios, estrela de quatro pontas, números de resultado, itálicos de destaque em títulos grandes, ícones, contorno de foco e hover do botão marfim. Sobre burgundy só aparece em texto a partir de 24px (contraste 4,1:1).
+- **Ouro Champanhe** (gold): fios, estrela de quatro pontas, números de resultado, itálicos de destaque em títulos grandes, ícones e contorno de foco. Sobre burgundy só aparece em texto a partir de 24px (contraste 4,1:1).
 
 ### Tertiary
-- **Rosa Empoeirado** (rose): reservado; no build aparece apenas misturado ao charcoal (rose-dim) num bloco reservado do portfólio.
+- **Rosa Empoeirado** (rose): hover do botão da consultoria, com texto charcoal (6,2:1).
 
 ### Neutral
 - **Marfim Quente** (ivory): todo o texto sobre fundos escuros (8,1:1 no burgundy, 14,5:1 no charcoal), o botão principal e o convite da consultoria.
 - **Névoa** (mist): texto secundário sobre burgundy e burgundy profundo (6,2:1 e 8,1:1).
 - **Charcoal Profundo** (charcoal): sala de exibição (portfólio, processo, rodapé) e fundo do quadro do Story.
-- **Charcoal Elevado** (charcoal-raised): superfícies sobre charcoal, como o quadro de garantias.
+- **Charcoal Elevado** (charcoal-raised): superfícies sobre charcoal, como o quadro de garantias e o fundo das miniaturas do portfólio enquanto carregam.
 - **Cinza Quente** (ash): texto secundário sobre charcoal (7,7:1).
 - **Marfim Apagado** (ivory-muted): texto secundário sobre o papel marfim (6,2:1).
-- **Rosa Sombrio** (rose-dim): só blocos reservados para mídia.
+- **Rosa Sombrio** (rose-dim): sem uso desde que as mídias do portfólio entraram; fica como reserva.
 
 ### Named Rules
 **The Campo Burgundy Rule.** Burgundy é o chão, não o acento. A página nunca vira um fundo creme com detalhes vermelhos; o marfim aparece como texto e como um único objeto de papel.
@@ -196,47 +196,50 @@ Uma cor principal dominante, burgundy, com dois neutros de mundo (charcoal e mar
 
 ## Layout
 
-Contêiner de até 1440px com margem lateral fluida de 20 a 48px e grade de 12 colunas com 24px entre colunas no computador. Seções com respiro vertical de 96 a 176px. A primeira tela no computador usa três colunas (1fr, largura do Story, 1fr) com subgrid para a headline; no tablet mantém a mesma ideia com fonte menor; no celular o Story ocupa a tela e o texto fica na base. Abaixo da primeira tela, cada seção usa uma família de layout diferente: declaração em largura total, grade assimétrica de formatos (feed 4:5, Story 9:16, filme 16:9), coluna fixa com lista, linhas de índice, colunas agrupadas, linha do tempo, objeto central, colunas de texto e sanfona. As seções abaixo da primeira tela usam `content-visibility: auto` para o celular não calcular o que ainda não apareceu.
+Contêiner de até 1440px com margem lateral fluida de 20 a 48px e grade de 12 colunas com 24px entre colunas no computador. Seções com respiro vertical de 96 a 176px. A primeira tela no computador usa três colunas (1fr, largura do Story, 1fr) com subgrid para a headline; no tablet mantém a mesma ideia com fonte menor; no celular o Story ocupa a tela e o texto fica na base. Abaixo da primeira tela, cada seção usa uma família de layout diferente: declaração em largura total com foto em segundo plano, abas com capas verticais, coluna fixa com lista, linhas de índice, colunas agrupadas, linha do tempo, objeto central, colunas de texto e sanfona. As seções abaixo da primeira tela usam `content-visibility: auto` para o celular não calcular o que ainda não apareceu.
 
 A rolagem é suave e lenta como um travelling de câmera: o Lenis interpola a rodinha do mouse (lerp 0,1) e conduz as viagens por âncora com aceleração e desaceleração simétricas (easeInOutQuart, de 0,6 a 1,6 segundo conforme a distância), sempre parando abaixo do cabeçalho fixo (scroll-padding-top de 96px). O toque do celular continua nativo e o movimento reduzido desliga a suavização por completo.
 
 ## Elevation & Depth
 
-Sem sombras. A profundidade vem da troca de campo (burgundy, burgundy profundo, charcoal), de superfícies um tom acima (charcoal-raised), do único objeto de papel marfim com moldura interna fina e do grão de filme fixo por cima de tudo, com 5,5% de opacidade.
+Sem sombras, fora o contorno quase invisível do botão da consultoria. A profundidade vem da troca de campo (burgundy, burgundy profundo, charcoal), de superfícies um tom acima (charcoal-raised), do único objeto de papel marfim com moldura interna fina e do grão de filme fixo por cima de tudo, com 5,5% de opacidade.
 
 ### Named Rules
 **The Sem Sombra Rule.** Nenhuma superfície flutua. Camadas se separam por cor de campo e por fio de 1px.
 
 ## Shapes
 
-Cantos retos (0px) em botões, quadros, cartões e campos. O círculo é exclusivo da marca: monograma, anel de lente atrás do fechamento e os nós numerados do processo (48px). Fios de 1px em marfim com 15% a 20% de opacidade organizam listas e seções; fios dourados marcam a linha contínua do processo e o rodapé.
+Cantos retos (0px) em quadros, cartões e campos. Duas exceções: a pílula (10rem) do botão da consultoria e os cantos de 14px dos prints de tela do portfólio, como a tela do celular. O círculo é da marca: monograma, anel de lente atrás do fechamento e os nós numerados do processo (48px). Fios de 1px em marfim com 15% a 20% de opacidade organizam listas e seções; fios dourados marcam a linha contínua do processo e o rodapé.
 
 ## Components
 
 ### Buttons
-- **Shape:** retangular, sem arredondamento (0px), 56px de altura.
-- **Primary:** fundo marfim, texto burgundy em Manrope 600 de 15px, com seta de canto e aviso para leitores de tela de que abre o WhatsApp numa nova aba. O mesmo rótulo, "Agendar uma consultoria", em todos os lugares.
-- **Hover / Focus:** fundo passa a dourado com texto charcoal; seta desliza 2px; foco com contorno dourado de 2px e 3px de afastamento (burgundy sobre o papel marfim); ao pressionar desce 1px.
-- **Sobre marfim:** fundo burgundy, texto marfim, hover burgundy profundo.
-- **Compacto:** 40px de altura, no cabeçalho.
+- **Botão da consultoria:** adaptado do botão escolhido pelo responsável pelo projeto. Pílula (10rem) com padding de 15px por 30px, fundo marfim e texto #570606 em Manrope 700 de 15px. Por trás do texto, um círculo de 10rem com gradiente vermelho, marfim e âmbar, desfocado (20px) e com 50% de opacidade, gira sem parar (3s por volta). O mesmo rótulo, "Agendar uma consultoria", em todos os lugares, com aviso para leitores de tela de que abre o WhatsApp numa nova aba.
+- **Hover / Focus:** fundo rosa com texto charcoal, e o brilho encolhe para 8rem e fica mais fraco; ao pressionar, o botão encolhe para 97%. Foco com contorno dourado de 2px e 3px de afastamento (burgundy sobre o papel marfim). O texto fica sempre por cima do brilho, com contraste de 4,5:1 ou mais no pior ponto.
+- **Sobre marfim:** fundo burgundy, texto marfim e brilho mais escuro (vermelho, dourado e burgundy profundo, 40%).
+- **Compacto:** padding de 9px por 20px e texto de 14px, no cabeçalho.
 - **Link secundário:** "Ver portfólio" em texto sublinhado com fio dourado e seta diagonal.
 
 ### Cards / Containers
 - **Convite da consultoria:** papel marfim sem arredondamento, moldura interna de 1px em burgundy com 25% de opacidade, estrela no topo, título burgundy e três itens separados por fios.
 - **Quadro de garantias:** charcoal-raised com fio de 1px.
-- **Quadros do portfólio:** blocos no formato real da mídia, em tons da marca com luz suave no topo, até receberem as imagens.
+- **Portfólio:** abas iguais às pastas do Drive (Social Media, Videomaker, Storymaker e Mobile Photo), com fio dourado sob a aba ativa; no celular a fileira rola de lado. Social Media mostra um case por linha, com nome e número à esquerda e, à direita, o vídeo principal do case em 16:9 com play grande no centro (os prints descem para baixo do texto) ou, sem vídeo, os prints de tela; Videomaker e Storymaker mostram um cartão por cliente, com capa 9:16, nome e contagem ("3 vídeos"); Mobile Photo é uma grade de fotos, como o perfil do Instagram.
+- **Visualizador do portfólio:** um dialog em tela cheia sobre charcoal quase opaco, com o nome do grupo e o botão de fechar no topo, a mídia no centro (vídeo no player do Drive, em pé ou deitado; foto inteira) e "anterior, 1 de 3, próximo" na base. As setas do teclado navegam e Esc fecha.
 
 ### Navigation
 Cabeçalho fixo de 72px (64px no celular) em burgundy com fio inferior. Assinatura CREATIVE, monograma e STUDIO à esquerda, quatro âncoras em Manrope 500 de 14px na cor névoa (marfim com sublinhado dourado no hover) e botão compacto à direita. Abaixo de 1024px, as âncoras viram um painel em tela cheia com links em Fraunces; abaixo de 768px, uma barra fixa com o botão principal aparece depois da hero e some perto das seções que já têm o botão.
 
 ### Story da hero (componente assinatura)
-Quadro 9:16 em charcoal com três segmentos de 2px no topo que se completam uma vez (3,2s cada, depois de 0,8s), legendas em Fraunces itálica que entram e saem a cada segmento e encerramento com monograma e slogan na base. Hover pausa, clique ou toque avança para o próximo segmento, movimento reduzido mostra o estado final. Enquanto não houver imagem, o quadro mostra luz suave e a estrela como marca-d'água.
+Quadro 9:16 com três fotos da Geovana em carrossel, uma por barra de 2px no topo. Cada foto fica 3,2s parada e desliza em 0,8s para a próxima, no instante em que a sua barra enche; depois da terceira, o ciclo recomeça sem voltar correndo. Cada foto tem a sua legenda em Fraunces itálica na base (some no celular, onde o texto da hero ocupa a base). A estrela da marca fica parada no centro como marca-d'água, em marfim com 38% de opacidade e contorno escuro fino. Mouse em cima e foco pelo teclado pausam; o botão de pausa no canto de cima pausa de vez; clique ou toque pula para a próxima foto. Roda mesmo com movimento reduzido, por decisão do responsável pelo projeto.
+
+### Manifesto
+A foto da Geovana fica em segundo plano: pintada com o burgundy pelo modo de mistura luminosity e dissolvida nas bordas por máscaras. No computador fica do lado direito, um pouco escurecida; no celular, numa faixa no topo da seção, com o título começando sobre a parte que já sumiu. Contraste medido sobre a foto: 4,6:1 ou mais nos parágrafos e 3,2:1 ou mais no título grande.
 
 ### Linha do processo
 Cinco nós circulares de 48px com algarismo em Fraunces dourado, ligados por um fio dourado contínuo que termina no último nó.
 
 ### Ícone do Instagram
-Quadrado de 56px com o ícone burgundy sobre marfim e quatro camadas de fio dourado por trás. No hover ou no foco, o conjunto gira em perspectiva (rotate -35deg, skew 20deg), as camadas se abrem em leque até 20px, o rótulo INSTAGRAM desce e um cartão charcoal com o monograma e o @ aparece acima. Sem o gradiente roxo do Instagram, sem cantos arredondados e sem sombra. Em telas sem mouse o cartão não aparece, e com movimento reduzido nada se move. Fica no fim do portfólio, porque é onde o visitante procura mais trabalhos.
+Reprodução do componente do vídeo de referência do responsável pelo projeto, por isso fora das regras de cor e de canto da página: quadrado de 55px com cantos de 15px e o gradiente do Instagram, e quatro camadas com fio laranja por trás. No hover ou no foco, o conjunto gira (rotate -35deg, skew 20deg), as camadas se abrem em leque até 20px, o rótulo laranja desce ("BackStage" no perfil @geoo.silvaz, "Agência" no @eben.creative_) e um cartão escuro com foto, nome e @ sobe de trás do ícone. Em telas sem mouse o cartão não aparece. Fica no fim do portfólio, porque é onde o visitante procura mais trabalhos.
 
 ### Perguntas frequentes
 Sanfona com `<details>` exclusivo (uma aberta por vez), título em Fraunces 500, sinal de mais dourado que gira 45 graus ao abrir e altura animada onde o navegador permite.
@@ -246,7 +249,7 @@ Sanfona com `<details>` exclusivo (uma aberta por vez), título em Fraunces 500,
 ### Do:
 - **Do** manter burgundy (#8f0012) como chão da maior parte da página e o marfim como texto e papel.
 - **Do** usar um único rótulo para a ação principal: "Agendar uma consultoria".
-- **Do** mostrar mídia no formato em que ela é publicada: 9:16 para Story e Reels, 4:5 para feed, 16:9 para filme.
+- **Do** mostrar a mídia no formato em que ela foi publicada no visualizador do portfólio; na grade, as capas são verticais, como no perfil do Instagram.
 - **Do** manter o itálico de destaque na própria Fraunces, em dourado, só a partir de 24px.
 - **Do** separar camadas por campo de cor e fio de 1px.
 
@@ -254,5 +257,5 @@ Sanfona com `<details>` exclusivo (uma aberta por vez), título em Fraunces 500,
 - **Don't** usar gradiente roxo, formas 3D brilhantes, fotos de banco sem tratamento, cantos amigáveis ou grades de ícones, como define o briefing.
 - **Don't** colocar rótulo em caixa alta acima de um título; metadados vão abaixo.
 - **Don't** usar dourado em texto pequeno sobre burgundy (contraste 4,1:1).
-- **Don't** arredondar botões, quadros ou cartões; o círculo é só da marca.
+- **Don't** arredondar quadros ou cartões; as exceções são a pílula do botão da consultoria e os cantos de tela dos prints.
 - **Don't** usar travessão em nenhum texto da página.

@@ -1,8 +1,9 @@
 // Servidor estático mínimo para conferir a pasta out/ como ela será publicada.
 // Uso: npm run preview  (ou: node scripts/serve-out.mjs [porta])
 // Imita uma hospedagem estática comum: URLs limpas, 404.html com status 404,
-// tipos de conteúdo corretos, compressão (brotli ou gzip) e cache longo para
-// os arquivos com hash em /_next/static.
+// tipos de conteúdo corretos, compressão (brotli ou gzip), cache longo para
+// os arquivos com hash em /_next/static e pedidos por partes (Range), que o
+// Safari exige para tocar vídeo e todo navegador usa para avançar o vídeo.
 
 import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
@@ -27,6 +28,7 @@ const types = {
   ".webp": "image/webp",
   ".jpg": "image/jpeg",
   ".woff2": "font/woff2",
+  ".mp4": "video/mp4",
 };
 
 const compressible = new Set([".html", ".xml", ".txt", ".css", ".js", ".json", ".svg"]);
@@ -69,6 +71,31 @@ createServer(async (request, response) => {
     Vary: "Accept-Encoding",
   };
   if (encoding) headers["Content-Encoding"] = encoding;
+
+  // Arquivos sem compressão podem ser pedidos por partes ("Range: bytes=início-fim").
+  if (file && !encoding) {
+    const { size } = await stat(target);
+    headers["Accept-Ranges"] = "bytes";
+    const match = /^bytes=(\d*)-(\d*)$/.exec(String(request.headers.range ?? ""));
+    if (match && (match[1] !== "" || match[2] !== "")) {
+      const start = match[1] === "" ? Math.max(0, size - Number(match[2])) : Number(match[1]);
+      const end = match[1] === "" || match[2] === "" ? size - 1 : Math.min(Number(match[2]), size - 1);
+      if (start > end || start >= size) {
+        response.writeHead(416, { ...headers, "Content-Range": `bytes */${size}` });
+        response.end();
+        return;
+      }
+      response.writeHead(206, {
+        ...headers,
+        "Content-Range": `bytes ${start}-${end}/${size}`,
+        "Content-Length": end - start + 1,
+      });
+      createReadStream(target, { start, end }).pipe(response);
+      return;
+    }
+    headers["Content-Length"] = size;
+  }
+
   response.writeHead(file ? 200 : 404, headers);
 
   const stream = createReadStream(target);
