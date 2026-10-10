@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T01:22:00.992Z",
+  "title": "Design System: EBEN Creative Studio, landing page v1",
+  "extensions": {
+    "colorMeta": {
+      "burgundy": {
+        "role": "primary",
+        "displayName": "Burgundy da Marca",
+        "canonical": "oklch(40.9% 0.166 25.4)",
+        "tonalRamp": [
+          "#200001",
+          "#4d0005",
+          "#81000f",
+          "#ac2a2b",
+          "#d3514c",
+          "#fc756e",
+          "#fdb4ac",
+          "#fee9e6"
+        ]
+      },
+      "burgundy-deep": {
+        "role": "primary",
+        "displayName": "Burgundy Profundo",
+        "canonical": "oklch(33.9% 0.137 24.4)",
+        "tonalRamp": [
+          "#200001",
+          "#4b0308",
+          "#7b1319",
+          "#a13a38",
+          "#c75d58",
+          "#ef807a",
+          "#feb3ad",
+          "#fee9e7"
+        ]
+      },
+      "gold": {
+        "role": "secondary",
+        "displayName": "Ouro Champanhe",
+        "canonical": "oklch(73.4% 0.085 79.0)",
+        "tonalRamp": [
+          "#140900",
+          "#332100",
+          "#583c00",
+          "#7b5b21",
+          "#9e7c44",
+          "#c29f66",
+          "#e7c389",
+          "#ffecce"
+        ]
+      },
+      "rose": {
+        "role": "tertiary",
+        "displayName": "Rosa Empoeirado",
+        "canonical": "oklch(69.9% 0.069 14.2)",
+        "tonalRamp": [
+          "#1f0004",
+          "#40141b",
+          "#613237",
+          "#845155",
+          "#a77176",
+          "#cc9498",
+          "#f2b8bb",
+          "#ffe8e9"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Marfim Quente",
+        "canonical": "oklch(94.2% 0.029 77.5)",
+        "tonalRamp": [
+          "#120901",
+          "#2d2315",
+          "#4b4031",
+          "#6b5f4f",
+          "#8c816f",
+          "#afa391",
+          "#d4c7b5",
+          "#faedda"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Névoa",
+        "canonical": "oklch(85.8% 0.040 45.8)",
+        "tonalRamp": [
+          "#180500",
+          "#351f14",
+          "#543b30",
+          "#755a4e",
+          "#987b6e",
+          "#bb9e90",
+          "#e0c2b4",
+          "#feeae0"
+        ]
+      },
+      "charcoal": {
+        "role": "neutral",
+        "displayName": "Charcoal Profundo",
+        "canonical": "oklch(22.4% 0.013 9.7)",
+        "tonalRamp": [
+          "#10090a",
+          "#2b2324",
+          "#493f40",
+          "#685e5f",
+          "#8a7f80",
+          "#ada2a3",
+          "#d1c6c7",
+          "#f7ebec"
+        ]
+      },
+      "charcoal-raised": {
+        "role": "neutral",
+        "displayName": "Charcoal Elevado",
+        "canonical": "oklch(26.7% 0.014 18.0)",
+        "tonalRamp": [
+          "#100909",
+          "#2b2222",
+          "#493f3f",
+          "#695e5e",
+          "#8a7f7f",
+          "#aea2a2",
+          "#d2c6c6",
+          "#f8ebeb"
+        ]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Cinza Quente",
+        "canonical": "oklch(74.8% 0.023 69.7)",
+        "tonalRamp": [
+          "#110903",
+          "#2c2319",
+          "#4a4035",
+          "#6a5f53",
+          "#8c8074",
+          "#afa396",
+          "#d3c7ba",
+          "#f9ecde"
+        ]
+      },
+      "ivory-muted": {
+        "role": "neutral",
+        "displayName": "Marfim Apagado",
+        "canonical": "oklch(45.3% 0.014 51.1)",
+        "tonalRamp": [
+          "#100906",
+          "#2b231f",
+          "#49403b",
+          "#685f5a",
+          "#8a807b",
+          "#ada39d",
+          "#d1c7c1",
+          "#f7ece6"
+        ]
+      },
+      "rose-dim": {
+        "role": "neutral",
+        "displayName": "Rosa Sombrio",
+        "canonical": "oklch(39.0% 0.032 12.9)",
+        "tonalRamp": [
+          "#160507",
+          "#331e21",
+          "#523b3d",
+          "#735a5c",
+          "#957b7d",
+          "#b89d9f",
+          "#ddc1c3",
+          "#fee8ea"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Só a headline da hero, dos dois lados do Story."
+      },
+      "statement": {
+        "displayName": "Statement",
+        "purpose": "Slogan no manifesto e fechamento da página."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de seção."
+      },
+      "index": {
+        "displayName": "Index",
+        "purpose": "Nomes das três frentes em linhas de índice."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Números de resultado dos cases, em dourado."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de item, perguntas e etapas."
+      },
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "Itálico para pensamentos do visitante, transições e legendas do Story."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Parágrafos de apoio."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Notas e rodapé."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Metadado em caixa alta abaixo de um título; nunca acima."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Encerramento do Story, sanfona e foco do manifesto."
+      },
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Legendas do Story."
+      },
+      {
+        "name": "story-beat",
+        "value": "3.2s linear",
+        "purpose": "Duração de cada segmento do Story, depois de 0.8s de entrada."
+      },
+      {
+        "name": "rack-focus",
+        "value": "scroll-driven, view() de entry 5% a cover 38%",
+        "purpose": "O título do manifesto entra em foco ao chegar na tela."
+      },
+      {
+        "name": "lenis-wheel",
+        "value": "lerp 0.1",
+        "purpose": "Rolagem suave da rodinha do mouse; o toque do celular continua nativo."
+      },
+      {
+        "name": "lenis-anchor",
+        "value": "easeInOutQuart, 0.6s a 1.6s conforme a distância",
+        "purpose": "Viagens pelos links de âncora, parando no scroll-padding-top de 96px. Desligado com movimento reduzido."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "container",
+        "value": "1440px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A única ação da página, sobre campos escuros.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Agendar uma consultoria <svg aria-hidden=\"true\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;background:var(--color-ivory,#f7ead7);color:var(--color-burgundy,#8f0012);font-family:Manrope,system-ui,sans-serif;font-weight:600;font-size:15px;text-decoration:none;border-radius:0;transition:background-color .2s,color .2s,transform .2s}.ds-btn-primary:hover{background:var(--color-gold,#c6a36a);color:var(--color-charcoal,#21191a)}.ds-btn-primary:focus-visible{outline:2px solid var(--color-gold,#c6a36a);outline-offset:3px}.ds-btn-primary:active{transform:translateY(1px)}"
+    },
+    {
+      "name": "Botão sobre marfim",
+      "kind": "button",
+      "refersTo": "button-on-ivory",
+      "description": "A mesma ação dentro do convite de papel.",
+      "html": "<a class=\"ds-btn-ivory\" href=\"#\">Agendar uma consultoria <svg aria-hidden=\"true\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-btn-ivory{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;background:var(--color-burgundy,#8f0012);color:var(--color-ivory,#f7ead7);font-family:Manrope,system-ui,sans-serif;font-weight:600;font-size:15px;text-decoration:none;border-radius:0;transition:background-color .2s,transform .2s}.ds-btn-ivory:hover{background:var(--color-burgundy-deep,#6e000e)}.ds-btn-ivory:focus-visible{outline:2px solid var(--color-burgundy,#8f0012);outline-offset:3px}.ds-btn-ivory:active{transform:translateY(1px)}"
+    },
+    {
+      "name": "Navegação",
+      "kind": "nav",
+      "refersTo": "button-compact",
+      "description": "Cabeçalho fixo burgundy com assinatura, âncoras e botão compacto.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-brand\">CREATIVE STUDIO</span><a href=\"#\">Portfólio</a><a href=\"#\">Serviços</a><a href=\"#\">Processo</a><a href=\"#\">Dúvidas</a><a class=\"ds-nav-cta\" href=\"#\">Agendar uma consultoria</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:32px;height:72px;padding:0 48px;background:var(--color-burgundy,#8f0012);border-bottom:1px solid rgb(247 234 215/.15);font-family:Manrope,system-ui,sans-serif;font-size:14px}.ds-nav-brand{font-family:Fraunces,Georgia,serif;letter-spacing:.42em;color:var(--color-ivory,#f7ead7);margin-right:auto;font-size:13px}.ds-nav a{color:var(--color-mist,#e8c9bb);text-decoration:none;font-weight:500}.ds-nav a:hover{color:var(--color-ivory,#f7ead7);text-decoration:underline;text-decoration-color:var(--color-gold,#c6a36a);text-underline-offset:.24em}.ds-nav a:focus-visible{outline:2px solid var(--color-gold,#c6a36a);outline-offset:3px}.ds-nav .ds-nav-cta{margin-left:auto;height:40px;display:inline-flex;align-items:center;padding:0 20px;background:var(--color-ivory,#f7ead7);color:var(--color-burgundy,#8f0012);font-weight:600}.ds-nav .ds-nav-cta:hover{background:var(--color-gold,#c6a36a);color:var(--color-charcoal,#21191a);text-decoration:none}"
+    },
+    {
+      "name": "Story da hero",
+      "kind": "custom",
+      "refersTo": "story-frame",
+      "description": "Quadro 9:16 com três segmentos que se completam e terminam na assinatura da marca.",
+      "html": "<figure class=\"ds-story\"><div class=\"ds-story-bars\"><i></i><i></i><i></i></div><p class=\"ds-story-beat\">Bastidores em tempo real.</p></figure>",
+      "css": ".ds-story{position:relative;width:240px;aspect-ratio:9/16;margin:0;background:radial-gradient(120% 70% at 50% 38%,rgb(85 62 64/.55),transparent 70%),var(--color-charcoal,#21191a);overflow:hidden}.ds-story-bars{position:absolute;inset:14px 14px auto;display:flex;gap:4px}.ds-story-bars i{flex:1;height:2px;background:rgb(247 234 215/.3);position:relative;overflow:hidden}.ds-story-bars i::after{content:\"\";position:absolute;inset:0;background:var(--color-ivory,#f7ead7);transform-origin:left;transform:scaleX(0);animation:ds-fill 3.2s linear forwards}.ds-story-bars i:nth-child(2)::after{animation-delay:3.2s}.ds-story-bars i:nth-child(3)::after{animation-delay:6.4s}.ds-story-beat{position:absolute;left:20px;right:20px;bottom:22px;margin:0;color:var(--color-ivory,#f7ead7);font-family:Fraunces,Georgia,serif;font-style:italic;font-size:20px;line-height:1.25}@keyframes ds-fill{to{transform:scaleX(1)}}@media (prefers-reduced-motion:reduce){.ds-story-bars i::after{animation:none;transform:scaleX(1)}}"
+    },
+    {
+      "name": "Convite da consultoria",
+      "kind": "card",
+      "refersTo": "invitation-card",
+      "description": "O único objeto de papel marfim da página.",
+      "html": "<div class=\"ds-invite\"><h3>Comece por uma consultoria gratuita</h3><p>Diagnóstico do seu perfil, pontos de melhoria e próximos passos, sem compromisso.</p></div>",
+      "css": ".ds-invite{position:relative;max-width:560px;padding:56px 48px;background:var(--color-ivory,#f7ead7);color:var(--color-charcoal,#21191a);text-align:center}.ds-invite::before{content:\"\";position:absolute;inset:12px;border:1px solid rgb(143 0 18/.25);pointer-events:none}.ds-invite h3{margin:0;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:34px;line-height:1.06;color:var(--color-burgundy,#8f0012)}.ds-invite p{margin:16px 0 0;font-family:Manrope,system-ui,sans-serif;font-size:17px;line-height:1.6;color:var(--color-ivory-muted,#5d544f)}"
+    },
+    {
+      "name": "Linha de índice de serviço",
+      "kind": "custom",
+      "refersTo": "index",
+      "description": "Nome da frente em Fraunces grande com a descrição alinhada à direita.",
+      "html": "<div class=\"ds-index\"><h3>Storymaker</h3><p>Cobertura de bastidores em tempo real, para mostrar o negócio acontecendo.</p></div>",
+      "css": ".ds-index{display:grid;grid-template-columns:7fr 4fr;gap:24px;align-items:baseline;padding:40px 24px;border-top:1px solid rgb(247 234 215/.2);background:var(--color-burgundy-deep,#6e000e);color:var(--color-ivory,#f7ead7)}.ds-index h3{margin:0;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:72px;line-height:1;letter-spacing:-.03em}.ds-index p{margin:0;font-family:Manrope,system-ui,sans-serif;font-size:18px;line-height:1.6;color:var(--color-mist,#e8c9bb)}"
+    },
+    {
+      "name": "Pergunta frequente",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Sanfona exclusiva com sinal de mais dourado.",
+      "html": "<details class=\"ds-faq\" open><summary><span>A consultoria é gratuita?</span><svg aria-hidden=\"true\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><path d=\"M5 12h14\"/><path d=\"M12 5v14\"/></svg></summary><p>Sim. Não existe compromisso de contratação.</p></details>",
+      "css": ".ds-faq{border-top:1px solid rgb(247 234 215/.2);color:var(--color-ivory,#f7ead7);background:var(--color-burgundy,#8f0012);padding:0 24px}.ds-faq summary{display:flex;justify-content:space-between;gap:24px;padding:24px 0;cursor:pointer;list-style:none;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:26px}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:hover{color:var(--color-gold,#c6a36a)}.ds-faq summary:focus-visible{outline:2px solid var(--color-gold,#c6a36a);outline-offset:3px}.ds-faq svg{color:var(--color-gold,#c6a36a);transition:transform .35s cubic-bezier(.16,1,.3,1)}.ds-faq[open] svg{transform:rotate(45deg)}.ds-faq p{margin:0;padding-bottom:28px;font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.65;color:var(--color-mist,#e8c9bb)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Story que fica",
+    "overview": "A página inteira mora no campo burgundy da marca, a cor que carrega a versão principal do logo, e abre com um Story vertical no formato que o público consome todo dia. Os três segmentos se completam e o quadro termina com o monograma e o slogan, como o brandkit pede para encerramentos de vídeo: o que seria efêmero vira permanente. Esse é o gesto do sistema, e ele aparece uma vez.\n\nA densidade é baixa e o ritmo é de cinema: blocos de texto curtos com muito espaço, uma sala de exibição charcoal para o portfólio e o processo, e um único objeto de papel marfim, o convite da consultoria, onde a oferta vira ação. O tom é calmo e confiante, sem os exageros de páginas de software: nada de gradiente roxo, 3D brilhante, cantos amigáveis ou grade de ícones.\n\nFraunces dá a emoção nos títulos e Manrope dá a clareza no texto, como define o brandkit. Dourado e rosa existem em pouca quantidade e só fazem trabalho: fios, a estrela de quatro pontas, números grandes e foco.",
+    "keyCharacteristics": [
+      "Campo burgundy dominante, com charcoal como sala de exibição e marfim como papel.",
+      "Um Story 9:16 na primeira tela, com a headline atravessando a página dos dois lados.",
+      "Fraunces com eixo óptico e sem letras \"wonky\"; Manrope no texto e nos botões.",
+      "Cantos retos em tudo; círculos só como forma de lente da marca.",
+      "Grão de filme fixo e sutil sobre a página inteira."
+    ],
+    "rules": [
+      {
+        "name": "The Campo Burgundy Rule",
+        "body": "Burgundy é o chão, não o acento. A página nunca vira um fundo creme com detalhes vermelhos; o marfim aparece como texto e como um único objeto de papel.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ouro Raro Rule",
+        "body": "Dourado nunca é texto corrido e nunca é texto pequeno sobre burgundy. Ele marca, não preenche.",
+        "section": "colors"
+      },
+      {
+        "name": "The Itálico de Destaque Rule",
+        "body": "A ênfase dentro de um título vem do itálico da própria Fraunces, em dourado, e só a partir de 24px. Nunca outra família.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sem Sombra Rule",
+        "body": "Nenhuma superfície flutua. Camadas se separam por cor de campo e por fio de 1px.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do manter burgundy (#8f0012) como chão da maior parte da página e o marfim como texto e papel.",
+      "Do usar um único rótulo para a ação principal: \"Agendar uma consultoria\".",
+      "Do mostrar mídia no formato em que ela é publicada: 9:16 para Story e Reels, 4:5 para feed, 16:9 para filme.",
+      "Do manter o itálico de destaque na própria Fraunces, em dourado, só a partir de 24px.",
+      "Do separar camadas por campo de cor e fio de 1px."
+    ],
+    "donts": [
+      "Don't usar gradiente roxo, formas 3D brilhantes, fotos de banco sem tratamento, cantos amigáveis ou grades de ícones, como define o briefing.",
+      "Don't colocar rótulo em caixa alta acima de um título; metadados vão abaixo.",
+      "Don't usar dourado em texto pequeno sobre burgundy (contraste 4,1:1).",
+      "Don't arredondar botões, quadros ou cartões; o círculo é só da marca.",
+      "Don't usar travessão em nenhum texto da página."
+    ]
+  }
+}
