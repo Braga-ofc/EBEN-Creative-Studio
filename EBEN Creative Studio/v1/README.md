@@ -131,10 +131,14 @@ v1/
 - As seções abaixo da primeira tela usam `content-visibility: auto` para o celular não calcular o que ainda não apareceu.
 - A rolagem suave usa o [Lenis](https://github.com/darkroomengineering/lenis), em [src/components/layout/SmoothScroll.tsx](src/components/layout/SmoothScroll.tsx). Ele suaviza a rodinha do mouse e as viagens pelos links de âncora (de 0,6 a 1,6 segundo, conforme a distância), mantém o `#` no endereço e leva o foco ao destino. No toque do celular, a rolagem continua nativa. Quando o sistema pede movimento reduzido, o Lenis nem liga. Um elemento com rolagem própria precisa do atributo `data-lenis-prevent`, como o painel do menu do celular, que também pausa o Lenis enquanto está aberto.
 
+## Instagram
+
+O perfil [@geoo.silvaz](https://www.instagram.com/geoo.silvaz/) aparece em três lugares: no fim do portfólio, com o ícone animado ([src/components/ui/InstagramLink.tsx](src/components/ui/InstagramLink.tsx)), no rodapé, como link simples, e no JSON-LD (`sameAs`) e no `llms.txt`. O @ e o endereço ficam em [src/content/site.ts](src/content/site.ts).
+
 ## Pendências
 
 - Imagem definitiva da hero.
 - Mídias do portfólio e, se houver, um terceiro case e depoimentos em frase.
-- Instagram da EBEN e logos de clientes.
+- Logos de clientes.
 - Domínio final, para o build de produção e a validação de SEO publicada.
 - Política de Privacidade, necessária quando o rastreamento entrar.

@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { InstagramLink } from "@/components/ui/InstagramLink";
 import { portfolio } from "@/content/landing";
+import { instagram } from "@/content/site";
 import { portfolioItems, type PortfolioItem } from "@/content/portfolio";
 import { cn } from "@/lib/cn";
 
@@ -46,6 +48,23 @@ export function Portfolio() {
             </li>
           ))}
         </ul>
+
+        <div className="mt-20 flex flex-col items-start gap-8 border-t border-ivory/15 pt-12 sm:flex-row sm:items-center sm:justify-between lg:mt-28">
+          <p className="max-w-[34ch] type-h3">
+            Mais histórias, bastidores e coberturas no Instagram{" "}
+            <a
+              href={instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold underline decoration-gold/50 transition-colors hover:text-ivory"
+            >
+              {instagram.handle}
+              <span className="sr-only"> (abre em uma nova aba)</span>
+            </a>
+            .
+          </p>
+          <InstagramLink className="mb-10 ml-6 sm:mr-6 sm:mb-6 sm:ml-0" />
+        </div>
       </div>
     </section>
   );

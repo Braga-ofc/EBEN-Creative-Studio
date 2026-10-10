@@ -1,5 +1,5 @@
 import { consultation, faq, services } from "@/content/landing";
-import { brand, contact, seo } from "@/content/site";
+import { brand, contact, instagram, seo } from "@/content/site";
 import { absoluteUrl } from "@/lib/env";
 import { consultationLink } from "@/lib/whatsapp";
 
@@ -25,6 +25,7 @@ export function buildHomeStructuredData() {
     slogan: brand.slogan,
     description: brand.summary,
     telephone: contact.whatsapp.schema,
+    sameAs: [instagram.url],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",

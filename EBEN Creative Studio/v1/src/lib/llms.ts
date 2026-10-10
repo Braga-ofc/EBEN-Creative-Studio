@@ -1,6 +1,6 @@
 import { approach, consultation, faq, howItWorks, services } from "@/content/landing";
 import { portfolioItems } from "@/content/portfolio";
-import { brand, contact } from "@/content/site";
+import { brand, contact, instagram } from "@/content/site";
 import { absoluteUrl } from "@/lib/env";
 import { consultationLink } from "@/lib/whatsapp";
 
@@ -26,6 +26,7 @@ export function buildLlmsTxt(): string {
     "",
     `- Atendimento: ${lowerFirst(contact.hours.label)}, com resposta em até 2 horas nesse horário.`,
     `- WhatsApp: ${contact.whatsapp.display}`,
+    `- Instagram: [${instagram.handle}](${instagram.url})`,
     "- Idioma: português do Brasil",
     "",
     "## Página",

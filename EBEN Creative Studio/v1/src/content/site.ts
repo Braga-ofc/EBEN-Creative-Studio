@@ -37,6 +37,12 @@ export const contact = {
   responseTime: "Resposta em até 2 horas, de segunda a sábado, das 8h às 18h.",
 } as const;
 
+export const instagram = {
+  handle: "@geoo.silvaz",
+  url: "https://www.instagram.com/geoo.silvaz/",
+  about: "Bastidores e projetos da EBEN",
+} as const;
+
 export const developerCredit = {
   name: "BRAGA SYSTEMS",
   phoneDisplay: "61 99422-7093",

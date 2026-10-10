@@ -235,6 +235,9 @@ Quadro 9:16 em charcoal com três segmentos de 2px no topo que se completam uma 
 ### Linha do processo
 Cinco nós circulares de 48px com algarismo em Fraunces dourado, ligados por um fio dourado contínuo que termina no último nó.
 
+### Ícone do Instagram
+Quadrado de 56px com o ícone burgundy sobre marfim e quatro camadas de fio dourado por trás. No hover ou no foco, o conjunto gira em perspectiva (rotate -35deg, skew 20deg), as camadas se abrem em leque até 20px, o rótulo INSTAGRAM desce e um cartão charcoal com o monograma e o @ aparece acima. Sem o gradiente roxo do Instagram, sem cantos arredondados e sem sombra. Em telas sem mouse o cartão não aparece, e com movimento reduzido nada se move. Fica no fim do portfólio, porque é onde o visitante procura mais trabalhos.
+
 ### Perguntas frequentes
 Sanfona com `<details>` exclusivo (uma aberta por vez), título em Fraunces 500, sinal de mais dourado que gira 45 graus ao abrir e altura animada onde o navegador permite.
 

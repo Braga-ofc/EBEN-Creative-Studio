@@ -629,3 +629,158 @@
     transition: none;
   }
 }
+
+/* Instagram --------------------------------------------------------------
+ * Camadas que se abrem em leque no hover ou no foco, rótulo embaixo e cartão
+ * do perfil em cima. Cantos retos e paleta da marca, sem sombras.
+ */
+
+.ig {
+  position: relative;
+  display: inline-block;
+  padding: 24px 24px 0 0;
+}
+
+.ig__link {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 56px;
+  color: var(--color-burgundy);
+}
+
+.ig__layers {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.ig__layers > span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-gold);
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    opacity 0.4s var(--ease-out-expo);
+}
+
+.ig__face {
+  display: grid;
+  place-items: center;
+  border-color: var(--color-ivory) !important;
+  background-color: var(--color-ivory);
+}
+
+.ig__face svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.ig__label {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  translate: -50% 0;
+  opacity: 0;
+  white-space: nowrap;
+  color: var(--color-gold);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition:
+    bottom 0.3s var(--ease-out-expo),
+    opacity 0.3s var(--ease-out-expo);
+}
+
+.ig__card {
+  position: absolute;
+  bottom: calc(100% - 8px);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px 14px 14px;
+  white-space: nowrap;
+  border: 1px solid rgb(247 234 215 / 0.15);
+  background-color: var(--color-charcoal-raised);
+  translate: 0 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    translate 0.35s var(--ease-out-expo),
+    opacity 0.35s var(--ease-out-expo);
+}
+
+/* O text-wrap: pretty dos parágrafos religaria a quebra de linha dentro do cartão. */
+.ig__card p {
+  text-wrap: nowrap;
+}
+
+.ig:hover .ig__card,
+.ig:focus-within .ig__card {
+  translate: 0 -8px;
+  opacity: 1;
+}
+
+.ig:hover .ig__label,
+.ig:focus-within .ig__label {
+  bottom: -34px;
+  opacity: 1;
+}
+
+.ig:hover .ig__layers,
+.ig:focus-within .ig__layers {
+  transform: rotate(-35deg) skew(20deg);
+}
+
+.ig:hover .ig__layers > span:nth-child(1),
+.ig:focus-within .ig__layers > span:nth-child(1) {
+  opacity: 0.2;
+}
+
+.ig:hover .ig__layers > span:nth-child(2),
+.ig:focus-within .ig__layers > span:nth-child(2) {
+  opacity: 0.4;
+  transform: translate(5px, -5px);
+}
+
+.ig:hover .ig__layers > span:nth-child(3),
+.ig:focus-within .ig__layers > span:nth-child(3) {
+  opacity: 0.6;
+  transform: translate(10px, -10px);
+}
+
+.ig:hover .ig__layers > span:nth-child(4),
+.ig:focus-within .ig__layers > span:nth-child(4) {
+  opacity: 0.8;
+  transform: translate(15px, -15px);
+}
+
+.ig:hover .ig__layers > span:nth-child(5),
+.ig:focus-within .ig__layers > span:nth-child(5) {
+  transform: translate(20px, -20px);
+}
+
+/* Celular e tablet sem mouse: o cartão não abre; o @ já aparece no texto ao lado. */
+@media (hover: none) {
+  .ig__card {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ig__layers,
+  .ig__layers > span,
+  .ig__label,
+  .ig__card {
+    transition: none;
+  }
+
+  .ig__layers,
+  .ig__layers > span {
+    transform: none !important;
+  }
+}

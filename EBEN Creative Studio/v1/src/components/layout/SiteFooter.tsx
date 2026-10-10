@@ -1,5 +1,5 @@
 import { Lockup } from "@/components/brand/Lockup";
-import { brand, contact, developerCredit, navigation } from "@/content/site";
+import { brand, contact, developerCredit, instagram, navigation } from "@/content/site";
 import { consultationLink, whatsappLink } from "@/lib/whatsapp";
 
 export function SiteFooter() {
@@ -24,6 +24,15 @@ export function SiteFooter() {
             className="mt-2 inline-block type-body underline decoration-gold/60 transition-colors hover:text-gold"
           >
             WhatsApp {contact.whatsapp.display}
+            <span className="sr-only"> (abre em uma nova aba)</span>
+          </a>
+          <a
+            href={instagram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block type-body underline decoration-gold/60 transition-colors hover:text-gold"
+          >
+            Instagram {instagram.handle}
             <span className="sr-only"> (abre em uma nova aba)</span>
           </a>
         </div>
