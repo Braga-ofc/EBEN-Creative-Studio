@@ -6,7 +6,7 @@ O objetivo principal da página é levar o visitante a **agendar uma consultoria
 
 ## Direção visual
 
-A primeira tela é um Story: um quadro vertical 9:16, o formato que o público consome todo dia, fica no centro e a headline atravessa a página dos dois lados. Três fotos da Geovana passam lado a lado em carrossel, uma por barra, com a estrela da marca parada por cima como marca-d'água. Um toque ou clique no quadro pula para a próxima foto, e o botão no canto de cima pausa. Logo abaixo, o manifesto traz a foto da Geovana em segundo plano, pintada com o burgundy da página.
+A primeira tela é um Story: um quadro vertical 9:16, o formato que o público consome todo dia, fica no centro e a headline atravessa a página dos dois lados. Três fotos da Geovana passam lado a lado em carrossel, uma por barra, com a estrela da marca parada por cima como marca-d'água. Um toque ou clique no quadro pula para a próxima foto, e o botão no canto de cima pausa. Logo abaixo, o manifesto traz a Geovana grande em segundo plano, do lado esquerdo, filmando com o celular erguido, pintada com o burgundy da página.
 
 Cores e fontes seguem o brandkit oficial: burgundy como chão da página, charcoal como sala de exibição, marfim para texto e para o convite da consultoria, dourado só em detalhes, Fraunces nos títulos e Manrope no texto. O sistema completo está em [DESIGN.md](DESIGN.md), e o contexto de produto em [PRODUCT.md](PRODUCT.md).
 
@@ -51,7 +51,7 @@ As três fotos do Story ficam em `public/images/hero/` e são listadas, na ordem
 1. Exporte a foto em WebP, na vertical, com proporção 9:16 (900 x 1600 px é suficiente). Deixe a pessoa perto do centro: no celular o quadro ocupa a tela inteira e o recorte fecha um pouco nas laterais.
 2. Salve em `public/images/hero/` e troque `src` e `alt` do item em `heroSlides`. O campo `position` ajusta o ponto de foco do recorte, se precisar.
 
-A primeira foto também aparece em segundo plano no manifesto (`manifestoPortrait`, no mesmo arquivo), sem download extra.
+A foto do manifesto é outra, em `public/images/manifesto/` (`manifestoPortrait`, no mesmo arquivo). Ela é posicionada pela altura da cabeça, para a cabeça começar sempre abaixo do título: se trocar a foto, ajuste no bloco "Manifesto" de [src/app/globals.css](src/app/globals.css) a conta que diz em que altura da imagem fica o alto do cabelo (hoje 37%).
 
 ## Como mexer no portfólio
 
@@ -59,7 +59,7 @@ O portfólio segue a pasta "vídeos Portfolio" do Google Drive da EBEN: uma aba 
 
 As mídias continuam no Drive. A página mostra a miniatura que o próprio Drive gera e toca os vídeos no player do Drive, que converte os arquivos do celular (.mov, .mp4) para tocar em qualquer navegador. Por isso, os arquivos precisam continuar compartilhados como "qualquer pessoa com o link". Para incluir um arquivo, copie o ID do link dele no Drive (o trecho entre `/d/` e `/view`) e acrescente no grupo certo, com `kind` igual a `"video"`, `"photo"` ou `"screen"` (print de tela). Fotos e prints precisam de `alt`, a descrição do que aparece. A primeira mídia de cada grupo é a capa do cartão.
 
-Um arquivo também pode ficar no próprio site, com `src` e `poster` no lugar de `driveId`. É o caso do vídeo principal da Sued, em [public/videos/](public/videos/), com a capa em [public/images/portfolio/](public/images/portfolio/). Nos cases de Social Media, quando a primeira mídia é um vídeo, ele aparece grande ao lado do texto, e os prints ficam embaixo do texto. Para vídeos assim, use MP4 em H.264, que toca em qualquer navegador. No vídeo da Sued, o índice do arquivo foi movido para o começo (sem recodificar), para ele começar a tocar sem esperar o download do fim.
+Um arquivo também pode ficar no próprio site, com `src` e `poster` no lugar de `driveId`. É o caso do vídeo principal da Sued, em [public/videos/](public/videos/), com a capa em [public/images/portfolio/](public/images/portfolio/). Nos cases de Social Media, quando a primeira mídia é um vídeo, ele aparece grande ao lado do texto, e os prints ficam embaixo do texto. Vídeo do próprio site roda sozinho, sem som e em loop, enquanto está na tela; o clique abre o visualizador com som. Para vídeos assim, use MP4 em H.264, que toca em qualquer navegador. No vídeo da Sued, o índice do arquivo foi movido para o começo (sem recodificar), para ele começar a tocar sem esperar o download do fim.
 
 ## Onde editar os textos
 
@@ -121,7 +121,7 @@ v1/
 - O botão "Agendar uma consultoria" é uma pílula com um brilho girando por trás do texto, adaptada do botão escolhido pelo responsável pelo projeto (cores da marca, texto por cima do brilho para manter o contraste). Fica em [src/components/ui/ConsultationButton.tsx](src/components/ui/ConsultationButton.tsx) e no bloco "Botão da consultoria" de [src/app/globals.css](src/app/globals.css).
 - O carrossel da hero, o brilho do botão e o ícone do Instagram continuam animados mesmo quando o sistema pede movimento reduzido, por decisão do responsável pelo projeto. O carrossel tem botão de pausa e para com o mouse em cima ou com o foco do teclado.
 - Quase todas as mídias do portfólio são carregadas do Google Drive, sem cópia no site. Miniaturas e players só carregam quando a aba ou o visualizador abre.
-- O vídeo principal da Sued (16 s, 11,7 MB) fica no próprio site, porque veio direto do computador do responsável pelo projeto. Ele só é baixado quando alguém dá play, e cabe no limite de arquivo das hospedagens estáticas (25 MB na Cloudflare).
+- O vídeo principal da Sued (16 s, 11,7 MB) fica no próprio site, porque veio direto do computador do responsável pelo projeto. Ele roda sozinho, sem som, e só começa a baixar quando o case aparece na tela (fica parado em outra aba ou fora da tela). Cabe no limite de arquivo das hospedagens estáticas (25 MB na Cloudflare).
 - A consultoria é gratuita, confirmado pelo responsável pelo projeto.
 - O brandkit manda nas cores e fontes; não foi usada referência visual externa.
 - A headline é a aprovada na copy: "Postar todo dia não é ter presença."

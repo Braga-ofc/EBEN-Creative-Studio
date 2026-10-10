@@ -9,7 +9,8 @@ const paragraphColumns = ["lg:col-span-4 lg:col-start-5", "lg:col-span-4 lg:col-
  * O conceito da marca, com a foto da Geovana em segundo plano do lado
  * esquerdo, apagada no burgundy. A foto fica dentro do bloco que vem depois do
  * título, para ser posicionada a partir dele: a cabeça dela começa sempre
- * abaixo do título, em qualquer tela (globals.css, bloco "Manifesto").
+ * abaixo do título, em qualquer tela. Abaixo de 1024px, os parágrafos descem
+ * para a foto aparecer entre eles e o título (globals.css, bloco "Manifesto").
  */
 export function Manifesto() {
   return (
@@ -26,7 +27,7 @@ export function Manifesto() {
               alt=""
               width={manifestoPortrait.width}
               height={manifestoPortrait.height}
-              sizes="(min-width: 768px) 52vw, 100vw"
+              sizes="(min-width: 1024px) 52vw, 100vw"
               className="size-full"
             />
           </div>
