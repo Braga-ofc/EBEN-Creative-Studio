@@ -1,0 +1,12 @@
+# O app Next.js fica na pasta v1/ e gera um site estático em v1/out (output: "export").
+[build]
+  base = "v1"
+  # Instala as dependências antes do build (garante o binário do next em qualquer ambiente).
+  command = "npm ci && npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Endereço público usado em canonical, sitemap.xml, robots.txt e llms.txt.
+  # Troque pelo domínio próprio quando ele estiver configurado.
+  NEXT_PUBLIC_SITE_URL = "https://ebencreative.netlify.app"
