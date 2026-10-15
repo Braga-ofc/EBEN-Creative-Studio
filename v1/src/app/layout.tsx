@@ -49,7 +49,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang={brand.language} className={`${fraunces.variable} ${manrope.variable}`}>
+    // suppressHydrationWarning: o IntroScript marca o <html> com data-intro antes do React assumir.
+    <html
+      lang={brand.language}
+      className={`${fraunces.variable} ${manrope.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         {children}
         <SmoothScroll />

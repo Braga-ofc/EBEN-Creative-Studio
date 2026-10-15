@@ -17,7 +17,7 @@ export const seo = {
   description:
     "Agência criativa e audiovisual: gestão de redes sociais, vídeos e bastidores em tempo real, com estratégia. Agende uma consultoria gratuita pelo WhatsApp.",
   /** Data da última mudança de conteúdo, usada no sitemap. Atualize quando o texto mudar. */
-  contentUpdatedAt: "2026-10-09",
+  contentUpdatedAt: "2026-10-14",
 } as const;
 
 export const contact = {
@@ -122,9 +122,23 @@ export const manifestoPortrait = {
   height: 1500,
 } as const;
 
+/**
+ * Retrato da Geovana na seção "Quem sou eu": a mesma foto de estúdio da
+ * primeira barra do Story (9:16, 900 x 1600 px), que o navegador já baixou na
+ * hero. O círculo mostra do cabelo à cintura, com um zoom leve no rosto e no
+ * tronco (bloco "Quem sou eu" em globals.css).
+ */
+export const aboutPortrait = {
+  src: "/images/hero/geo-estudio.webp",
+  alt: "Geovana Silva sorrindo, com a mão na cintura, em um estúdio de fundo vermelho ao lado de um ring light",
+  width: 900,
+  height: 1600,
+} as const;
+
 export const navigation = [
   { href: "#portfolio", label: "Portfólio" },
   { href: "#servicos", label: "Serviços" },
   { href: "#processo", label: "Processo" },
+  { href: "#quem-sou-eu", label: "Quem sou eu" },
   { href: "#duvidas", label: "Dúvidas" },
 ] as const;

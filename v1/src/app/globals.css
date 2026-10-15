@@ -1,4 +1,4 @@
- @import "tailwindcss";
+@import "tailwindcss";
 
 /*
  * Sistema visual da landing page v1 da EBEN Creative Studio.
@@ -228,6 +228,245 @@
   font-size: clamp(1.375rem, 1.1rem + 0.9vw, 1.875rem);
   line-height: 1.28;
   letter-spacing: -0.01em;
+}
+
+/* Abertura -------------------------------------------------------------------
+ * A lente abrindo (SiteIntro): o monograma surge no centro do campo burgundy,
+ * o anel dourado se desenha em volta dele e, a partir de 0,8s, a lente abre do
+ * centro para as bordas (uma máscara com furo redondo que cresce) enquanto o
+ * monograma e o anel avançam na direção de quem olha e somem. Logo atrás, a
+ * primeira tela entra em cena: a foto do Story sai do desfoque, as duas
+ * metades da headline deslizam dos lados até ela e o texto e os botões sobem.
+ *
+ * Toca uma vez por sessão (data-intro="seen" no <html>, posto pelo
+ * IntroScript antes da primeira pintura); nas visitas seguintes só a entrada
+ * da primeira tela acontece, sem espera. Um toque pula (data-intro="skip").
+ * Com movimento reduzido, nada disso acontece. Sem suporte a @property, a
+ * lente não abre aos poucos: a tela some no fim, de uma vez.
+ */
+
+@property --intro-aperture {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 65;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-burgundy);
+  mask-image: radial-gradient(
+    circle at 50% 50%,
+    transparent var(--intro-aperture),
+    black calc(var(--intro-aperture) + 1px)
+  );
+  animation:
+    intro-open 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.8s both,
+    intro-done 0.01s linear 1.7s both;
+}
+
+.intro__mark {
+  position: relative;
+  width: clamp(124px, 22vw, 172px);
+  aspect-ratio: 1;
+  animation: intro-mark-out 0.55s cubic-bezier(0.5, 0, 0.75, 0) 0.8s both;
+}
+
+.intro__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  rotate: -90deg;
+}
+
+.intro__ring circle {
+  fill: none;
+  stroke: var(--color-gold);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: intro-draw 0.75s var(--ease-out-expo) 0.1s both;
+}
+
+.intro__monogram {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 54%;
+  height: auto;
+  translate: -50% -50%;
+  color: var(--color-ivory);
+  animation: intro-mark-in 0.7s var(--ease-out-expo) 0.18s both;
+}
+
+.intro__star {
+  position: absolute;
+  top: 3%;
+  right: 5%;
+  width: 18%;
+  height: auto;
+  color: var(--color-gold);
+  animation: intro-star 0.6s var(--ease-out-expo) 0.5s both;
+}
+
+:root[data-intro="seen"] .intro {
+  display: none;
+}
+
+:root[data-intro="skip"] .intro {
+  animation: intro-skip 0.3s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
+
+/* A primeira tela entra quando a lente já está abrindo; sem abertura, quase na hora. */
+.hero {
+  --hero-delay: 0.95s;
+}
+
+:root[data-intro="seen"] .hero {
+  --hero-delay: 0.05s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header {
+    animation: hero-drop 0.8s var(--ease-out-expo) calc(var(--hero-delay) + 0.35s) both;
+  }
+
+  .hero__frame {
+    animation: hero-focus 1.4s var(--ease-out-expo) var(--hero-delay) both;
+  }
+
+  .hero__title {
+    animation: hero-rise 0.9s var(--ease-out-expo) calc(var(--hero-delay) + 0.15s) both;
+  }
+
+  .hero__sub {
+    animation: hero-rise 0.8s var(--ease-out-expo) calc(var(--hero-delay) + 0.45s) both;
+  }
+
+  .hero__actions {
+    animation: hero-rise 0.8s var(--ease-out-expo) calc(var(--hero-delay) + 0.58s) both;
+  }
+
+  /* A partir do tablet, cada metade da headline vem do seu lado até a foto. */
+  @media (min-width: 768px) {
+    .hero__title {
+      animation: none;
+    }
+
+    .hero__title-start {
+      animation: hero-from-left 1.1s var(--ease-out-expo) calc(var(--hero-delay) + 0.15s) both;
+    }
+
+    .hero__title-end {
+      animation: hero-from-right 1.1s var(--ease-out-expo) calc(var(--hero-delay) + 0.25s) both;
+    }
+  }
+}
+
+@keyframes intro-open {
+  to {
+    --intro-aperture: 150vmax;
+  }
+}
+
+@keyframes intro-done {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes intro-skip {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes intro-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes intro-mark-in {
+  from {
+    opacity: 0;
+    scale: 0.86;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes intro-star {
+  from {
+    opacity: 0;
+    scale: 0;
+    rotate: -90deg;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+
+@keyframes intro-mark-out {
+  to {
+    opacity: 0;
+    scale: 2.2;
+  }
+}
+
+@keyframes hero-drop {
+  from {
+    opacity: 0;
+    translate: 0 -100%;
+  }
+}
+
+@keyframes hero-focus {
+  from {
+    filter: blur(18px);
+    scale: 1.08;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+    filter: blur(6px);
+  }
+}
+
+@keyframes hero-from-left {
+  from {
+    opacity: 0;
+    translate: -56px 0;
+    filter: blur(8px);
+  }
+}
+
+@keyframes hero-from-right {
+  from {
+    opacity: 0;
+    translate: 56px 0;
+    filter: blur(8px);
+  }
 }
 
 /* Hero ----------------------------------------------------------------------
@@ -685,12 +924,960 @@
 
 @keyframes rack-focus {
   from {
-    opacity: 0.2;
-    filter: blur(12px);
+    opacity: 0.1;
+    filter: blur(20px);
+    scale: 0.96;
   }
   to {
     opacity: 1;
     filter: blur(0);
+    scale: 1;
+  }
+}
+
+/* Fio dourado -----------------------------------------------------------------
+ * Um fio só liga a página inteira. O fio principal (SectionSpine) corre pela
+ * margem esquerda, no meio do respiro entre a borda da tela e o texto, do
+ * manifesto às perguntas: a linha de base fica sempre visível e apagada, e um
+ * traço brilhante com uma faísca na ponta preenche a linha até a altura da
+ * leitura (60% da tela), acompanhando a rolagem. É um único elemento movido
+ * só por transform, sem JavaScript.
+ *
+ * Em cada divisa (SectionThread), um trecho mais forte se desenha por cima do
+ * fio principal e acende a estrela da marca, que solta uma onda de luz. Nos
+ * dois convites, o fio faz um ramo: atravessa da margem até o meio e desce até
+ * o convite. Sem animação por rolagem ou com movimento reduzido, tudo já
+ * aparece desenhado e parado.
+ */
+
+.thread,
+.spine {
+  --gutter-x: calc(clamp(20px, 4vw, 48px) / 2);
+}
+
+.thread {
+  --thread-h: calc(clamp(96px, 5.5rem + 5vw, 176px) * 1.24);
+  --thread-x: var(--gutter-x);
+  position: relative;
+  z-index: 5;
+  height: 0;
+  pointer-events: none;
+}
+
+.thread--center {
+  --thread-x: 50%;
+}
+
+/* Ramo até o convite: da margem até o meio, na altura da divisa. */
+.thread__branch {
+  display: none;
+}
+
+.thread--center .thread__branch {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  left: var(--gutter-x);
+  display: block;
+  height: 2px;
+  translate: 0 -50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 10px 1px color-mix(in srgb, var(--color-gold) 45%, transparent);
+  transform-origin: left center;
+}
+
+/* No ramo, o fio só desce: da divisa até encostar no convite. */
+.thread--center .thread__line {
+  top: 50%;
+  bottom: calc(var(--thread-h) * -0.3);
+  background: linear-gradient(to bottom, var(--color-gold) 70%, transparent);
+}
+
+.thread--center .thread__spark {
+  display: none;
+}
+
+.spine {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.spine__lane {
+  position: relative;
+  height: 100%;
+}
+
+.spine__track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--gutter-x);
+  width: 1px;
+  translate: -50% 0;
+  background-color: color-mix(in srgb, var(--color-gold) 24%, transparent);
+}
+
+/* Janela do traço brilhante: o traço desce por dentro dela, e o que ainda não
+   chegou fica escondido em cima. Larga o bastante para o brilho da faísca. */
+.spine__window {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--gutter-x);
+  width: 48px;
+  translate: -50% 0;
+  overflow: hidden;
+}
+
+.spine__progress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  translate: -50% 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-gold) 65%, transparent),
+    var(--color-gold) calc(100% - 160px),
+    var(--color-ivory)
+  );
+  box-shadow: 0 0 10px 1px color-mix(in srgb, var(--color-gold) 40%, transparent);
+}
+
+.spine__progress::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  translate: -50% 0;
+  background-color: var(--color-ivory);
+  box-shadow:
+    0 0 8px 2px var(--color-gold),
+    0 0 24px 8px color-mix(in srgb, var(--color-gold) 45%, transparent);
+}
+
+.thread__track {
+  position: absolute;
+  top: calc(var(--thread-h) / -2);
+  right: 0;
+  left: 0;
+  height: var(--thread-h);
+}
+
+.thread__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--thread-x);
+  width: 2px;
+  translate: -50% 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-gold) 22%,
+    var(--color-gold) 78%,
+    transparent
+  );
+  box-shadow: 0 0 10px 1px color-mix(in srgb, var(--color-gold) 45%, transparent);
+  transform-origin: top center;
+}
+
+/* Faísca na ponta do fio enquanto ele se desenha. Parada, fica escondida. */
+.thread__spark {
+  position: absolute;
+  top: 0;
+  left: var(--thread-x);
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  translate: -50% -50%;
+  background-color: var(--color-ivory);
+  box-shadow:
+    0 0 8px 2px var(--color-gold),
+    0 0 22px 6px color-mix(in srgb, var(--color-gold) 45%, transparent);
+  opacity: 0;
+}
+
+/* Onda de luz que sai da estrela quando o fio chega nela. */
+.thread__burst {
+  position: absolute;
+  top: 50%;
+  left: var(--thread-x);
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--color-gold);
+  border-radius: 999px;
+  translate: -50% -50%;
+  opacity: 0;
+}
+
+.thread__star {
+  position: absolute;
+  top: 50%;
+  left: var(--thread-x);
+  width: 24px;
+  height: auto;
+  translate: -50% -50%;
+  color: var(--color-gold);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-gold) 75%, transparent));
+}
+
+/* Rolagem: entradas reaproveitadas pelas seções -----------------------------
+ * scroll-rise: sobe com desfoque e termina logo depois de entrar inteiro.
+ * scroll-zoom: chega de um pouco mais longe, como a câmera se aproximando.
+ * scroll-pop: cresce do centro, para fotos redondas e detalhes.
+ * scroll-spot: acende ao passar pela faixa de leitura e apaga um pouco depois.
+ * O estado sem animação é sempre o final.
+ */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .thread__track {
+      view-timeline: --thread block;
+    }
+
+    .thread__line {
+      animation: thread-draw linear both;
+      animation-timeline: --thread;
+      animation-range: entry 10% cover 50%;
+    }
+
+    .thread__spark {
+      animation: thread-spark linear both;
+      animation-timeline: --thread;
+      animation-range: entry 10% cover 50%;
+    }
+
+    .thread__star {
+      animation: thread-star linear both;
+      animation-timeline: --thread;
+      animation-range: cover 24% cover 40%;
+    }
+
+    .thread__burst {
+      animation: thread-burst linear both;
+      animation-timeline: --thread;
+      animation-range: cover 28% cover 50%;
+    }
+
+    /* Ramo: primeiro atravessa até o meio, depois desce até o convite. */
+    .thread--center .thread__branch {
+      animation: thread-branch linear both;
+      animation-timeline: --thread;
+      animation-range: cover 16% cover 32%;
+    }
+
+    .thread--center .thread__line {
+      animation-range: cover 32% cover 54%;
+    }
+
+    .thread--center .thread__star {
+      animation-range: cover 28% cover 40%;
+    }
+
+    .thread--center .thread__burst {
+      animation-range: cover 30% cover 50%;
+    }
+
+    /* O traço do fio principal desce junto com a leitura: começa quando o topo
+       do manifesto passa pelos 60% da tela e termina quando o fim das
+       perguntas passa pelo mesmo ponto. */
+    .spine {
+      view-timeline: --spine block;
+    }
+
+    .spine__progress {
+      animation: spine-progress linear both;
+      animation-timeline: --spine;
+      animation-range: entry 40% exit 40%;
+    }
+
+    .scroll-rise {
+      animation: scroll-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% contain 12%;
+    }
+
+    .scroll-zoom {
+      animation: scroll-zoom linear both;
+      animation-timeline: view();
+      animation-range: entry 0% contain 22%;
+    }
+
+    .scroll-pop {
+      animation: scroll-pop linear both;
+      animation-timeline: view();
+      animation-range: entry 20% contain 18%;
+    }
+
+    .scroll-spot {
+      animation: scroll-spot linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    /* Linhas de lista reveladas por uma varredura, uma de cada lado. */
+    .scroll-wipe {
+      animation: scroll-wipe linear both;
+      animation-timeline: view();
+      animation-range: entry 0% contain 18%;
+    }
+
+    .scroll-wipe:nth-child(even) {
+      animation-name: scroll-wipe-reverse;
+    }
+
+    /* Itens lado a lado chegam um depois do outro. */
+    .scroll-stagger > :nth-child(2) {
+      animation-range: entry 12% contain 26%;
+    }
+
+    .scroll-stagger > :nth-child(3) {
+      animation-range: entry 24% contain 38%;
+    }
+
+    /* Como funciona: o fio do processo se desenha etapa por etapa e cada nó
+       acende, com um brilho, quando chega na faixa de leitura. */
+    .process-step {
+      view-timeline: --step block;
+    }
+
+    .process-step::after {
+      transform-origin: top center;
+      animation: thread-draw linear both;
+      animation-timeline: --step;
+      animation-range: cover 36% cover 66%;
+    }
+
+    .process-node {
+      animation: process-node linear both;
+      animation-timeline: view();
+      animation-range: cover 22% cover 46%;
+    }
+  }
+}
+
+@keyframes scroll-wipe {
+  from {
+    opacity: 0.3;
+    translate: -2.5rem 0;
+    clip-path: inset(-12% 100% -12% 0);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    clip-path: inset(-12% 0 -12% 0);
+  }
+}
+
+@keyframes scroll-wipe-reverse {
+  from {
+    opacity: 0.3;
+    translate: 2.5rem 0;
+    clip-path: inset(-12% 0 -12% 100%);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    clip-path: inset(-12% 0 -12% 0);
+  }
+}
+
+@keyframes process-node {
+  0% {
+    opacity: 0.3;
+    scale: 0.6;
+    box-shadow: 0 0 0 0 transparent;
+  }
+  60% {
+    opacity: 1;
+    scale: 1.2;
+    box-shadow:
+      0 0 0 6px color-mix(in srgb, var(--color-gold) 25%, transparent),
+      0 0 26px 4px color-mix(in srgb, var(--color-gold) 55%, transparent);
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+    box-shadow: 0 0 16px 1px color-mix(in srgb, var(--color-gold) 35%, transparent);
+  }
+}
+
+@keyframes thread-branch {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+@keyframes spine-progress {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes thread-draw {
+  from {
+    scale: 1 0;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+@keyframes thread-spark {
+  0% {
+    opacity: 0;
+    translate: -50% -50%;
+  }
+  8%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: -50% calc(var(--thread-h) - 50%);
+  }
+}
+
+@keyframes thread-star {
+  0% {
+    opacity: 0;
+    scale: 0;
+    rotate: -180deg;
+  }
+  65% {
+    opacity: 1;
+    scale: 1.45;
+    rotate: 12deg;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+
+@keyframes thread-burst {
+  0% {
+    opacity: 0;
+    scale: 0.4;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    scale: 3.6;
+  }
+}
+
+@keyframes scroll-rise {
+  from {
+    opacity: 0;
+    translate: 0 3rem;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    filter: blur(0);
+  }
+}
+
+@keyframes scroll-zoom {
+  from {
+    opacity: 0.2;
+    scale: 0.8;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes scroll-pop {
+  from {
+    opacity: 0;
+    scale: 0.3;
+    rotate: -60deg;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+
+@keyframes scroll-spot {
+  0% {
+    opacity: 0.15;
+  }
+  32%,
+  62% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.62;
+  }
+}
+
+/* Manifesto: a foto da Geovana anda mais devagar que a página, como o fundo
+   de uma cena mais distante. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .manifesto {
+      view-timeline: --manifesto block;
+    }
+
+    .manifesto__portrait {
+      animation: manifesto-drift linear both;
+      animation-timeline: --manifesto;
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes manifesto-drift {
+  from {
+    translate: 0 8rem;
+  }
+  to {
+    translate: 0 -8rem;
+  }
+}
+
+/* Quem sou eu -----------------------------------------------------------------
+ * O retrato num círculo, como a lente da marca, num palco quadrado com camadas
+ * em volta, de fora para dentro: duas ondas largas e apagadas, um halo quente,
+ * o anel de lente com marcas de foco, o nome da marca escrito em volta, o anel
+ * dourado deslocado e os brilhos de quatro pontas. Medidas em porcentagem do
+ * palco: retrato com 65% (raio de 130 no desenho de 400), texto no raio 160 e
+ * marcas de foco no raio 188.
+ *
+ * Entrada (InView): quando o retrato aparece na tela, a íris abre do centro
+ * com um aro dourado na borda, a foto sai de um zoom fechado até o zoom leve e
+ * as camadas entram girando mais rápido até assentarem numa volta lenta, cada
+ * uma para um lado. Sem JavaScript ou com movimento reduzido, nada é armado e
+ * tudo aparece parado no estado final.
+ */
+
+.about {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* A estrela da marca como marca-d'água, grande e quase invisível, atrás do texto. */
+.about__watermark {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: -14vw;
+  width: min(72vw, 780px);
+  height: auto;
+  translate: 0 -50%;
+  color: var(--color-ivory);
+  opacity: 0.045;
+  pointer-events: none;
+}
+
+.about__ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1;
+  border: 1px dashed color-mix(in srgb, var(--color-gold) 30%, transparent);
+  border-radius: 999px;
+  translate: -50% -50%;
+  pointer-events: none;
+}
+
+.about__ripple--near {
+  width: 122%;
+}
+
+.about__ripple--far {
+  width: 150%;
+  border-style: dotted;
+  border-width: 2px;
+  border-color: color-mix(in srgb, var(--color-gold) 20%, transparent);
+}
+
+/* Halo quente atrás do retrato: dourado e rosa em fatias, para a volta aparecer. */
+.about__glow {
+  position: absolute;
+  inset: 8%;
+  border-radius: 999px;
+  background: conic-gradient(
+    color-mix(in srgb, var(--color-gold) 80%, transparent),
+    transparent 22%,
+    color-mix(in srgb, var(--color-rose) 70%, transparent) 40%,
+    transparent 62%,
+    color-mix(in srgb, var(--color-gold) 60%, transparent) 80%,
+    color-mix(in srgb, var(--color-gold) 80%, transparent)
+  );
+  mask-image: radial-gradient(circle, black 35%, transparent 70%);
+  filter: blur(26px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.about__dial {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.about__ticks {
+  fill: none;
+  stroke: var(--color-gold);
+  stroke-width: 7;
+  stroke-dasharray: 0.12 0.88;
+  opacity: 0.55;
+}
+
+.about__ticks--major {
+  stroke-width: 16;
+  stroke-dasharray: 0.03 0.97;
+  opacity: 0.9;
+}
+
+.about__dial-text {
+  fill: var(--color-mist);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+}
+
+/* O anel dourado do tamanho do retrato, deslocado: ao girar, ele orbita a foto. */
+.about__orbit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.about__ring {
+  position: absolute;
+  inset: 17.5%;
+  border: 1px solid var(--color-gold);
+  border-radius: 999px;
+  translate: 3% 3%;
+}
+
+.about__portrait {
+  position: absolute;
+  inset: 17.5%;
+  overflow: hidden;
+  border-radius: 999px;
+  background-color: var(--color-charcoal);
+  box-shadow: 0 0 0 4px var(--color-burgundy-deep);
+  clip-path: circle(50%);
+}
+
+/* Aro dourado na borda da íris: cresce junto com a abertura e some no fim. */
+.about__portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-gold);
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Quadrado da foto 9:16: do cabelo à cintura, com zoom leve entre o rosto e a mão. */
+.about__photo {
+  object-position: 50% 15%;
+  transform-origin: 46% 32%;
+  scale: 1.15;
+}
+
+.about__sparks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Rotação das camadas: --dir dá o sentido, --ambient o tempo de uma volta lenta
+   e --burst o quanto a camada gira a mais na entrada. */
+.about__spin {
+  --dir: 1;
+  --ambient: 120s;
+  --burst: 160deg;
+}
+
+.about__spin--ccw {
+  --dir: -1;
+}
+
+.about__spin--far {
+  --ambient: 200s;
+  --burst: 90deg;
+}
+
+.about__spin--near {
+  --ambient: 150s;
+  --burst: 120deg;
+}
+
+.about__spin--glow {
+  --ambient: 40s;
+  --burst: 200deg;
+}
+
+.about__spin--ticks {
+  --ambient: 110s;
+  --burst: 180deg;
+}
+
+.about__spin--text {
+  --ambient: 90s;
+  --burst: 200deg;
+}
+
+.about__spin--orbit {
+  --ambient: 45s;
+  --burst: 240deg;
+}
+
+.about__spin--sparks {
+  --ambient: 80s;
+  --burst: 150deg;
+}
+
+/* Dentro do SVG, o centro da volta é o centro do desenho. */
+.about__dial .about__spin {
+  transform-box: view-box;
+  transform-origin: center;
+}
+
+/* Termina pouco depois de o bloco entrar inteiro, em qualquer altura de tela. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .about__reveal {
+      animation: about-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% contain 12%;
+    }
+
+    .about__rule {
+      transform-origin: left center;
+      animation: about-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 60% contain 18%;
+    }
+
+    .about__watermark {
+      animation: about-star-turn linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Antes da entrada: íris fechada, foto bem perto e camadas apagadas e recolhidas. */
+  .about__stage[data-armed] .about__portrait {
+    clip-path: circle(0%);
+  }
+
+  .about__stage[data-armed] .about__photo {
+    scale: 1.6;
+  }
+
+  .about__stage[data-armed] .about__deco {
+    opacity: 0;
+    scale: 0.9;
+  }
+
+  /* A entrada: a íris abre em 1,6s, a foto se afasta em 2,4s e as camadas acendem. */
+  .about__stage[data-revealed] .about__portrait {
+    clip-path: circle(50%);
+    transition: clip-path 1.6s var(--ease-out-expo) 0.1s;
+  }
+
+  .about__stage[data-revealed] .about__portrait::after {
+    animation:
+      about-rim-grow 1.6s var(--ease-out-expo) 0.1s both,
+      about-rim-fade 1.9s linear 0.1s both;
+  }
+
+  .about__stage[data-revealed] .about__photo {
+    scale: 1.15;
+    transition: scale 2.4s var(--ease-out-expo) 0.1s;
+  }
+
+  .about__stage[data-revealed] .about__deco {
+    opacity: 1;
+    scale: 1;
+    transition:
+      opacity 1.2s ease 0.2s,
+      scale 1.8s var(--ease-out-expo) 0.2s;
+  }
+
+  .about__stage[data-revealed] .about__glow {
+    opacity: 0.6;
+  }
+
+  /* A volta lenta roda sempre que o retrato está na tela; a entrada soma uma
+     volta rápida que desacelera até encontrar o ritmo lento. */
+  .about__spin {
+    animation: about-ambient var(--ambient) linear infinite;
+  }
+
+  .about__stage[data-revealed] .about__spin {
+    animation:
+      about-ambient var(--ambient) linear infinite,
+      about-burst 3.2s var(--ease-out-expo) both;
+  }
+
+  .about__stage:not([data-inview]) .about__spin,
+  .about__stage:not([data-inview]) .about__spark {
+    animation-play-state: paused;
+  }
+
+  .about__spark {
+    animation: about-twinkle 2.8s ease-in-out infinite alternate;
+  }
+
+  .about__spark--2 {
+    animation-duration: 2.2s;
+    animation-delay: -0.8s;
+  }
+
+  .about__spark--3 {
+    animation-duration: 3.4s;
+    animation-delay: -1.6s;
+  }
+
+  .about__spark--4 {
+    animation-duration: 2.5s;
+    animation-delay: -2.1s;
+  }
+
+  .about__photo {
+    transition: transform 1.2s var(--ease-out-expo);
+  }
+
+  @media (hover: hover) {
+    .about__stage:hover .about__photo {
+      transform: scale(1.05);
+    }
+  }
+}
+
+@keyframes about-ambient {
+  to {
+    transform: rotate(calc(360deg * var(--dir)));
+  }
+}
+
+@keyframes about-burst {
+  from {
+    rotate: calc(var(--burst) * var(--dir) * -1);
+  }
+  to {
+    rotate: 0deg;
+  }
+}
+
+@keyframes about-rim-grow {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+@keyframes about-rim-fade {
+  0%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes about-twinkle {
+  from {
+    opacity: 0.35;
+    scale: 0.6;
+    rotate: 0deg;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    rotate: 45deg;
+  }
+}
+
+@keyframes about-rise {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    filter: blur(0);
+  }
+}
+
+@keyframes about-draw {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+@keyframes about-star-turn {
+  from {
+    rotate: -18deg;
+  }
+  to {
+    rotate: 24deg;
+  }
+}
+
+/* Brilho girando atrás do vídeo principal do portfólio (bloco Portfólio). */
+@keyframes lead-glow-turn {
+  from {
+    transform: translate(-50%, -50%) scaleY(0.62) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) scaleY(0.62) rotate(360deg);
+  }
+}
+
+@keyframes lead-glow-breathe {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 0.95;
   }
 }
 
@@ -831,32 +2018,6 @@
     color: var(--color-charcoal);
   }
 
-  /* Vídeo principal rodando sem som: aviso de que o clique abre com som. */
-  .tile__sound {
-    position: absolute;
-    bottom: 14px;
-    left: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 999px;
-    background-color: rgb(33 25 26 / 0.72);
-    color: var(--color-ivory);
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease;
-  }
-
-  button:hover .tile__sound,
-  button:focus-visible .tile__sound {
-    background-color: var(--color-gold);
-    color: var(--color-charcoal);
-  }
-
   /* Vídeo principal de um case: play grande, no centro da capa. */
   .tile__play--lead {
     top: 50%;
@@ -865,6 +2026,185 @@
     width: 76px;
     height: 76px;
     translate: -50% -50%;
+  }
+
+  /* Foto de perfil do cliente ao lado do nome: círculo com o anel dourado
+     deslocado por trás, o mesmo detalhe do retrato da Geovana. */
+  .case-avatar {
+    position: relative;
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+  }
+
+  .case-avatar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--color-gold);
+    border-radius: 999px;
+    opacity: 0.7;
+    translate: 5px 5px;
+  }
+
+  .case-avatar__image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    object-fit: cover;
+    box-shadow: 0 0 0 2px var(--color-charcoal);
+  }
+
+  @media (min-width: 1024px) {
+    .case-avatar {
+      width: 76px;
+      height: 76px;
+    }
+  }
+
+  /* Quadro do vídeo principal: brilho girando por trás (o gesto do botão da
+     consultoria), fio dourado em volta, cantos de visor e a estrela da marca. */
+  .lead-frame {
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* O círculo de cores gira dentro de um quadro achatado: a forma do brilho
+     fica parada atrás do vídeo e só as cores dão a volta (transform puro). */
+  .lead-frame__glow {
+    position: absolute;
+    inset: -12% -5%;
+    z-index: -1;
+    filter: blur(40px);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .lead-frame__glow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: conic-gradient(
+      var(--color-burgundy),
+      var(--color-gold),
+      var(--color-rose),
+      var(--color-burgundy),
+      var(--color-gold),
+      var(--color-burgundy)
+    );
+    transform: translate(-50%, -50%) scaleY(0.62);
+  }
+
+  .lead-frame__tile {
+    outline: 1px solid color-mix(in srgb, var(--color-gold) 55%, transparent);
+    outline-offset: 6px;
+  }
+
+  .lead-frame__tile:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 6px;
+  }
+
+  .lead-frame__corners {
+    position: absolute;
+    inset: -14px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .lead-frame__corners > span {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border: 0 solid var(--color-gold);
+  }
+
+  .lead-frame__corners > span:nth-child(1) {
+    top: 0;
+    left: 0;
+    border-top-width: 2px;
+    border-left-width: 2px;
+  }
+
+  .lead-frame__corners > span:nth-child(2) {
+    top: 0;
+    right: 0;
+    border-top-width: 2px;
+    border-right-width: 2px;
+  }
+
+  .lead-frame__corners > span:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+  }
+
+  .lead-frame__corners > span:nth-child(4) {
+    right: 0;
+    bottom: 0;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+  }
+
+  .lead-frame__star {
+    position: absolute;
+    top: -26px;
+    right: -26px;
+    z-index: 2;
+    width: 30px;
+    height: auto;
+    color: var(--color-gold);
+    pointer-events: none;
+  }
+
+  @media (min-width: 1024px) {
+    .lead-frame__corners {
+      inset: -18px;
+    }
+
+    .lead-frame__corners > span {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* O brilho gira e respira só enquanto o vídeo está na tela e tocando. */
+    .lead-frame__glow {
+      animation: lead-glow-breathe 4.5s ease-in-out infinite alternate paused;
+    }
+
+    .lead-frame__glow::before {
+      animation: lead-glow-turn 9s linear infinite paused;
+    }
+
+    .lead-frame[data-live] .lead-frame__glow,
+    .lead-frame[data-live] .lead-frame__glow::before {
+      animation-play-state: running;
+    }
+
+    .lead-frame__star {
+      transition: rotate 0.9s var(--ease-out-expo);
+    }
+
+    .lead-frame:hover .lead-frame__star {
+      rotate: 90deg;
+    }
+
+    /* No hover, o visor fecha um pouco em volta do vídeo. */
+    .lead-frame__corners {
+      transition: scale 0.6s var(--ease-out-expo);
+    }
+
+    .lead-frame:hover .lead-frame__corners {
+      scale: 0.985;
+    }
   }
 
   .viewer {
@@ -975,6 +2315,136 @@ html:has(.viewer[open]) {
   overflow: hidden;
 }
 
+/* Convite ---------------------------------------------------------------------
+ * O papel marfim da consultoria se mistura ao burgundy: firme no meio, onde
+ * fica o texto, e dissolvido nas quatro bordas (--feather, sempre menor que o
+ * respiro interno do cartão, para nenhum texto cair na parte que some). Por
+ * trás, um brilho rosado e dourado faz a passagem de uma cor para a outra. A
+ * moldura fina fica logo depois da borda dissolvida, já na parte firme.
+ */
+
+/* A borda que some acompanha o respiro interno do cartão (px-6, sm:px-12, lg:px-20). */
+.invite {
+  --feather: 16px;
+  /* Rampa em curva (não reta): o papel some sem deixar ver onde termina. */
+  --fade-in:
+    transparent, color-mix(in srgb, black 12%, transparent) calc(var(--feather) * 0.3),
+    color-mix(in srgb, black 50%, transparent) calc(var(--feather) * 0.62), black var(--feather);
+  --fade-out:
+    black calc(100% - var(--feather)),
+    color-mix(in srgb, black 50%, transparent) calc(100% - var(--feather) * 0.62),
+    color-mix(in srgb, black 12%, transparent) calc(100% - var(--feather) * 0.3), transparent;
+  background-color: var(--color-ivory);
+  mask-image:
+    linear-gradient(to right, var(--fade-in), var(--fade-out)),
+    linear-gradient(to bottom, var(--fade-in), var(--fade-out));
+  mask-composite: intersect;
+}
+
+@media (min-width: 640px) {
+  .invite {
+    --feather: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .invite {
+    --feather: 60px;
+  }
+}
+
+.invite__frame {
+  position: absolute;
+  inset: calc(var(--feather) + 3px);
+  border: 1px solid color-mix(in srgb, var(--color-burgundy) 25%, transparent);
+  pointer-events: none;
+}
+
+/* Faixa de cor nas bordas que se dissolvem: um gradiente de rosa, dourado e
+   marfim girando, visível só perto das bordas (a máscara deixa o meio limpo
+   para o texto). O gradiente é desenhado uma vez e só gira. */
+.invite__edge {
+  --band: calc(var(--feather) * 1.8);
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  container-type: size;
+  pointer-events: none;
+  mask-image:
+    linear-gradient(to right, black, transparent var(--band), transparent calc(100% - var(--band)), black),
+    linear-gradient(to bottom, black, transparent var(--band), transparent calc(100% - var(--band)), black);
+}
+
+.invite__edge-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(max(100cqw, 100cqh) * 1.5);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  /* Manchas de luz em cor cheia, com intervalos curtos entre elas para a volta
+     ser bem percebida, e desfocadas para não terem contorno. */
+  background: conic-gradient(
+    var(--color-rose),
+    transparent 16%,
+    var(--color-gold) 25%,
+    transparent 37%,
+    var(--color-rose) 50%,
+    transparent 63%,
+    var(--color-gold) 75%,
+    transparent 88%,
+    var(--color-rose)
+  );
+  filter: blur(22px);
+  opacity: 0.7;
+}
+
+/* Brilho por trás do convite: um círculo de cores, desfocado uma vez, girando
+   ao contrário da faixa. Aparece pelas bordas que se dissolvem. */
+.invite__glow {
+  position: absolute;
+  inset: -8% -5%;
+  container-type: size;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.invite__glow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, 100cqh);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  translate: -50% -50%;
+  background: conic-gradient(
+    color-mix(in srgb, var(--color-rose) 90%, transparent),
+    color-mix(in srgb, var(--color-gold) 80%, transparent) 30%,
+    transparent 48%,
+    color-mix(in srgb, var(--color-rose) 90%, transparent) 66%,
+    color-mix(in srgb, var(--color-gold) 80%, transparent) 84%,
+    color-mix(in srgb, var(--color-rose) 90%, transparent)
+  );
+  filter: blur(64px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .invite__edge-spin {
+    animation: invite-spin 10s linear infinite;
+  }
+
+  .invite__glow::before {
+    animation: invite-spin 14s linear infinite reverse;
+  }
+}
+
+@keyframes invite-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
 /* Botão da consultoria -------------------------------------------------------
  * Adaptado do botão enviado pelo responsável pelo projeto: pílula com um brilho
  * desfocado girando no centro, que encolhe quando o mouse passa. Mudanças: o
@@ -988,8 +2458,16 @@ html:has(.viewer[open]) {
   .cta {
     --cta-bg: var(--color-ivory);
     --cta-fg: #570606; /* 12,3 sobre o marfim; 5,0 no ponto mais vermelho do brilho */
-    --cta-glow: linear-gradient(90deg, #db0000 0%, var(--color-ivory) 49%, #c38522 100%);
+    --cta-glow: linear-gradient(
+      90deg,
+      #db0000 0%,
+      var(--color-rose) 30%,
+      var(--color-ivory) 50%,
+      var(--color-gold) 72%,
+      #c38522 100%
+    );
     --cta-glow-opacity: 0.5;
+    --cta-halo: var(--color-rose);
     position: relative;
     z-index: 0;
     display: inline-flex;
@@ -1011,7 +2489,8 @@ html:has(.viewer[open]) {
     transition:
       background-color 0.2s ease,
       color 0.2s ease,
-      transform 0.1s ease;
+      transform 0.1s ease,
+      translate 0.3s var(--ease-out-expo);
   }
 
   /* No papel marfim da consultoria: burgundy, com um brilho mais escuro para o texto marfim ler bem (5,2 ou mais). */
@@ -1020,6 +2499,25 @@ html:has(.viewer[open]) {
     --cta-fg: var(--color-ivory);
     --cta-glow: linear-gradient(90deg, #db0000 0%, var(--color-gold) 49%, var(--color-burgundy-deep) 100%);
     --cta-glow-opacity: 0.4;
+    --cta-halo: var(--color-gold);
+  }
+
+  /* Reflexo: uma faixa dourada fina atravessa a pílula de tempos em tempos,
+     por baixo do texto. */
+  .cta::after {
+    content: "";
+    position: absolute;
+    inset: -30% auto -30% 0;
+    z-index: 0;
+    width: 38%;
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      color-mix(in srgb, var(--color-gold) 55%, transparent) 50%,
+      transparent 100%
+    );
+    translate: -160% 0;
+    pointer-events: none;
   }
 
   .cta--sm {
@@ -1035,8 +2533,27 @@ html:has(.viewer[open]) {
     color: var(--color-charcoal);
   }
 
+  .cta:hover {
+    translate: 0 -1px;
+  }
+
   .cta:active {
     transform: scale(0.97);
+  }
+
+  /* Um halo rosa em volta da pílula respira devagar, e o reflexo passa a cada 5,5s. */
+  @media (prefers-reduced-motion: no-preference) {
+    .cta {
+      animation: cta-halo 3.2s ease-in-out infinite alternate;
+    }
+
+    .cta::after {
+      animation: cta-sheen 5.5s var(--ease-out-quart) infinite;
+    }
+
+    .cta:hover::after {
+      animation-duration: 2.2s;
+    }
   }
 
   .cta__glow {
@@ -1078,7 +2595,8 @@ html:has(.viewer[open]) {
       border: 1px solid ButtonText;
     }
 
-    .cta__glow {
+    .cta__glow,
+    .cta::after {
       display: none;
     }
   }
@@ -1087,6 +2605,29 @@ html:has(.viewer[open]) {
 @keyframes cta-glow {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes cta-halo {
+  from {
+    box-shadow:
+      0 0 7px -5px rgb(0 0 0 / 0.5),
+      0 0 0 0 color-mix(in srgb, var(--cta-halo) 0%, transparent);
+  }
+  to {
+    box-shadow:
+      0 0 7px -5px rgb(0 0 0 / 0.5),
+      0 0 22px 1px color-mix(in srgb, var(--cta-halo) 50%, transparent);
+  }
+}
+
+@keyframes cta-sheen {
+  0% {
+    translate: -160% 0;
+  }
+  32%,
+  100% {
+    translate: 320% 0;
   }
 }
 

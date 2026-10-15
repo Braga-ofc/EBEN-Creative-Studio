@@ -5,7 +5,7 @@ import { MobileMenu } from "./MobileMenu";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-ivory/15 bg-burgundy">
+    <header className="site-header sticky top-0 z-50 border-b border-ivory/15 bg-burgundy">
       <div className="shell flex h-16 items-center justify-between gap-6 lg:h-[72px]">
         <a
           href="#topo"
@@ -16,12 +16,13 @@ export function SiteHeader() {
         </a>
 
         <nav aria-label="Seções da página" className="hidden lg:block">
-          <ul className="flex items-center gap-9">
+          {/* Cinco âncoras: o espaço entre elas só abre a partir de 1280px, para caberem numa linha em 1024px. */}
+          <ul className="flex items-center gap-6 xl:gap-9">
             {navigation.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="type-small font-medium text-mist decoration-gold transition-colors hover:text-ivory hover:underline"
+                  className="type-small font-medium whitespace-nowrap text-mist decoration-gold transition-colors hover:text-ivory hover:underline"
                 >
                   {item.label}
                 </a>

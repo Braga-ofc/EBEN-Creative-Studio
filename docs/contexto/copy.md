@@ -101,9 +101,9 @@ Números em destaque:
 | +200 mil | seguidores conquistados em um único case |
 | 507 mil | visualizações em 60 dias de gestão |
 
-Case 1, Sued Silva, Social Media: De 1 milhão para 1,2 milhão de seguidores no Instagram em 1 ano de gestão da EBEN.
+Case 1, Sued Silva (Cantora gospel), Social Media: De 1 milhão para 1,2 milhão de seguidores no Instagram em 1 ano de gestão da EBEN.
 
-Case 2, Juliana Arantes, Social Media: 507 mil visualizações e mais de 10 mil interações em 60 dias de gestão estratégica de conteúdo. PENDENTE: confirmar o período, porque a gestão durou 3 meses e a copy original fala em 60 dias.
+Case 2, Juliana Arantes (Consultora de negócios), Social Media: 507 mil visualizações e mais de 10 mil interações em 60 dias de gestão estratégica de conteúdo. PENDENTE: confirmar o período, porque a gestão durou 3 meses e a copy original fala em 60 dias.
 
 O uso do nome e dos números das duas clientes está autorizado. A primeira versão vai ao ar com dois cases e sem depoimentos em frase, porque ainda não existem. O CaseCard já tem espaço para a frase, que aparece quando o depoimento chegar.
 
@@ -141,6 +141,24 @@ Você recebe no final: Uma marca com presença planejada, conteúdo com identida
 O custo de continuar como está: Cada mês sem direção é um mês em que o cliente certo passa pelo seu perfil e não entende o que você faz. Ou escolhe quem apareceu melhor.
 
 Botão: Pedir minha proposta
+
+## Quem sou eu, entre Como funciona e a consultoria
+
+Este é o único bloco escrito na primeira pessoa do singular, na voz da Geovana. A exceção à voz da agência é intencional.
+
+Título: Quem sou eu?
+
+Prazer, eu sou a Geovana Silva, tenho 20 anos e a minha história com a comunicação começou na igreja. Foi lá que comecei a registrar momentos, a trabalhar com vídeos e a descobrir o quanto gosto de contar histórias através das imagens. O que começou de forma simples foi ganhando espaço na minha vida e, com o tempo, virou profissão.
+
+Quando chegou a hora de dar um nome a tudo isso, eu queria algo com um significado de verdade e profundo. Por isso escolhi EBEN, inspirado em Ebenézer, uma palavra bíblica que significa “Até aqui nos ajudou o Senhor”. A marca carrega a minha história e a minha fé, porque não faria sentido construir algo tão importante e esquecer de onde tudo começou.
+
+Hoje, a EBEN vai muito além de um trabalho. É um projeto que construo aos poucos, colocando muito de mim em cada detalhe. E é esse mesmo cuidado que levo para a história da sua marca ou do seu evento. Essa é a minha história até aqui, e ainda tem muita coisa pra construir. Se você quer uma marca contada com estratégia, identidade e propósito, agende uma consultoria gratuita e vamos planejar o próximo capítulo da sua empresa.
+
+Assinatura: Geovana Silva
+
+Texto em volta do retrato: EBEN · CREATIVE STUDIO · EBEN · CREATIVE STUDIO ·
+
+Foto: a mesma foto de estúdio da primeira barra do Story da abertura (geo-estudio), recortada em círculo com zoom leve.
 
 ## Bloco 8: quebra de objeções
 

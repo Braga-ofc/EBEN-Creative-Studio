@@ -33,12 +33,15 @@ export function Manifesto() {
           </div>
 
           {manifesto.paragraphs.map((paragraph, index) => (
-            <p key={paragraph.slice(0, 32)} className={`type-lead text-mist ${paragraphColumns[index]}`}>
+            <p
+              key={paragraph.slice(0, 32)}
+              className={`scroll-rise type-lead text-mist ${paragraphColumns[index]}`}
+            >
               {paragraph}
             </p>
           ))}
 
-          <p className="mt-6 flex items-start gap-4 md:col-span-2 lg:col-span-8 lg:col-start-5 lg:mt-0">
+          <p className="scroll-rise mt-6 flex items-start gap-4 md:col-span-2 lg:col-span-8 lg:col-start-5 lg:mt-0">
             <Star className="mt-1.5 h-5 w-auto shrink-0 text-gold" />
             <span className="max-w-[34ch] type-quote">{manifesto.closing}</span>
           </p>

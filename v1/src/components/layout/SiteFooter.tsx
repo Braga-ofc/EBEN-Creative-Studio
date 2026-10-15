@@ -1,4 +1,5 @@
 import { Lockup } from "@/components/brand/Lockup";
+import { Star } from "@/components/brand/Star";
 import {
   brand,
   contact,
@@ -62,17 +63,27 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-ivory/10">
-        <div className="shell flex flex-col gap-3 py-6 type-small text-ash sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 {brand.name}</p>
-          <p>
-            Site desenvolvido por {developerCredit.name} ·{" "}
+        <div className="shell flex flex-col gap-4 py-7 sm:flex-row sm:items-center sm:justify-between">
+          <p className="type-small text-ash">© 2026 {brand.name}</p>
+          {/* Crédito do desenvolvedor em destaque: nome em dourado, número em marfim. */}
+          <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 type-body text-mist">
+            <Star className="h-3.5 w-auto text-gold" />
+            Site desenvolvido por
             <a
               href={whatsappLink(developerCredit.whatsappNumber)}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline decoration-ivory/40 transition-colors hover:text-ivory"
+              className="group inline-flex flex-wrap items-baseline gap-x-2.5"
             >
-              {developerCredit.phoneDisplay}
+              <span className="font-semibold tracking-[0.14em] text-gold uppercase transition-colors group-hover:text-ivory">
+                {developerCredit.name}
+              </span>
+              <span aria-hidden="true" className="text-gold">
+                ·
+              </span>
+              <span className="text-ivory underline decoration-gold/60 underline-offset-4 transition-colors group-hover:text-gold">
+                {developerCredit.phoneDisplay}
+              </span>
               <span className="sr-only"> (WhatsApp, abre em uma nova aba)</span>
             </a>
           </p>

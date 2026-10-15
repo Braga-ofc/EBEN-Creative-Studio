@@ -1,7 +1,9 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Play, Volume2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
+import { Star } from "@/components/brand/Star";
 import {
   drivePreview,
   mediaImage,
@@ -26,7 +28,9 @@ function countLabel(media: PortfolioMedia[]): string {
     [media.filter((item) => item.kind === "photo").length, "foto", "fotos"],
     [media.filter((item) => item.kind === "screen").length, "print", "prints"],
   ] as const;
-  const parts = counts.filter(([count]) => count > 0).map(([count, one, many]) => `${count} ${count === 1 ? one : many}`);
+  const parts = counts
+    .filter(([count]) => count > 0)
+    .map(([count, one, many]) => `${count} ${count === 1 ? one : many}`);
   return parts.join(" e ");
 }
 
@@ -108,7 +112,7 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
 
   return (
     <div className="mt-14 lg:mt-20">
-      <div role="tablist" aria-label="Portfólio por serviço" className="portfolio-tabs">
+      <div role="tablist" aria-label="Portfólio por serviço" className="portfolio-tabs scroll-rise">
         {categories.map((category, index) => (
           <button
             key={category.id}
@@ -139,7 +143,7 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
           hidden={active !== categoryIndex}
           className="pt-10 lg:pt-12"
         >
-          <p className="max-w-[46ch] type-lead text-ash">{category.text}</p>
+          <p className="scroll-rise max-w-[46ch] type-lead text-ash">{category.text}</p>
 
           {category.id === "social-media" ? (
             <div className="mt-12 flex flex-col gap-16 lg:gap-20">
@@ -149,7 +153,12 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
                 const screens = lead ? item.media.slice(1) : item.media;
                 const firstScreen = lead ? 1 : 0;
                 const screenList = (
-                  <ul className={cn("grid grid-cols-2 gap-3", lead ? "max-w-[16rem]" : "max-w-[22rem]")}>
+                  <ul
+                    className={cn(
+                      "scroll-rise grid grid-cols-2 gap-3",
+                      lead ? "max-w-[16rem]" : "max-w-[22rem]",
+                    )}
+                  >
                     {screens.map((entry, index) => (
                       <li key={mediaKey(entry)}>
                         <MediaTile
@@ -170,12 +179,18 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
                     )}
                   >
                     <div className="lg:col-span-4">
-                      <h3 className="type-h3">{item.name}</h3>
-                      <p className="mt-2 type-tag text-gold">{category.label}</p>
+                      <div className="flex items-center gap-5">
+                        {item.avatar ? <CaseAvatar src={item.avatar} /> : null}
+                        <div>
+                          <h3 className="type-h3">{item.name}</h3>
+                          {item.role ? <p className="mt-1 type-body text-mist">{item.role}</p> : null}
+                          <p className="mt-2 type-tag text-gold">{category.label}</p>
+                        </div>
+                      </div>
                       {item.result ? (
                         <>
                           <p className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                            <span className="type-figure text-gold">{item.result.value}</span>
+                            <span className="scroll-rise type-figure text-gold">{item.result.value}</span>
                             <span className="type-small text-ash">{item.result.label}</span>
                           </p>
                           <p className="mt-3 max-w-[34ch] type-body text-ash">{item.result.text}</p>
@@ -204,7 +219,10 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
             <ul className="mt-12 grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3 lg:grid-cols-7">
               {category.groups[0].media.map((entry, mediaIndex) => (
                 <li key={mediaKey(entry)}>
-                  <MediaTile media={entry} onOpen={(trigger) => open(categoryIndex, 0, mediaIndex, trigger)} />
+                  <MediaTile
+                    media={entry}
+                    onOpen={(trigger) => open(categoryIndex, 0, mediaIndex, trigger)}
+                  />
                 </li>
               ))}
             </ul>
@@ -248,7 +266,10 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
                   title={`Vídeo ${opened!.media + 1} de ${total}: ${title}`}
                   allow="autoplay; fullscreen; encrypted-media"
                   allowFullScreen
-                  className={cn("viewer__media", media.landscape ? "viewer__media--landscape" : "viewer__media--portrait")}
+                  className={cn(
+                    "viewer__media",
+                    media.landscape ? "viewer__media--landscape" : "viewer__media--portrait",
+                  )}
                 />
               ) : media.kind === "video" && "src" in media ? (
                 // Vídeo do próprio site: começa sozinho, porque o visitante acabou de clicar para assistir.
@@ -260,7 +281,10 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
                   autoPlay
                   playsInline
                   aria-label={`Vídeo ${opened!.media + 1} de ${total}: ${media.alt ?? title}`}
-                  className={cn("viewer__media", media.landscape ? "viewer__media--landscape" : "viewer__media--portrait")}
+                  className={cn(
+                    "viewer__media",
+                    media.landscape ? "viewer__media--landscape" : "viewer__media--portrait",
+                  )}
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element -- miniatura servida pelo Google Drive
@@ -373,22 +397,38 @@ type LeadVideoProps = {
   onOpen: OpenHandler;
 };
 
+/** Foto de perfil do cliente ao lado do nome, num círculo com o anel dourado deslocado da marca. */
+function CaseAvatar({ src }: { src: string }) {
+  return (
+    <span aria-hidden="true" className="case-avatar scroll-pop">
+      <Image src={src} alt="" width={320} height={320} sizes="80px" className="case-avatar__image" />
+    </span>
+  );
+}
+
 /**
- * Vídeo principal de um case. Arquivo do site roda sozinho, sem som e em
- * loop, mas só enquanto está na tela: fora dela (ou com a aba fechada) fica
- * parado e nem começa a baixar. O clique abre o visualizador, com som e
- * controles. Vídeo do Drive mostra a capa com o play.
+ * Vídeo principal de um case, num quadro com brilho girando por trás (o mesmo
+ * gesto do botão da consultoria), cantos dourados de visor e a estrela da
+ * marca. Arquivo do site roda sozinho, sem som e em loop, mas só enquanto está
+ * na tela: fora dela (ou com a aba fechada) fica parado e nem começa a baixar,
+ * e o brilho para junto. O clique abre o visualizador, maior e com controles.
+ * Vídeo do Drive mostra a capa com o play.
  */
 function LeadVideo({ media, paused, onOpen }: LeadVideoProps) {
+  const frameRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const onScreen = useRef(false);
   const fromSite = "src" in media;
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const frame = frameRef.current;
+    if (!frame) return;
     const sync = () => {
-      if (onScreen.current && !paused) video.play().catch(() => {});
+      const live = onScreen.current && !paused;
+      frame.toggleAttribute("data-live", live);
+      const video = videoRef.current;
+      if (!video) return;
+      if (live) video.play().catch(() => {});
       else video.pause();
     };
     const observer = new IntersectionObserver(
@@ -398,53 +438,58 @@ function LeadVideo({ media, paused, onOpen }: LeadVideoProps) {
       },
       { threshold: 0.25 },
     );
-    observer.observe(video);
+    observer.observe(frame);
     sync();
     return () => observer.disconnect();
   }, [paused]);
 
   return (
-    <button
-      type="button"
-      aria-haspopup="dialog"
-      onClick={(event) => onOpen(event.currentTarget)}
-      className={cn("tile", media.landscape ? "aspect-video" : "aspect-[9/16] max-w-[22rem]")}
-    >
-      {fromSite ? (
-        <video
-          ref={videoRef}
-          src={media.src}
-          poster={media.poster}
-          muted
-          loop
-          playsInline
-          preload="none"
-          aria-hidden="true"
-          className="tile__image"
-        />
-      ) : (
-        // eslint-disable-next-line @next/next/no-img-element -- miniatura servida pelo Google Drive
-        <img
-          src={mediaImage(media, 1280)}
-          alt=""
-          width={1280}
-          height={media.landscape ? 720 : 2276}
-          loading="lazy"
-          decoding="async"
-          className="tile__image"
-        />
-      )}
-      {fromSite ? (
-        <span className="tile__sound" aria-hidden="true">
-          <Volume2 strokeWidth={1.75} className="size-4" />
-          Ver com som
-        </span>
-      ) : (
-        <span className="tile__play tile__play--lead" aria-hidden="true">
-          <Play strokeWidth={0} fill="currentColor" className="size-7 translate-x-0.5" />
-        </span>
-      )}
-      <span className="sr-only">Assistir ao vídeo com som: {media.alt}</span>
-    </button>
+    <div ref={frameRef} className={cn("lead-frame scroll-zoom", !media.landscape && "max-w-[22rem]")}>
+      <span aria-hidden="true" className="lead-frame__glow" />
+      <span aria-hidden="true" className="lead-frame__corners">
+        <span />
+        <span />
+        <span />
+        <span />
+      </span>
+      <Star className="lead-frame__star" />
+      <button
+        type="button"
+        aria-haspopup="dialog"
+        onClick={(event) => onOpen(event.currentTarget)}
+        className={cn("tile lead-frame__tile", media.landscape ? "aspect-video" : "aspect-[9/16]")}
+      >
+        {fromSite ? (
+          <video
+            ref={videoRef}
+            src={media.src}
+            poster={media.poster}
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-hidden="true"
+            className="tile__image"
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element -- miniatura servida pelo Google Drive
+          <img
+            src={mediaImage(media, 1280)}
+            alt=""
+            width={1280}
+            height={media.landscape ? 720 : 2276}
+            loading="lazy"
+            decoding="async"
+            className="tile__image"
+          />
+        )}
+        {fromSite ? null : (
+          <span className="tile__play tile__play--lead" aria-hidden="true">
+            <Play strokeWidth={0} fill="currentColor" className="size-7 translate-x-0.5" />
+          </span>
+        )}
+        <span className="sr-only">Ampliar o vídeo: {media.alt}</span>
+      </button>
+    </div>
   );
 }

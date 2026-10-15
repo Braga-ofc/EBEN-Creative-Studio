@@ -13,19 +13,19 @@ export function Portfolio() {
     <section
       id="portfolio"
       aria-labelledby="portfolio-title"
-      className="bg-charcoal section-pad defer-render"
+      className="overflow-x-clip bg-charcoal section-pad defer-render"
     >
       <div className="shell">
         <div className="max-w-[46rem]">
-          <h2 id="portfolio-title" className="type-h2">
+          <h2 id="portfolio-title" className="rack-focus type-h2">
             {portfolio.title}
           </h2>
-          <p className="mt-6 type-lead text-ash">{portfolio.intro}</p>
+          <p className="scroll-rise mt-6 type-lead text-ash">{portfolio.intro}</p>
         </div>
 
         <PortfolioGallery categories={portfolioCategories} />
 
-        <div className="mt-20 flex flex-col items-start gap-8 border-t border-ivory/15 pt-12 sm:flex-row sm:items-center sm:justify-between lg:mt-28">
+        <div className="scroll-rise mt-20 flex flex-col items-start gap-8 border-t border-ivory/15 pt-12 sm:flex-row sm:items-center sm:justify-between lg:mt-28">
           <p className="max-w-[34ch] type-h3">
             Mais histórias, bastidores e coberturas no Instagram:{" "}
             <a

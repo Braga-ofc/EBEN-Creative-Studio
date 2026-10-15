@@ -17,7 +17,15 @@ export function buildLlmsTxt(): string {
   const home = absoluteUrl("/");
   const cases = portfolioCategories.flatMap((category) =>
     category.groups.flatMap((group) =>
-      group.name && group.result ? [{ category: category.label, name: group.name, result: group.result }] : [],
+      group.name && group.result
+        ? [
+            {
+              category: category.label,
+              name: group.role ? `${group.name} (${group.role})` : group.name,
+              result: group.result,
+            },
+          ]
+        : [],
     ),
   );
   const fronts = portfolioCategories.filter((category) => !category.groups.some((group) => group.result));

@@ -13,7 +13,8 @@
  * `poster` no lugar de `driveId`. É o caso do vídeo principal da Sued: MP4 em
  * H.264, que toca em qualquer navegador sem conversão.
  *
- * Os números dos dois cases de Social Media foram autorizados pelas clientes.
+ * Os números dos dois cases de Social Media foram autorizados pelas clientes, e
+ * as fotos de perfil delas foram enviadas pelo responsável pelo projeto.
  */
 
 export type PortfolioMediaKind = "video" | "photo" | "screen";
@@ -43,6 +44,10 @@ export type PortfolioGroup = {
   id: string;
   /** Nome do cliente ou projeto, como a subpasta do Drive. Pasta sem subpastas fica sem nome. */
   name?: string;
+  /** Foto de perfil do cliente, quadrada, ao lado do nome no case. Arquivo em public/. */
+  avatar?: string;
+  /** O que o cliente faz, logo abaixo do nome no case. */
+  role?: string;
   /** Resultado do case, quando há número autorizado. */
   result?: { value: string; label: string; text: string };
   /**
@@ -92,6 +97,8 @@ export const portfolioCategories: PortfolioCategory[] = [
       {
         id: "sued-silva",
         name: "Sued Silva",
+        avatar: "/images/portfolio/sued-silva-perfil.webp",
+        role: "Cantora gospel",
         result: {
           value: "1,2 milhão",
           label: "de seguidores no Instagram",
@@ -120,6 +127,8 @@ export const portfolioCategories: PortfolioCategory[] = [
       {
         id: "juliana-arantes",
         name: "Juliana Arantes",
+        avatar: "/images/portfolio/juliana-arantes-perfil.webp",
+        role: "Consultora de negócios",
         result: {
           value: "507 mil",
           label: "visualizações",

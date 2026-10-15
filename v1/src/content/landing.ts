@@ -143,6 +143,23 @@ export const howItWorks = {
     "Cada mês sem direção é um mês em que o cliente certo passa pelo seu perfil e não entende o que você faz. Ou escolhe quem apareceu melhor.",
 } as const;
 
+/**
+ * Quem sou eu: a única seção na voz da Geovana, na primeira pessoa do
+ * singular. O resto da página fala como agência ("a gente", "a EBEN").
+ */
+export const about = {
+  titleStart: "Quem sou",
+  titleEnd: "eu?",
+  /** Texto que corre em volta do retrato, no anel de lente. */
+  ring: "EBEN · CREATIVE STUDIO · EBEN · CREATIVE STUDIO · ",
+  signature: "Geovana Silva",
+  paragraphs: [
+    "Prazer, eu sou a Geovana Silva, tenho 20 anos e a minha história com a comunicação começou na igreja. Foi lá que comecei a registrar momentos, a trabalhar com vídeos e a descobrir o quanto gosto de contar histórias através das imagens. O que começou de forma simples foi ganhando espaço na minha vida e, com o tempo, virou profissão.",
+    "Quando chegou a hora de dar um nome a tudo isso, eu queria algo com um significado de verdade e profundo. Por isso escolhi EBEN, inspirado em Ebenézer, uma palavra bíblica que significa “Até aqui nos ajudou o Senhor”. A marca carrega a minha história e a minha fé, porque não faria sentido construir algo tão importante e esquecer de onde tudo começou.",
+    "Hoje, a EBEN vai muito além de um trabalho. É um projeto que construo aos poucos, colocando muito de mim em cada detalhe. E é esse mesmo cuidado que levo para a história da sua marca ou do seu evento. Essa é a minha história até aqui, e ainda tem muita coisa pra construir. Se você quer uma marca contada com estratégia, identidade e propósito, agende uma consultoria gratuita e vamos planejar o próximo capítulo da sua empresa.",
+  ],
+} as const;
+
 export const consultation = {
   title: "Comece por uma consultoria gratuita",
   text: "Na primeira conversa, a EBEN analisa o seu perfil e mostra os principais pontos que melhoraria e as oportunidades para fortalecer a sua presença digital. Se fizer sentido, a gente marca uma reunião para falar dos próximos passos.",
