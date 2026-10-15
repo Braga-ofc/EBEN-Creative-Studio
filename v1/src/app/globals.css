@@ -865,10 +865,12 @@
  * parágrafos.
  */
 
+/* clip, e não hidden: hidden faria da seção uma área de rolagem própria, e as
+   entradas com a rolagem (scroll-rise) passariam a se medir por ela. */
 .manifesto {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: clip;
   background-color: var(--color-burgundy);
 }
 
@@ -1475,10 +1477,11 @@
  * tudo aparece parado no estado final.
  */
 
+/* clip, e não hidden, pelo mesmo motivo do manifesto: as entradas medem a página. */
 .about {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: clip;
 }
 
 /* A estrela da marca como marca-d'água, grande e quase invisível, atrás do texto. */

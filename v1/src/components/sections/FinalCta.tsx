@@ -7,7 +7,7 @@ export function FinalCta() {
     <section
       id="agendar"
       aria-labelledby="agendar-title"
-      className="relative overflow-hidden border-t border-ivory/15 section-pad defer-render"
+      className="relative overflow-clip border-t border-ivory/15 section-pad defer-render"
     >
       {/* Anel de lente: a forma circular do brandkit, sutil, atrás do fechamento. */}
       <div
