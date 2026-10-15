@@ -258,6 +258,15 @@ export const faq = {
   ],
 } as const;
 
+/** Página 404: o zero do "404" é a lente da marca, procurando uma história que não existe. */
+export const notFound = {
+  title: "Esta história ainda não foi contada.",
+  text: "O endereço que você abriu não existe. A página da EBEN continua no mesmo lugar.",
+  cta: "Voltar para a página inicial",
+  /** Texto que corre em volta da lente. */
+  ring: "PÁGINA NÃO ENCONTRADA · EBEN CREATIVE STUDIO · ",
+} as const;
+
 export const finalCta = {
   title: "Imagine o seu perfil daqui a alguns meses.",
   text: "Quem chega entende quem você é em segundos. Os vídeos têm a sua cara. Os bastidores mostram um negócio vivo. E você não precisa mais acordar pensando no que postar.",

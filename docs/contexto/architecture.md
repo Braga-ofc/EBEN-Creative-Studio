@@ -1,86 +1,89 @@
 # Arquitetura: EBEN Creative Studio
 
+Este arquivo descreve o site como ele está construído, na pasta `v1/` do repositório. O que ainda não existe e está planejado fica na última seção, "Planejado para depois".
+
 ## Stack
 
-O projeto usa TypeScript em modo estrito, React, Next.js com App Router e Tailwind CSS. A validação das variáveis de ambiente usa Zod. As fontes são carregadas por next/font e as imagens por next/image. As versões exatas de cada pacote são definidas no momento da instalação, ficam travadas no package-lock e são registradas no memory.md.
+| Parte | Tecnologia |
+| --- | --- |
+| Linguagem | TypeScript em modo estrito |
+| Estrutura | Next.js 16 com App Router e React 19 |
+| Estilos | Tailwind CSS 4, com os tokens da marca em `src/app/globals.css` |
+| Rolagem suave | Lenis |
+| Ícones | lucide-react |
+| Classes CSS | clsx e tailwind-merge, juntos na função `cn` de `src/lib/cn.ts` |
+| Validação das variáveis de ambiente | Zod, em `src/lib/env.ts` |
+| Fontes | Fraunces e Manrope pelo next/font |
+| Imagens | next/image para as fotos do site; as miniaturas do portfólio vêm do Google Drive com a tag img comum |
+| Qualidade | ESLint (configuração do Next.js), Prettier com o plugin do Tailwind e checagem de tipos |
 
-Como a primeira versão converte só pelo WhatsApp e não tem formulário, nada precisa rodar em servidor. Por isso o site é gerado como exportação estática, com output: "export" no next.config.ts, e o build produz uma pasta out com HTML, CSS, JavaScript e imagens prontos. Isso tem três consequências. A hospedagem pode ser qualquer serviço de arquivos estáticos, sem adaptador. Não existem Server Actions, rotas de API nem renderização sob demanda. E a otimização automática de imagens do Next.js fica desligada, com images.unoptimized: true, então toda imagem entra no repositório já exportada em WebP no tamanho em que aparece, em até duas resoluções, 1x e 2x.
+As versões exatas de cada pacote ficam travadas no `package-lock.json`. Não há biblioteca de animação: todas as animações são feitas em CSS, com animações ligadas à rolagem (`animation-timeline`) onde o navegador permite, e com um pequeno componente (`InView`) para as entradas por tempo.
+
+Como o site converte só pelo WhatsApp e não tem formulário, nada precisa rodar em servidor. Por isso ele é gerado como exportação estática, com `output: "export"` no `next.config.ts`, e o build produz a pasta `out` com HTML, CSS, JavaScript e imagens prontos. Isso tem três consequências. A hospedagem pode ser qualquer serviço de arquivos estáticos, sem adaptador. Não existem Server Actions, rotas de API nem renderização sob demanda: o `llms.txt` é uma rota gerada uma vez no build (`force-static`). E a otimização automática de imagens do Next.js fica desligada, com `images.unoptimized: true`, então as fotos do site entram no repositório já exportadas no tamanho de uso, quase todas em WebP.
+
+O build exige a variável `NEXT_PUBLIC_SITE_URL`, com o endereço público do site, que alimenta o canonical, o sitemap, o robots, o llms.txt e os dados estruturados.
 
 ## Hospedagem
 
-A escolha da hospedagem fica com o responsável pelo projeto. Com o site estático, a Cloudflare passa a ser a opção mais simples entre as gratuitas, porque serve arquivos estáticos sem limite de transferência e sem precisar do adaptador OpenNext. A Netlify também serve o site sem adaptador, mas o plano gratuito tem 300 créditos por mês, em que cada publicação gasta 15 e cada GB transferido gasta 20. A Vercel Hobby continua descartada, porque proíbe uso comercial. Os vídeos não ficam na hospedagem do site, e sim em um serviço de vídeo, porque são o que mais consome transferência.
+O site está publicado no **Netlify**, em https://ebencreative.netlify.app. A configuração fica no `netlify.toml`, na raiz do repositório: pasta base `v1`, comando `npm ci && npm run build`, pasta publicada `out`, Node 22 e `NEXT_PUBLIC_SITE_URL` apontando para o endereço do Netlify. Cada envio para a branch `main` do GitHub gera uma nova publicação.
 
-Perguntas para você: qual hospedagem foi escolhida? O domínio já foi escolhido, e quem vai registrá-lo? Qual gerenciador de pacotes você prefere, npm ou pnpm?
+A Vercel Hobby foi descartada porque proíbe uso comercial. O domínio próprio ainda não existe; quando for registrado, entra no Netlify e no `NEXT_PUBLIC_SITE_URL`.
+
+As mídias do portfólio ficam no Google Drive da agência, compartilhadas como "qualquer pessoa com o link". A página mostra a miniatura que o próprio Drive gera e toca os vídeos no player do Drive. A exceção é o vídeo principal do case da Sued Silva (MP4 de 11,7 MB), que fica no próprio site, em `public/videos/`.
 
 ## Fluxo do aplicativo
 
-O visitante chega pela página, quase sempre pelo celular, por um link do Instagram, de uma indicação ou de um anúncio. A abertura mostra o vídeo em loop, a headline e o botão de WhatsApp. Na primeira visita, o aviso de cookies aparece na parte de baixo da tela sem bloquear a leitura. Se o visitante aceita, o GA4 e o Pixel da Meta são carregados. Se recusa ou ignora, nenhum script de rastreamento é carregado.
+O visitante chega pela página, quase sempre pelo celular, por um link do Instagram, de uma indicação ou de um anúncio. Na primeira visita da sessão, a tela de abertura mostra o monograma e se abre revelando a primeira tela, com a headline, as fotos em formato de Story e o botão "Agendar uma consultoria".
 
-Rolando a página, o visitante passa pelos blocos de copy.md na ordem definida. Ao tocar em um item do portfólio, uma janela sobreposta abre o vídeo. Em qualquer ponto ele pode tocar no botão fixo de WhatsApp ou em um dos botões dos blocos. Todo clique em botão de WhatsApp segue a mesma sequência: a função de rastreamento dispara o evento Lead no GA4 e no Pixel, se houver consentimento, com o nome do botão e a origem da visita, e em seguida o link wa.me abre com a mensagem certa para aquele botão. O rastreamento nunca atrasa nem impede a abertura do WhatsApp.
+Rolando a página, o visitante passa pelos blocos na ordem de copy.md, ligados pelo fio dourado. Ao tocar em um item do portfólio, um visualizador (`<dialog>`) abre as fotos e os vídeos daquele cliente. Em qualquer ponto ele pode tocar no botão principal, que está no cabeçalho, na primeira tela, no convite da consultoria, no fechamento e na barra fixa do celular. Todo botão abre o mesmo link wa.me, com a mensagem "Oii, EBEN! Vim pela página e quero agendar uma consultoria.".
 
-A origem da visita é medida por parâmetros UTM no link que leva ao site, e não no link do WhatsApp. O link da bio do Instagram, por exemplo, é https://dominio/?utm_source=instagram&utm_medium=bio, e o GA4 lê esses parâmetros sozinho. A copy original sugeria colocar o UTM no link wa.me, mas o WhatsApp ignora esses parâmetros e nada seria medido. A função de rastreamento guarda o utm_source da chegada na sessionStorage e envia esse valor junto com o evento Lead.
-
-As contas do GA4 e do Pixel da Meta ainda não existem e precisam ser criadas pelo responsável pelo projeto, no Google Analytics e no Gerenciador de Eventos da Meta. Até lá, o código de rastreamento fica pronto e desligado, e o site pode ir ao ar assim. Quando os IDs existirem, o GA4 no formato G-XXXXXXXXXX e o Pixel como um número de 15 ou 16 dígitos, basta colocá-los nas variáveis de ambiente da hospedagem e publicar de novo.
+Não existe rastreamento: o site não carrega GA4, Pixel da Meta, cookies de análise nem aviso de cookies.
 
 ## Árvore de pastas
 
 ```
 .
+├── netlify.toml
 ├── docs/
-│   ├── contexto/
-│   └── marca/
-├── public/
-│   ├── images/
-│   │   ├── brand/
-│   │   ├── portfolio/
-│   │   └── clients/
-│   └── og/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   ├── not-found.tsx
-│   │   ├── globals.css
-│   │   ├── sitemap.ts
-│   │   ├── robots.ts
-│   │   └── politica-de-privacidade/
-│   │       └── page.tsx
-│   ├── components/
-│   │   ├── ui/
-│   │   ├── brand/
-│   │   ├── layout/
-│   │   ├── sections/
-│   │   └── consent/
-│   ├── content/
-│   │   ├── site.ts
-│   │   ├── landing.ts
-│   │   ├── projects.ts
-│   │   ├── cases.ts
-│   │   └── clients.ts
-│   ├── lib/
-│   │   ├── env.ts
-│   │   ├── utils.ts
-│   │   ├── whatsapp.ts
-│   │   ├── analytics.ts
-│   │   └── consent.ts
-│   └── types/
-│       └── content.ts
-├── .env.example
-├── next.config.ts
-├── tsconfig.json
-└── package.json
+│   ├── contexto/          prd, copy, arquitetura, design, regras, tarefas e memória
+│   └── marca/             monograma e estrela da marca em SVG
+└── v1/
+    ├── DESIGN.md
+    ├── PRODUCT.md
+    ├── README.md
+    ├── .env.example
+    ├── next.config.ts
+    ├── package.json
+    ├── public/
+    │   ├── brand/         logo e sprite com o monograma e a estrela
+    │   ├── images/        fotos da primeira tela, do manifesto, do Instagram e do portfólio
+    │   └── videos/        vídeo principal do case da Sued Silva
+    ├── scripts/           preview local da pasta out e verificação de SEO
+    └── src/
+        ├── app/           layout, página, 404, globals.css, robots, sitemap, llms.txt e ícone
+        ├── components/
+        │   ├── brand/     monograma, estrela e assinatura CREATIVE EBEN STUDIO
+        │   ├── layout/    cabeçalho, menu do celular, rodapé, barra fixa, abertura, fio dourado e rolagem suave
+        │   ├── sections/  um arquivo por bloco da página
+        │   └── ui/        botão da consultoria, ícone do Instagram e InView
+        ├── content/       site.ts, landing.ts e portfolio.ts
+        └── lib/           cn, env, whatsapp, smooth-scroll, structured-data e llms
 ```
 
-A pasta app contém somente a página única, a Política de Privacidade, o layout raiz e os arquivos especiais do Next.js. A pasta components/ui guarda os componentes básicos, como botão, sanfona e janela sobreposta. A pasta components/brand guarda o logo, a estrela, a linha editorial e o contorno circular. A pasta components/layout guarda cabeçalho, rodapé e botão fixo de WhatsApp. A pasta components/sections guarda cada bloco da página em um arquivo próprio, como HeroSection.tsx e FaqSection.tsx. A pasta components/consent guarda o aviso de cookies e o carregador dos scripts de rastreamento.
-
-A pasta content é a única fonte de texto e dados. O site.ts guarda nome, números, links e mensagens do WhatsApp. O landing.ts guarda o texto de cada bloco, copiado de copy.md. O projects.ts, o cases.ts e o clients.ts guardam portfólio, cases e logos. A pasta lib guarda a leitura validada das variáveis de ambiente, a função cn, a função que monta o link do WhatsApp, as funções de rastreamento e a leitura e gravação do consentimento.
+A pasta `content` é a fonte de texto e dados. O `site.ts` guarda nome, contatos, mensagem do WhatsApp, horário, perfis do Instagram, SEO e as fotos da primeira tela e do "Quem sou eu?". O `landing.ts` guarda o texto de cada bloco, copiado de copy.md. O `portfolio.ts` guarda as abas, os clientes, os cases e as mídias do portfólio. A pasta `lib` guarda a leitura validada das variáveis de ambiente, a função `cn`, a função que monta o link do WhatsApp, o controle da rolagem suave, os dados estruturados e o conteúdo do llms.txt.
 
 ## Como as partes se conectam
 
-A página app/page.tsx é um Server Component que importa o conteúdo de content e monta os blocos de sections na ordem de copy.md, passando o texto por props. Os blocos usam os componentes de ui e brand. Somente os componentes que precisam do navegador são Client Components: o botão de WhatsApp, por causa do rastreamento no clique, o filtro do portfólio, a janela de vídeo, a sanfona, o menu do celular e o aviso de cookies.
+A página `app/page.tsx` é um Server Component que monta os blocos de `components/sections` na ordem de copy.md, com o fio dourado (`SectionThread` e `SectionSpine`) entre eles. Cada bloco importa o seu texto direto de `content`. Somente os componentes que precisam do navegador são Client Components: o portfólio com o visualizador (`PortfolioGallery`), os controles do Story da primeira tela (`StoryControls`), o menu do celular, a barra fixa, a rolagem suave, a tela de abertura (`SiteIntro`) e o `InView`.
 
-O botão de WhatsApp recebe uma chave de mensagem, como "general" ou "socialMedia", chama lib/whatsapp.ts para montar o link a partir de site.ts e chama trackLead de lib/analytics.ts no clique. O trackLead consulta lib/consent.ts e só envia o evento se o consentimento for "accepted". O layout raiz inclui o componente ConsentManager, que lê o consentimento salvo no localStorage com a chave eben-consent. Se não houver escolha salva, ele mostra o aviso. Se a escolha for "accepted", ele injeta os scripts do GA4 e do Pixel com next/script na estratégia afterInteractive, usando os IDs de lib/env.ts. O link "Preferências de cookies" do rodapé apaga a escolha salva e mostra o aviso de novo.
+O botão `ConsultationButton` usa o `consultationLink` de `lib/whatsapp.ts`, montado a partir do número e da mensagem de `site.ts`. O `IntroScript`, um script curto que roda antes da primeira pintura, decide se a abertura já passou na sessão, pela chave `eben-intro` da sessionStorage.
 
-As cores, fontes e espaçamentos vêm dos tokens definidos em globals.css, descritos em design.md. Quando o formulário entrar numa versão futura, a exportação estática deixa de servir, e o projeto passa a precisar de uma hospedagem com servidor ou de uma função separada para o envio.
+As cores, fontes e espaçamentos vêm dos tokens definidos em `globals.css`, descritos em `v1/DESIGN.md`.
 
-Pergunta para você: os vídeos serão incorporados do YouTube ou do Vimeo, ou servidos como arquivo por um serviço como o Cloudflare Stream? A resposta define se a janela de vídeo usa iframe ou a tag video.
+## Planejado para depois
+
+**Rastreamento e consentimento.** O GA4 e o Pixel da Meta serão carregados com `next/script` só depois que o visitante aceitar o aviso de cookies, com a escolha salva no localStorage com a chave `eben-consent`. Todo clique em botão de WhatsApp disparará o evento Lead, com o nome do botão e a origem da visita, sem nunca atrasar a abertura do WhatsApp. A origem é medida por parâmetros UTM no link que leva ao site (por exemplo, `https://dominio/?utm_source=instagram&utm_medium=bio`), e não no link do WhatsApp, que ignora esses parâmetros. Os IDs ficarão nas variáveis `NEXT_PUBLIC_GA_ID` e `NEXT_PUBLIC_META_PIXEL_ID`. Isso exige criar as contas, o aviso de cookies, a Política de Privacidade e o link "Preferências de cookies" no rodapé.
+
+**Formulário.** Quando o formulário entrar, a exportação estática deixa de servir sozinha, e o projeto passa a precisar de uma função separada para o envio.
+
+**Mídias no próprio site.** Hospedar as mídias do portfólio junto com o site, em vez de buscar no Google Drive, deixaria o carregamento mais rápido e sem depender do compartilhamento da pasta.

@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-TypeScript, React, Next.js (App Router) e Tailwind CSS, definidos pelo responsável pelo projeto. Exportação estática (`output: "export"`), sem servidor. Esta pasta `v1/` é uma das três versões independentes da landing page; `v2/` e `v3/` são feitas por outros agentes e não devem ser tocadas daqui.
+TypeScript, React, Next.js (App Router) e Tailwind CSS, definidos pelo responsável pelo projeto. Exportação estática (`output: "export"`), sem servidor, publicada no Netlify em https://ebencreative.netlify.app. O nome `v1/` vem de quando a página foi criada como a primeira de três versões independentes; neste repositório só existe esta.
 
 ## Users
 
@@ -28,7 +28,7 @@ O contato e a aprovação dos conteúdos acontecem pelo WhatsApp. Atendimento de
 
 ## Capabilities and Constraints
 
-Conversão só pelo WhatsApp, sem formulário e sem rastreamento nesta versão. O texto aprovado da página está em `../docs/contexto/copy.md`. A imagem definitiva da hero será enviada depois: o espaço fica reservado com um bloco em CSS, e nenhuma imagem pode ser gerada, buscada ou adicionada. O domínio final ainda não existe e entra pela variável `NEXT_PUBLIC_SITE_URL`. A região de atuação, o Instagram e a lista de logos de clientes ainda não foram informados.
+Conversão só pelo WhatsApp, sem formulário e sem rastreamento nesta versão. O texto aprovado da página está em `../docs/contexto/copy.md`. Todas as fotos do site são reais (a Geovana na primeira tela, no manifesto e no "Quem sou eu?", as fotos de perfil das clientes e as mídias do portfólio); nenhuma imagem pode ser gerada ou buscada em banco de imagens. O domínio final ainda não existe: o site usa o endereço do Netlify, pela variável `NEXT_PUBLIC_SITE_URL`. Os perfis do Instagram são @eben.creative_ (agência) e @geoo.silvaz (trabalhos da Geovana). A região de atuação e a lista de logos de clientes ainda não foram informadas.
 
 ## Brand Commitments
 
@@ -38,7 +38,7 @@ Restrições do briefing: nada de gradientes roxos, formas 3D brilhantes, fotos 
 
 ## Evidence on Hand
 
-Logo em `../docs/marca/eben-monograma.svg` e estrela em `../docs/marca/eben-estrela.svg`, ambos em currentColor. Cases autorizados: Sued Silva (Social Media), de 1 milhão para 1,2 milhão de seguidores no Instagram em 1 ano; Juliana Arantes (Social Media), 507 mil visualizações e mais de 10 mil interações, com 3 meses de gestão. Não existem depoimentos em frase, terceiro case, logos de clientes nem imagens de portfólio, e nada disso pode ser inventado. A contagem de clientes ("aproximadamente 6" em Social Media e 11 projetos de Storymaker e Videomaker) não foi confirmada como exata e não aparece como número.
+Logo em `../docs/marca/eben-monograma.svg` e estrela em `../docs/marca/eben-estrela.svg`, ambos em currentColor, e no sprite `public/brand/eben-sprite.svg`. Cases autorizados, com nome, números e foto de perfil: Sued Silva (cantora gospel, Social Media), de 1 milhão para 1,2 milhão de seguidores no Instagram em 1 ano; Juliana Arantes (consultora de negócios, Social Media), 507 mil visualizações e mais de 10 mil interações, com 3 meses de gestão. O portfólio tem fotos, vídeos e prints de clientes de Social Media, Videomaker, Storymaker e Mobile Photo, guardados no Google Drive da agência. Não existem depoimentos em frase, terceiro case nem logos de clientes, e nada disso pode ser inventado. A contagem de clientes ("aproximadamente 6" em Social Media e 11 projetos de Storymaker e Videomaker) não foi confirmada como exata e não aparece como número.
 
 ## Product Principles
 
@@ -49,4 +49,4 @@ Logo em `../docs/marca/eben-monograma.svg` e estrela em `../docs/marca/eben-estr
 
 ## Accessibility & Inclusion
 
-WCAG AA em contraste e navegação por teclado, respeito a `prefers-reduced-motion` e leitura confortável no celular, onde chega a maior parte do público.
+WCAG AA em contraste e navegação por teclado, respeito a `prefers-reduced-motion` e leitura confortável no celular, onde chega a maior parte do público. As exceções ao movimento reduzido, decididas pelo responsável pelo projeto, são o carrossel da primeira tela (que tem botão de pausa), o brilho girando atrás do botão principal e o ícone do Instagram; o vídeo principal do case da Sued também continua tocando, registrado como desvio no `docs/contexto/rules.md`.

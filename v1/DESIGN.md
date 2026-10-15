@@ -131,7 +131,7 @@ components:
 
 **Creative North Star: "O Story que fica"**
 
-A página inteira mora no campo burgundy da marca, a cor que carrega a versão principal do logo, e abre com um Story vertical no formato que o público consome todo dia: três fotos da Geovana passam lado a lado, uma por barra, com a estrela da marca parada por cima como marca-d'água. Esse é o gesto do sistema, e ele aparece uma vez.
+A página inteira mora no campo burgundy da marca, a cor que carrega a versão principal do logo, e, depois da tela de abertura, mostra um Story vertical no formato que o público consome todo dia: três fotos da Geovana passam lado a lado, uma por barra, com a estrela da marca parada por cima como marca-d'água. Esse é o gesto do sistema, e ele aparece uma vez.
 
 A densidade é baixa e o ritmo é de cinema: blocos de texto curtos com muito espaço, uma sala de exibição charcoal para o portfólio e o processo, e um único objeto de papel marfim, o convite da consultoria, onde a oferta vira ação. O tom é calmo e confiante, sem os exageros de páginas de software: nada de gradiente roxo, 3D brilhante, cantos amigáveis ou grade de ícones.
 
@@ -150,13 +150,13 @@ Uma cor principal dominante, burgundy, com dois neutros de mundo (charcoal e mar
 
 ### Primary
 - **Burgundy da Marca** (burgundy): chão da maior parte das seções, fundo do cabeçalho e do véu da hero no celular. É a cor da versão principal do logo.
-- **Burgundy Profundo** (burgundy-deep): seções alternadas no mesmo campo (serviços e objeções) e hover dos botões burgundy.
+- **Burgundy Profundo** (burgundy-deep): seções alternadas no mesmo campo (serviços, "Quem sou eu?" e objeções) e hover dos botões burgundy.
 
 ### Secondary
 - **Ouro Champanhe** (gold): fios, estrela de quatro pontas, números de resultado, itálicos de destaque em títulos grandes, ícones e contorno de foco. Sobre burgundy só aparece em texto a partir de 24px (contraste 4,1:1).
 
 ### Tertiary
-- **Rosa Empoeirado** (rose): hover do botão da consultoria, com texto charcoal (6,2:1).
+- **Rosa Empoeirado** (rose): hover do botão da consultoria, com texto charcoal (6,2:1), e os brilhos de luz (halo do botão, brilho atrás do vídeo do portfólio, retrato do "Quem sou eu?" e bordas do convite).
 
 ### Neutral
 - **Marfim Quente** (ivory): todo o texto sobre fundos escuros (8,1:1 no burgundy, 14,5:1 no charcoal), o botão principal e o convite da consultoria.
@@ -202,14 +202,14 @@ A rolagem é suave e lenta como um travelling de câmera: o Lenis interpola a ro
 
 ## Elevation & Depth
 
-Sem sombras, fora o contorno quase invisível do botão da consultoria. A profundidade vem da troca de campo (burgundy, burgundy profundo, charcoal), de superfícies um tom acima (charcoal-raised), do único objeto de papel marfim com moldura interna fina e do grão de filme fixo por cima de tudo, com 5,5% de opacidade.
+Sem sombras projetadas, fora o contorno quase invisível do botão da consultoria. A profundidade vem da troca de campo (burgundy, burgundy profundo, charcoal), de superfícies um tom acima (charcoal-raised), do único objeto de papel marfim, que se dissolve nas bordas, e do grão de filme fixo por cima de tudo, com 5,5% de opacidade. A luz entra como brilho, nunca como sombra: o halo rosa do botão da consultoria, o brilho girando atrás do vídeo do portfólio, o halo do retrato do "Quem sou eu?", as cores girando nas bordas do convite, o brilho dourado do fio que liga as seções e o dos nós do processo quando acendem.
 
 ### Named Rules
-**The Sem Sombra Rule.** Nenhuma superfície flutua. Camadas se separam por cor de campo e por fio de 1px.
+**The Sem Sombra Rule.** Nenhuma superfície flutua. Camadas se separam por cor de campo e por fio de 1px; brilhos de luz são permitidos, sombras projetadas não.
 
 ## Shapes
 
-Cantos retos (0px) em quadros, cartões e campos. Duas exceções: a pílula (10rem) do botão da consultoria e os cantos de 14px dos prints de tela do portfólio, como a tela do celular. O círculo é da marca: monograma, anel de lente atrás do fechamento e os nós numerados do processo (48px). Fios de 1px em marfim com 15% a 20% de opacidade organizam listas e seções; fios dourados marcam a linha contínua do processo e o rodapé.
+Cantos retos (0px) em quadros, cartões e campos. Duas exceções: a pílula (10rem) do botão da consultoria e os cantos de 14px dos prints de tela do portfólio, como a tela do celular. O círculo é da marca: monograma, anel de lente atrás do fechamento, os nós numerados do processo (48px), o retrato do "Quem sou eu?" e as fotos de perfil das clientes. Fios de 1px em marfim com 10% a 20% de opacidade organizam listas, seções e o rodapé; fios dourados marcam a linha contínua do processo, o fio que liga as seções e a assinatura do "Quem sou eu?".
 
 ## Components
 
@@ -224,10 +224,10 @@ Cantos retos (0px) em quadros, cartões e campos. Duas exceções: a pílula (10
 - **Convite da consultoria:** papel marfim firme no meio e dissolvido nas quatro bordas no burgundy (16px no celular, 36px no tablet, 60px no computador, sempre menos que o respiro interno). O papel some numa rampa em curva, sem deixar ver onde termina. Na faixa que se dissolve, manchas de luz rosa e dourada em cor cheia, desfocadas (22px) e separadas por intervalos curtos, giram em volta do cartão (uma volta a cada 10s), e por trás um círculo de cores bem desfocado (64px) gira ao contrário (14s), fazendo a passagem entre o marfim e o burgundy; só rotação, desenhada uma vez, e parada com movimento reduzido; moldura interna de 1px em burgundy com 25% de opacidade logo depois da borda dissolvida, estrela no topo, título burgundy e três itens separados por fios.
 - **Quadro de garantias:** charcoal-raised com fio de 1px.
 - **Portfólio:** abas iguais às pastas do Drive (Social Media, Videomaker, Storymaker e Mobile Photo), com fio dourado sob a aba ativa; no celular a fileira rola de lado. Social Media mostra um case por linha, com a foto de perfil da cliente (círculo de 64px, 76px no computador, com o anel dourado deslocado), nome e número à esquerda e, à direita, o vídeo principal do case em 16:9, rodando sozinho, sem som e em loop enquanto está na tela (os prints descem para baixo do texto) ou, sem vídeo, os prints de tela. O vídeo principal fica num quadro com brilho girando por trás (um círculo de burgundy, dourado e rosa, achatado e desfocado, que gira e respira só enquanto o vídeo toca), fio dourado de 1px a 6px do vídeo, cantos de visor de 2px que se fecham no hover e a estrela dourada no canto de cima, que gira 90 graus no hover; Videomaker e Storymaker mostram um cartão por cliente, com capa 9:16, nome e contagem ("3 vídeos"); Mobile Photo é uma grade de fotos, como o perfil do Instagram.
-- **Visualizador do portfólio:** um dialog em tela cheia sobre charcoal quase opaco, com o nome do grupo e o botão de fechar no topo, a mídia no centro (vídeo no player do Drive, em pé ou deitado; foto inteira) e "anterior, 1 de 3, próximo" na base. As setas do teclado navegam e Esc fecha.
+- **Visualizador do portfólio:** um dialog em tela cheia sobre charcoal quase opaco, com o nome do grupo e o botão de fechar no topo, a mídia no centro (vídeo no player do Drive ou, no caso do vídeo da Sued, o próprio arquivo do site com controles, em pé ou deitado; foto inteira) e "anterior, 1 de 3, próximo" na base. As setas do teclado navegam e Esc fecha.
 
 ### Navigation
-Cabeçalho fixo de 72px (64px no celular) em burgundy com fio inferior. Assinatura CREATIVE, monograma e STUDIO à esquerda, cinco âncoras em Manrope 500 de 14px na cor névoa (marfim com sublinhado dourado no hover), a 24px uma da outra até 1279px e a 36px a partir daí e botão compacto à direita. Abaixo de 1024px, as âncoras viram um painel em tela cheia com links em Fraunces; abaixo de 768px, uma barra fixa com o botão principal aparece depois da hero e some perto das seções que já têm o botão.
+Cabeçalho fixo de 72px (64px no celular) em burgundy com fio inferior. Assinatura CREATIVE, monograma e STUDIO à esquerda, cinco âncoras em Manrope 500 de 14px na cor névoa (marfim com sublinhado dourado no hover), a 24px uma da outra até 1279px e a 36px a partir daí, e botão compacto à direita a partir de 768px. Abaixo de 1024px, as âncoras viram um painel em tela cheia com links em Fraunces; abaixo de 768px, uma barra fixa com o botão principal aparece depois da hero e some perto das seções que já têm o botão.
 
 ### Fio dourado (a página inteira ligada)
 Um fio só liga todas as seções. O fio principal corre pela margem esquerda, no meio do respiro entre a borda da tela e o texto (10px no celular, 24px no computador), do manifesto às perguntas, sem cruzar texto: a linha de base fica sempre visível (1px, dourado a 24%) e, por cima, um traço brilhante de 2px com uma faísca marfim na ponta preenche a linha até a altura da leitura (60% da tela), acompanhando a rolagem. Em cada divisa entre seções, um trecho mais forte se desenha por cima, com a sua própria faísca, e acende a estrela da marca (24px, com brilho), que entra girando com um estalo e solta uma onda de luz. Nos dois convites, o fio faz um ramo em L: sai da margem na divisa, atravessa até o meio e desce até encostar no convite da consultoria e na estrela do fechamento. Tudo é animação ligada à rolagem, só com CSS e transform; sem suporte ou com movimento reduzido, o fio aparece inteiro e parado.
@@ -242,7 +242,7 @@ Na primeira visita da sessão, a página começa coberta pelo campo burgundy: o 
 Quadro 9:16 com três fotos da Geovana em carrossel, uma por barra de 2px no topo. Cada foto fica 3,2s parada e desliza em 0,8s para a próxima, no instante em que a sua barra enche; depois da terceira, o ciclo recomeça sem voltar correndo. Cada foto tem a sua legenda em Fraunces itálica na base (some no celular, onde o texto da hero ocupa a base). A estrela da marca fica parada no centro como marca-d'água, bem apagada, em marfim com 18% de opacidade e contorno escuro fino. Mouse em cima e foco pelo teclado pausam; o botão de pausa no canto de cima pausa de vez; clique ou toque pula para a próxima foto. Roda mesmo com movimento reduzido, por decisão do responsável pelo projeto.
 
 ### Manifesto
-A Geovana em segundo plano, grande e do lado esquerdo, filmando com o celular erguido (foto espelhada para olhar para o texto). A foto é posicionada pela altura da cabeça, que começa sempre abaixo do título; os braços e o celular sobem atrás do título, apagados. O modo de mistura luminosity a pinta com o burgundy, e máscaras dissolvem o topo, a base e a borda que encosta nos parágrafos. Abaixo de 1024px, os parágrafos descem e ela aparece numa faixa entre o título e o texto. Contraste medido sobre a foto: 3,1:1 ou mais no título dourado (texto grande) e 4,6:1 ou mais nos parágrafos.
+A Geovana em segundo plano, grande e do lado esquerdo, filmando com o celular erguido (foto espelhada para olhar para o texto). A foto é posicionada pela altura da cabeça, que começa sempre abaixo do título; os braços e o celular sobem atrás do título, apagados. O modo de mistura luminosity a pinta com o burgundy, e máscaras dissolvem o topo, a base e a borda que encosta nos parágrafos. Abaixo de 1024px, os parágrafos descem e ela aparece numa faixa entre o título e o texto. Contraste medido sobre a foto: 3,1:1 ou mais no título dourado (texto grande) e 4,6:1 ou mais nos parágrafos. Com a rolagem, a foto anda mais devagar que a página (8rem para cima e para baixo durante a passagem), como o fundo de uma cena mais distante, e a seção corta o que passa das bordas com `overflow: clip`, para as entradas dos textos se medirem pela página.
 
 ### Quem sou eu
 Entre o processo e o convite da consultoria, em burgundy profundo. A foto de estúdio da Geovana (a mesma da primeira barra do Story) num círculo, como a lente da marca, com zoom leve (1,15) do cabelo à cintura. O círculo ocupa 65% de um palco quadrado cheio de camadas, de fora para dentro: duas ondas largas em fio dourado apagado (122% e 150% do palco), um halo quente de dourado e rosa que respira, um anel de lente com marcas de foco douradas (120 finas e 12 grossas) e "EBEN · CREATIVE STUDIO" escrito em volta em Manrope caixa alta, o anel dourado de 1px do tamanho do retrato deslocado para baixo e para a direita, e quatro brilhos de quatro pontas que piscam. Ao lado, "Quem sou *eu?*" em Statement com o itálico dourado, três parágrafos em Lead (o primeiro em marfim, os outros em névoa) e a assinatura em Fraunces itálica depois de um fio dourado. A estrela da marca, enorme e com 4,5% de opacidade, fica atrás do texto.
@@ -257,6 +257,11 @@ Cinco nós circulares de 48px com algarismo em Fraunces dourado, ligados por um 
 
 ### Ícone do Instagram
 Reprodução do componente do vídeo de referência do responsável pelo projeto, por isso fora das regras de cor e de canto da página: quadrado de 55px com cantos de 15px e o gradiente do Instagram, e quatro camadas com fio laranja por trás. No hover ou no foco, o conjunto gira (rotate -35deg, skew 20deg), as camadas se abrem em leque até 20px, o rótulo laranja desce ("BackStage" no perfil @geoo.silvaz, "Agência" no @eben.creative_) e um cartão escuro com foto, nome e @ sobe de trás do ícone. Em telas sem mouse o cartão não aparece. Fica no fim do portfólio, porque é onde o visitante procura mais trabalhos.
+
+### Página 404
+O "404" em Fraunces enorme (até 15rem, limitado a 30% da altura da tela), com os dois "4" em contorno dourado de 1,5px e a lente da marca no lugar do zero: o monograma marfim num disco burgundy profundo, cercado pelo anel de marcas de foco e pelo texto "PÁGINA NÃO ENCONTRADA · EBEN CREATIVE STUDIO" em volta (as mesmas peças do retrato do "Quem sou eu?"), pelo anel dourado em órbita e por quatro cantos de visor. Abaixo, o título em Headline, o texto em Lead névoa e o botão em pílula com o brilho, o halo e o reflexo do botão da consultoria. Ao fundo, um brilho quente, a estrela gigante a 4,5% girando devagar (80s por volta) e sete estrelas piscando.
+
+**Movimento:** na entrada, os dois "4" deslizam dos lados com desfoque, a lente cresce girando, a íris do disco abre do centro, os anéis entram girando rápido e assentam numa volta lenta em sentidos alternados, o título entra em foco e o texto e o botão sobem. Depois, a lente fica viva: três ondas douradas saem dela em sequência, como um radar procurando; uma linha de luz varre o monograma de cima para baixo a cada 3,6s; o monograma perde e recupera o foco a cada 6s, como uma câmera procurando; os cantos do visor respiram; e os "4" flutuam de leve, um fora de compasso do outro. Com mouse, as camadas acompanham o cursor em profundidades diferentes: a lente até 30px, os números até 14px e o fundo até 16px no sentido contrário. Com movimento reduzido ou no toque, nada se move.
 
 ### Perguntas frequentes
 Sanfona com `<details>` exclusivo (uma aberta por vez), título em Fraunces 500, sinal de mais dourado que gira 45 graus ao abrir e altura animada onde o navegador permite.
@@ -274,5 +279,5 @@ Sanfona com `<details>` exclusivo (uma aberta por vez), título em Fraunces 500,
 - **Don't** usar gradiente roxo, formas 3D brilhantes, fotos de banco sem tratamento, cantos amigáveis ou grades de ícones, como define o briefing.
 - **Don't** colocar rótulo em caixa alta acima de um título; metadados vão abaixo.
 - **Don't** usar dourado em texto pequeno sobre burgundy (contraste 4,1:1).
-- **Don't** arredondar quadros ou cartões; as exceções são a pílula do botão da consultoria e os cantos de tela dos prints.
+- **Don't** arredondar quadros ou cartões; as exceções são a pílula do botão da consultoria, os cantos de tela dos prints, os círculos da marca e o ícone do Instagram.
 - **Don't** usar travessão em nenhum texto da página.

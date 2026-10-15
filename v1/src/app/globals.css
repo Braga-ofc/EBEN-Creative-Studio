@@ -469,6 +469,453 @@
   }
 }
 
+/* Página 404 -------------------------------------------------------------------
+ * O "404" com a lente da marca no lugar do zero: o monograma dentro de um
+ * disco, cercado pelo anel de marcas de foco e pelo texto em volta (as mesmas
+ * peças do retrato do "Quem sou eu?", classes about__dial, about__ticks,
+ * about__dial-text e about__spin), pelo anel dourado em órbita e pelos cantos
+ * de visor. Na entrada, os dois "4" deslizam dos lados, a íris abre e os anéis
+ * entram girando rápido; depois a lente fica viva: ondas saem dela como um
+ * radar procurando, uma linha de luz varre o monograma, que de tempos em
+ * tempos perde e recupera o foco, e os cantos do visor respiram. Com mouse,
+ * as camadas acompanham o cursor (--px e --py, de NotFoundStage), cada uma
+ * numa profundidade (--depth). Com movimento reduzido, tudo aparece parado.
+ */
+
+.lost {
+  position: relative;
+  min-height: 100svh;
+  overflow: clip;
+}
+
+.lost__stage {
+  --px: 0;
+  --py: 0;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding-block: clamp(48px, 8svh, 96px);
+}
+
+/* Camadas em profundidade: o fundo anda ao contrário, os números um pouco e a lente mais. */
+.lost__plx {
+  --depth: 0px;
+  display: block;
+  transform: translate3d(calc(var(--px) * var(--depth)), calc(var(--py) * var(--depth)), 0);
+  transition: transform 0.9s var(--ease-out-expo);
+}
+
+.lost__plx--far {
+  --depth: -16px;
+}
+
+.lost__plx--mid {
+  --depth: 14px;
+}
+
+.lost__plx--near {
+  --depth: 30px;
+}
+
+.lost__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.lost__glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: min(110vw, 920px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  translate: -50% -50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-gold) 32%, transparent) 0%,
+    color-mix(in srgb, var(--color-rose) 22%, transparent) 38%,
+    transparent 66%
+  );
+  filter: blur(40px);
+  opacity: 0.55;
+}
+
+.lost__watermark {
+  position: absolute;
+  right: -10vw;
+  bottom: -16svh;
+  width: min(70vw, 720px);
+  height: auto;
+  color: var(--color-ivory);
+  opacity: 0.045;
+}
+
+.lost__spark {
+  position: absolute;
+  height: auto;
+}
+
+.lost__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lost__code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.02em;
+  margin-bottom: clamp(20px, 4svh, 44px);
+  font-family: var(--font-display);
+  font-size: clamp(5.5rem, min(26vw, 30svh), 15rem);
+  font-weight: 500;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+}
+
+/* Os "4" em contorno dourado, com um fundo quase transparente. */
+.lost__digit {
+  display: block;
+  color: color-mix(in srgb, var(--color-gold) 8%, transparent);
+  -webkit-text-stroke: 1.5px var(--color-gold);
+}
+
+.lost__lens {
+  position: relative;
+  display: block;
+  width: 1.04em;
+  aspect-ratio: 1;
+  margin-inline: 0.06em;
+}
+
+.lost__halo {
+  position: absolute;
+  inset: 6%;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-gold) 60%, transparent),
+    color-mix(in srgb, var(--color-rose) 35%, transparent) 45%,
+    transparent 70%
+  );
+  filter: blur(18px);
+  opacity: 0.6;
+}
+
+/* Ondas que saem da lente, como um radar procurando. Paradas, ficam escondidas. */
+.lost__ripple {
+  position: absolute;
+  inset: 21%;
+  border: 1px solid color-mix(in srgb, var(--color-gold) 50%, transparent);
+  border-radius: 999px;
+  opacity: 0;
+}
+
+.lost__orbit {
+  position: absolute;
+  inset: 0;
+}
+
+.lost__orbit-ring {
+  position: absolute;
+  inset: 21%;
+  border: 1px solid var(--color-gold);
+  border-radius: 999px;
+  translate: 4% 4%;
+}
+
+.lost__disc {
+  position: absolute;
+  inset: 21%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-gold) 55%, transparent);
+  border-radius: 999px;
+  background-color: var(--color-burgundy-deep);
+  clip-path: circle(50%);
+}
+
+.lost__monogram {
+  width: 60%;
+  height: auto;
+  color: var(--color-ivory);
+}
+
+/* Linha de luz que varre o monograma de cima para baixo. */
+.lost__scan {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 34%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--color-gold) 40%, transparent) 50%,
+    transparent
+  );
+  opacity: 0;
+}
+
+/* Visor: quatro cantos dourados em volta da lente. */
+.lost__finder {
+  position: absolute;
+  inset: -3%;
+  pointer-events: none;
+}
+
+.lost__finder > span {
+  position: absolute;
+  width: 15%;
+  aspect-ratio: 1;
+  border: 0 solid var(--color-gold);
+}
+
+.lost__finder > span:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+
+.lost__finder > span:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
+
+.lost__finder > span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+
+.lost__finder > span:nth-child(4) {
+  right: 0;
+  bottom: 0;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.lost__title {
+  max-width: 16ch;
+}
+
+.lost__text {
+  max-width: 44ch;
+  margin-top: 20px;
+}
+
+.lost__cta {
+  margin-top: 36px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lost__digit--left {
+    animation:
+      lost-from-left 1.2s var(--ease-out-expo) 0.2s both,
+      lost-float 5s ease-in-out 1.4s infinite alternate;
+  }
+
+  .lost__digit--right {
+    animation:
+      lost-from-right 1.2s var(--ease-out-expo) 0.3s both,
+      lost-float 5s ease-in-out 3.9s infinite alternate-reverse;
+  }
+
+  .lost__lens {
+    animation: lost-lens-in 1.3s var(--ease-out-expo) 0.35s both;
+  }
+
+  .lost__disc {
+    animation: lost-iris 1.4s var(--ease-out-expo) 0.55s both;
+  }
+
+  /* De tempos em tempos a lente perde o foco e procura de novo. */
+  .lost__monogram {
+    animation: lost-hunt 6s ease-in-out 2.4s infinite;
+  }
+
+  .lost__scan {
+    animation: lost-scan 3.6s ease-in-out 2s infinite;
+  }
+
+  .lost__halo {
+    animation: about-breathe 5s ease-in-out infinite alternate;
+  }
+
+  .lost__ripple {
+    animation: lost-ripple 4.5s ease-out 1.2s infinite;
+  }
+
+  .lost__ripple:nth-child(2) {
+    animation-delay: 2.7s;
+  }
+
+  .lost__ripple:nth-child(3) {
+    animation-delay: 4.2s;
+  }
+
+  .lost__finder {
+    animation: lost-finder 2.8s ease-in-out 1.6s infinite alternate;
+  }
+
+  /* Os anéis da lente entram girando rápido e assentam numa volta lenta. */
+  .lost .about__spin {
+    animation:
+      about-ambient var(--ambient) linear infinite,
+      about-burst 3.2s var(--ease-out-expo) 0.4s both;
+  }
+
+  .lost__watermark {
+    animation: lost-turn 80s linear infinite;
+  }
+
+  .lost__title {
+    animation: lost-focus 1.3s var(--ease-out-expo) 0.9s both;
+  }
+
+  .lost__text {
+    animation: lost-rise 1s var(--ease-out-expo) 1.15s both;
+  }
+
+  .lost__cta {
+    animation:
+      lost-rise 1s var(--ease-out-expo) 1.35s both,
+      cta-halo 3.2s ease-in-out 2.4s infinite alternate;
+  }
+}
+
+@keyframes lost-from-left {
+  from {
+    opacity: 0;
+    translate: -0.6em 0;
+    filter: blur(14px);
+  }
+}
+
+@keyframes lost-from-right {
+  from {
+    opacity: 0;
+    translate: 0.6em 0;
+    filter: blur(14px);
+  }
+}
+
+@keyframes lost-float {
+  from {
+    translate: 0 -0.03em;
+  }
+  to {
+    translate: 0 0.03em;
+  }
+}
+
+@keyframes lost-lens-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+    rotate: -40deg;
+  }
+}
+
+@keyframes lost-iris {
+  from {
+    clip-path: circle(0%);
+  }
+}
+
+@keyframes lost-hunt {
+  0%,
+  58%,
+  100% {
+    filter: blur(0);
+    scale: 1;
+  }
+  68% {
+    filter: blur(5px);
+    scale: 0.94;
+  }
+  78% {
+    filter: blur(1.5px);
+    scale: 1.04;
+  }
+  88% {
+    filter: blur(0);
+    scale: 0.99;
+  }
+}
+
+@keyframes lost-scan {
+  0% {
+    opacity: 0;
+    translate: 0 -100%;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 300%;
+  }
+}
+
+@keyframes lost-ripple {
+  0% {
+    opacity: 0.9;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 3.4;
+  }
+}
+
+@keyframes lost-finder {
+  from {
+    scale: 1.06;
+    opacity: 0.55;
+  }
+  to {
+    scale: 0.97;
+    opacity: 1;
+  }
+}
+
+@keyframes lost-turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes lost-focus {
+  from {
+    opacity: 0;
+    filter: blur(20px);
+    scale: 0.96;
+  }
+}
+
+@keyframes lost-rise {
+  from {
+    opacity: 0;
+    translate: 0 1.75rem;
+    filter: blur(8px);
+  }
+}
+
 /* Hero ----------------------------------------------------------------------
  * Celular: o quadro ocupa a primeira tela e o texto fica na base.
  * Tablet e computador: a headline atravessa a página dos dois lados do quadro.

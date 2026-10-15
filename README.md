@@ -54,7 +54,7 @@ Este site é uma **landing page de conversão**. Ela foi pensada primeiro para o
 
 | # | Seção | O que entrega |
 | --- | --- | --- |
-| 1 | **Abertura** | Tela de entrada com o monograma da marca e uma "lente" que se abre revelando o site (uma vez por visita) |
+| 1 | **Abertura** | Tela de entrada com o monograma da marca e uma "lente" que se abre revelando o site (uma vez por sessão do navegador) |
 | 2 | **Hero (primeira tela)** | Headline "Postar todo dia não é ter presença.", fotos da Geovana em formato de Story e o botão principal |
 | 3 | **Manifesto** | O conceito da marca e a proposta de valor |
 | 4 | **Portfólio** | Abas por serviço (Social Media, Videomaker, Storymaker e Mobile Photo), cases com resultados e visualizador de fotos e vídeos |

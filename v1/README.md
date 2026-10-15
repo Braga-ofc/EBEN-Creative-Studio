@@ -1,6 +1,6 @@
 # EBEN Creative Studio, landing page v1
 
-Primeira das três versões independentes da landing page da EBEN Creative Studio (`v1/`, `v2/`, `v3/`). Esta pasta é um projeto completo e separado: nada aqui depende das outras versões.
+Landing page da EBEN Creative Studio, publicada no Netlify em https://ebencreative.netlify.app. O nome `v1` vem de quando a página foi criada como a primeira de três versões independentes; neste repositório só existe esta, e ela é um projeto completo, que não depende de nada fora da pasta.
 
 O objetivo principal da página é levar o visitante a **agendar uma consultoria gratuita**, e o secundário é mostrar o portfólio. O botão "Agendar uma consultoria" abre o WhatsApp da EBEN (+55 61 99454-1957) com a mensagem "Oii, EBEN! Vim pela página e quero agendar uma consultoria."
 
@@ -8,11 +8,13 @@ O objetivo principal da página é levar o visitante a **agendar uma consultoria
 
 A primeira tela é um Story: um quadro vertical 9:16, o formato que o público consome todo dia, fica no centro e a headline atravessa a página dos dois lados. Três fotos da Geovana passam lado a lado em carrossel, uma por barra, com a estrela da marca parada por cima como marca-d'água. Um toque ou clique no quadro pula para a próxima foto, e o botão no canto de cima pausa. Logo abaixo, o manifesto traz a Geovana grande em segundo plano, do lado esquerdo, filmando com o celular erguido, pintada com o burgundy da página.
 
+Antes da primeira tela, na primeira visita da sessão, uma tela de abertura mostra o monograma e se abre como uma lente revelando a página. Um fio dourado liga todas as seções e acompanha a rolagem, e cada bloco tem uma entrada animada. Quem pede movimento reduzido no sistema vê a página parada.
+
 Cores e fontes seguem o brandkit oficial: burgundy como chão da página, charcoal como sala de exibição, marfim para texto e para o convite da consultoria, dourado só em detalhes, Fraunces nos títulos e Manrope no texto. O sistema completo está em [DESIGN.md](DESIGN.md), e o contexto de produto em [PRODUCT.md](PRODUCT.md).
 
 ## Stack
 
-Next.js 16 (App Router) com TypeScript, React 19, Tailwind CSS 4 e Lenis para a rolagem suave, gerado como **site estático** (`output: "export"`). O build cria a pasta `out/`, que pode ir para qualquer hospedagem de arquivos estáticos, sem servidor.
+Next.js 16 (App Router) com TypeScript, React 19, Tailwind CSS 4, Lenis para a rolagem suave e Lucide para os ícones, gerado como **site estático** (`output: "export"`). As animações são feitas em CSS, sem biblioteca de animação. O build cria a pasta `out/`, que pode ir para qualquer hospedagem de arquivos estáticos, sem servidor.
 
 ## Como rodar
 
@@ -59,7 +61,9 @@ O portfólio segue a pasta "vídeos Portfolio" do Google Drive da EBEN: uma aba 
 
 As mídias continuam no Drive. A página mostra a miniatura que o próprio Drive gera e toca os vídeos no player do Drive, que converte os arquivos do celular (.mov, .mp4) para tocar em qualquer navegador. Por isso, os arquivos precisam continuar compartilhados como "qualquer pessoa com o link". Para incluir um arquivo, copie o ID do link dele no Drive (o trecho entre `/d/` e `/view`) e acrescente no grupo certo, com `kind` igual a `"video"`, `"photo"` ou `"screen"` (print de tela). Fotos e prints precisam de `alt`, a descrição do que aparece. A primeira mídia de cada grupo é a capa do cartão.
 
-Um arquivo também pode ficar no próprio site, com `src` e `poster` no lugar de `driveId`. É o caso do vídeo principal da Sued, em [public/videos/](public/videos/), com a capa em [public/images/portfolio/](public/images/portfolio/). Nos cases de Social Media, quando a primeira mídia é um vídeo, ele aparece grande ao lado do texto, e os prints ficam embaixo do texto. Vídeo do próprio site roda sozinho, sem som e em loop, enquanto está na tela; o clique abre o visualizador com som. Para vídeos assim, use MP4 em H.264, que toca em qualquer navegador. No vídeo da Sued, o índice do arquivo foi movido para o começo (sem recodificar), para ele começar a tocar sem esperar o download do fim.
+Um arquivo também pode ficar no próprio site, com `src` e `poster` no lugar de `driveId`. É o caso do vídeo principal da Sued, em [public/videos/](public/videos/), com a capa em [public/images/portfolio/](public/images/portfolio/). Nos cases de Social Media, quando a primeira mídia é um vídeo, ele aparece grande ao lado do texto, num quadro com brilho e cantos dourados, e os prints ficam embaixo do texto. Vídeo do próprio site roda sozinho, sem som e em loop, enquanto está na tela; o clique abre o visualizador, maior e com controles. O aviso "Ver com som" foi retirado do vídeo da Sued a pedido do responsável pelo projeto.
+
+Os cases aceitam também `avatar` (foto de perfil quadrada, em WebP, com 320 x 320 px, em `public/images/portfolio/`), `role` (a atividade da cliente, que aparece abaixo do nome) e `result` (o número em destaque, a legenda e o texto do resultado). Para vídeos assim, use MP4 em H.264, que toca em qualquer navegador. No vídeo da Sued, o índice do arquivo foi movido para o começo (sem recodificar), para ele começar a tocar sem esperar o download do fim.
 
 ## Onde editar os textos
 
@@ -93,6 +97,8 @@ Qualquer hospedagem de arquivos estáticos serve. Configure:
 - Variável de ambiente: `NEXT_PUBLIC_SITE_URL` com o domínio final
 - Página de erro: `404.html` (Cloudflare e Netlify usam esse arquivo sozinhas)
 
+O site está publicado no **Netlify**. A configuração fica no [`netlify.toml`](../netlify.toml), na raiz do repositório (pasta base `v1`, comando `npm ci && npm run build`, pasta `out`, Node 22 e `NEXT_PUBLIC_SITE_URL` com o endereço do Netlify), e cada envio para a branch `main` gera uma nova publicação.
+
 Depois de publicar, rode `npm run verify:seo` com o endereço público.
 
 ## Estrutura
@@ -102,24 +108,26 @@ v1/
 ├── DESIGN.md              sistema visual desta versão
 ├── PRODUCT.md             contexto de produto usado no design
 ├── public/brand/          logo, sprite do monograma e da estrela
-├── public/images/         fotos da hero e do cartão do Instagram
+├── public/images/         fotos da hero, do manifesto, do cartão do Instagram e do portfólio
+├── public/videos/         vídeo principal do case da Sued Silva
 ├── scripts/               preview local e verificação de SEO
 └── src/
-    ├── app/               layout, página, 404, robots, sitemap, llms.txt e ícone
+    ├── app/               layout, página, 404, globals.css, robots, sitemap, llms.txt e ícone
     ├── components/
     │   ├── brand/         monograma, estrela e assinatura
-    │   ├── layout/        cabeçalho, menu, rodapé e barra fixa do celular
+    │   ├── layout/        cabeçalho, menu, rodapé, barra fixa do celular, abertura, fio dourado e rolagem suave
     │   ├── sections/      cada bloco da página
-    │   └── ui/            botão da consultoria e ícone do Instagram
+    │   └── ui/            botão da consultoria, ícone do Instagram e InView (entradas por tempo)
     ├── content/           textos, contatos e portfólio
-    └── lib/               ambiente, WhatsApp, JSON-LD e llms.txt
+    └── lib/               cn, ambiente, WhatsApp, rolagem suave, JSON-LD e llms.txt
 ```
 
 ## Decisões desta versão
 
 - O botão principal abre o WhatsApp; não há formulário nem agenda externa.
 - O botão "Agendar uma consultoria" é uma pílula com um brilho girando por trás do texto, adaptada do botão escolhido pelo responsável pelo projeto (cores da marca, texto por cima do brilho para manter o contraste). Fica em [src/components/ui/ConsultationButton.tsx](src/components/ui/ConsultationButton.tsx) e no bloco "Botão da consultoria" de [src/app/globals.css](src/app/globals.css).
-- O carrossel da hero, o brilho do botão e o ícone do Instagram continuam animados mesmo quando o sistema pede movimento reduzido, por decisão do responsável pelo projeto. O carrossel tem botão de pausa e para com o mouse em cima ou com o foco do teclado.
+- O carrossel da hero, o brilho girando por trás do botão e o ícone do Instagram continuam animados mesmo quando o sistema pede movimento reduzido, por decisão do responsável pelo projeto. O carrossel tem botão de pausa e para com o mouse em cima ou com o foco do teclado. Todas as outras animações (abertura, fio dourado, entradas com a rolagem, retrato do "Quem sou eu?", halo e reflexo do botão e bordas do convite) param com movimento reduzido.
+- O vídeo principal da Sued também continua tocando sozinho, sem som, com movimento reduzido. Esse ponto está registrado como desvio no `docs/contexto/rules.md`.
 - Quase todas as mídias do portfólio são carregadas do Google Drive, sem cópia no site. Miniaturas e players só carregam quando a aba ou o visualizador abre.
 - O vídeo principal da Sued (16 s, 11,7 MB) fica no próprio site, porque veio direto do computador do responsável pelo projeto. Ele roda sozinho, sem som, e só começa a baixar quando o case aparece na tela (fica parado em outra aba ou fora da tela). Cabe no limite de arquivo das hospedagens estáticas (25 MB na Cloudflare).
 - A consultoria é gratuita, confirmado pelo responsável pelo projeto.
@@ -139,4 +147,7 @@ Dois perfis, cada um com o ícone animado ([src/components/ui/InstagramLink.tsx]
 - Depoimentos em frase, se houver.
 - Logos de clientes.
 - Domínio final, para o build de produção e a validação de SEO publicada.
-- Política de Privacidade, necessária quando o rastreamento entrar.
+- Imagem de compartilhamento para redes sociais (Open Graph).
+- Medir o Lighthouse no celular com o site publicado.
+- Entradas animadas das últimas seções (objeções, perguntas frequentes e fechamento).
+- GA4, Pixel da Meta e aviso de cookies, quando as contas existirem, e a Política de Privacidade junto com eles.

@@ -135,3 +135,25 @@ Impacto: copy.md, DESIGN.md, content/portfolio.ts, lib/llms.ts, components/ui/In
 Decisão: o site ganha uma tela de abertura, a lente abrindo (monograma da EBEN com anel dourado no campo burgundy, que se abre do centro revelando a página em cerca de 1,7s), seguida da entrada animada da primeira tela (foto do Story saindo do desfoque, headline deslizando dos lados, texto, botões e cabeçalho entrando). A abertura toca uma vez por sessão, controlada pela chave eben-intro na sessionStorage, e um toque pula. Com movimento reduzido, nada disso acontece.
 Motivo: pedido do responsável pelo projeto, que escolheu as duas animações juntas.
 Impacto: DESIGN.md, app/page.tsx, app/layout.tsx (suppressHydrationWarning no html), components/layout/IntroScript.tsx, components/layout/SiteIntro.tsx, components/layout/SiteHeader.tsx e app/globals.css.
+
+### 2026-10-14: revisão da documentação e decisões que não tinham registro
+
+Decisão: a documentação passa a descrever o site como ele está publicado, e ficam registradas aqui as decisões que já valiam no código mas não tinham entrada neste arquivo:
+
+- Hospedagem no Netlify, em https://ebencreative.netlify.app, configurada pelo `netlify.toml` na raiz do repositório, com publicação automática a cada envio para a branch `main`. Corrige a entrada de 2026-10-09 sobre a pesquisa de hospedagem, que deixava a escolha em aberto.
+- Uma única ação na página: o botão "Agendar uma consultoria", em todos os pontos, com a mensagem "Oii, EBEN! Vim pela página e quero agendar uma consultoria.". A consultoria é gratuita e inclui o diagnóstico do perfil. Os botões por serviço, o botão do diagnóstico e a mensagem geral das entradas de 2026-10-09 saíram da página.
+- A primeira tela usa três fotos da Geovana em formato de Story, e não um vídeo em loop.
+- As mídias do portfólio ficam no Google Drive da agência, compartilhadas por link, e o vídeo principal do case da Sued Silva fica no próprio site. Corrige a entrada de 2026-10-09 que previa um serviço de vídeo.
+- A biblioteca lenis, usada na rolagem suave, entra na lista de bibliotecas permitidas do rules.md, onde não estava.
+- O rastreamento (GA4, Pixel da Meta, evento Lead e UTM), o aviso de cookies e a Política de Privacidade não foram construídos e ficam para quando as contas existirem.
+- Os números em destaque (6 clientes, 11 projetos, +200 mil seguidores) não aparecem na página, porque a contagem de clientes não foi confirmada como exata.
+- Os perfis do Instagram são @eben.creative_ (agência) e @geoo.silvaz (trabalhos da Geovana).
+
+Motivo: leitura de todos os documentos a pedido do responsável pelo projeto, para corrigir o que não correspondia ao site publicado.
+Impacto: architecture.md, copy.md, design.md, prd.md, rules.md e task.md reescritos ou corrigidos; v1/README.md, v1/PRODUCT.md, v1/DESIGN.md e o resumo de superfície em v1/.impeccable corrigidos. O rules.md ganhou a seção "Desvios conhecidos", com os pontos em que o código atual não segue as regras. As entradas anteriores deste arquivo continuam como estavam, como histórico.
+
+### 2026-10-14: nova página 404
+
+Decisão: a página 404 passa a seguir o estilo do site, com muita animação: o "404" com a lente da marca no lugar do zero (monograma, anéis girando, texto "PÁGINA NÃO ENCONTRADA · EBEN CREATIVE STUDIO" em volta, ondas de radar, linha de luz e foco que se perde e volta), estrelas piscando, o botão em pílula da consultoria e, com mouse, camadas que acompanham o cursor. Os textos da página continuam os mesmos e passam a morar em content/landing.ts (notFound).
+Motivo: pedido do responsável pelo projeto. Tira a página 404 da lista de desvios do rules.md, porque o texto saiu do componente.
+Impacto: copy.md, rules.md, DESIGN.md, app/not-found.tsx, components/layout/NotFoundStage.tsx, content/landing.ts e app/globals.css.

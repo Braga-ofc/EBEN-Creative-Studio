@@ -2,7 +2,7 @@
 
 ## Produto
 
-A EBEN Creative Studio é uma agência de comunicação criativa e audiovisual que trabalha com três frentes: Social Media, Videomaker e Storymaker. Este projeto é a landing page da agência, construída em TypeScript, React, Next.js e Tailwind CSS, pensada primeiro para o celular, com a função de transformar visitantes em conversas no WhatsApp. O conceito que guia o visual é a frase "Não capturamos momentos. Eternizamos histórias", e o texto completo da página está em copy.md.
+A EBEN Creative Studio é uma agência de comunicação criativa e audiovisual que trabalha com três frentes: Social Media, Videomaker e Storymaker. Este projeto é a landing page da agência, construída em TypeScript, React, Next.js e Tailwind CSS, pensada primeiro para o celular, com a função de transformar visitantes em conversas no WhatsApp, a partir de uma consultoria gratuita. O conceito que guia o visual é a frase "Não capturamos momentos. Eternizamos histórias", e o texto completo da página está em copy.md. O código fica na pasta v1 do repositório.
 
 ## Problema
 
@@ -16,42 +16,46 @@ O usuário principal é o empresário, a clínica, a marca pessoal ou a empresa 
 
 Pergunta para você: qual é a cidade ou região de atuação para gravações presenciais, e a agência atende fora dela?
 
-## Funcionalidades da primeira versão
+## Funcionalidades da primeira versão (publicada)
 
-A primeira versão é uma página única com os blocos de copy.md na ordem definida, com todo o conteúdo estático versionado no repositório e conversão somente pelo WhatsApp.
+A primeira versão é uma página única, publicada no Netlify em https://ebencreative.netlify.app, com todo o conteúdo estático versionado no repositório e uma única ação: o botão "Agendar uma consultoria", que é gratuita e abre o WhatsApp. O texto de cada bloco está em copy.md.
 
-1. Abertura com vídeo curto em loop sem som, headline, subheadline, proposta resumida e botão de WhatsApp com microcopy.
-2. Blocos de proposta de valor, dor, jeito EBEN de trabalhar com as três frentes e benefícios, em que cada frente tem o próprio botão de WhatsApp com a mensagem daquele serviço.
-3. Prova social com números em destaque, cases com resultado, portfólio filtrável por serviço com vídeo em janela sobreposta e faixa de logos de clientes.
-4. Oferta com o que entra, as cinco etapas de como funciona, investimento sob medida e botão de proposta.
-5. Quebra de objeções e perguntas frequentes em formato de sanfona, que abre uma resposta por vez.
-6. Garantia de processo, aviso de vagas limitadas e oferta do diagnóstico gratuito do perfil com botão próprio.
-7. Chamada final e PS, cada um com botão de WhatsApp.
-8. Botão fixo de WhatsApp visível o tempo todo.
-9. Rodapé com slogan, WhatsApp, Instagram, links legais e a linha de crédito do desenvolvedor.
-10. Google Analytics 4 e Pixel da Meta, carregados só depois que o visitante aceita os cookies, com o evento Lead disparado em todo clique de botão de WhatsApp.
-11. Aviso de cookies com os botões Aceitar e Recusar e opção de mudar a escolha depois pelo rodapé.
-12. Página de Política de Privacidade, exigida pela LGPD por causa dos cookies de rastreamento.
-13. Metadados de SEO, imagem de compartilhamento para redes sociais, sitemap e robots.
-14. Página 404 no visual da marca.
+1. Tela de abertura com o monograma da EBEN e uma lente que se abre revelando a página, uma vez por sessão.
+2. Primeira tela com a headline, o subtítulo, o botão principal, o link "Ver portfólio" e três fotos da Geovana passando em formato de Story.
+3. Manifesto com o conceito da marca e a proposta de valor.
+4. Portfólio em abas por serviço (Social Media, Videomaker, Storymaker e Mobile Photo), com os cases da Sued Silva e da Juliana Arantes (foto de perfil, atividade e resultado) e um visualizador de fotos e vídeos sem sair da página. As mídias vêm do Google Drive da agência, e o vídeo principal do case da Sued fica no próprio site.
+5. Blocos de dor, jeito EBEN de trabalhar com as três frentes e benefícios.
+6. Como funciona, com as cinco etapas, as garantias de processo e o investimento sob medida.
+7. Seção "Quem sou eu?", com a história da Geovana Silva, fundadora da EBEN.
+8. Convite da consultoria gratuita, que inclui o diagnóstico do perfil, com o aviso de vagas limitadas.
+9. Quebra de objeções e perguntas frequentes em sanfona, que abre uma resposta por vez.
+10. Chamada final e PS.
+11. Barra fixa com o botão principal no celular, que some quando outro botão já está à vista.
+12. Rodapé com slogan, WhatsApp, Instagram da agência e da Geovana e a linha de crédito do desenvolvedor.
+13. Fio dourado ligando todas as seções e animações de entrada que acompanham a rolagem, desligadas para quem pede movimento reduzido.
+14. Metadados de SEO, sitemap, robots, llms.txt e dados estruturados (JSON-LD).
+15. Página 404 no visual da marca.
 
-O projeto tem dois números de WhatsApp com papéis separados. O número da agência, +55 61 99454-1957, com o link https://wa.me/5561994541957, é o número usado em todos os botões e contatos da página. O número do responsável pelo código, pela criação e pela manutenção do site é +55 61 99422-7093, é usado só para assuntos técnicos e aparece em um único lugar, a linha de crédito do rodapé, no texto "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093", com o número levando ao link https://wa.me/5561994227093. As mensagens que abrem preenchidas em cada botão estão na tabela do início de copy.md.
-
-Perguntas para você: onde os vídeos do portfólio e da abertura estão hospedados hoje, YouTube, Vimeo ou só em arquivo? Quantos projetos de portfólio existem prontos para publicar? As demais perguntas de conteúdo estão no fim de copy.md.
+O projeto tem dois números de WhatsApp com papéis separados. O número da agência, +55 61 99454-1957, com o link https://wa.me/5561994541957, é o número usado em todos os botões e contatos da página, com a mensagem "Oii, EBEN! Vim pela página e quero agendar uma consultoria.". O número do responsável pelo código, pela criação e pela manutenção do site é +55 61 99422-7093, é usado só para assuntos técnicos e aparece em um único lugar, a linha de crédito do rodapé, no texto "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093", com o número levando ao link https://wa.me/5561994227093.
 
 ## Funcionalidades para depois
 
-1. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
-2. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
-3. Seção sobre a agência, com história e equipe.
-4. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
-5. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
-6. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
-7. Agendamento de reunião integrado a uma agenda.
-8. Área do cliente para aprovação de conteúdos e entrega de arquivos.
+1. Google Analytics 4 e Pixel da Meta, carregados só depois que o visitante aceita os cookies, com o evento Lead em todo clique de botão de WhatsApp. Aguarda a criação das contas.
+2. Aviso de cookies com os botões Aceitar e Recusar e opção de mudar a escolha depois pelo rodapé, junto com o rastreamento.
+3. Página de Política de Privacidade, exigida pela LGPD quando o rastreamento entrar.
+4. Imagem de compartilhamento para redes sociais (Open Graph), que ainda não existe.
+5. Faixa de logos de clientes, depoimentos em frase e um terceiro case, quando existirem e forem autorizados.
+6. Domínio próprio no lugar do endereço do Netlify.
+7. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
+8. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
+9. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
+10. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
+11. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
+12. Agendamento de reunião integrado a uma agenda.
+13. Área do cliente para aprovação de conteúdos e entrega de arquivos.
 
 ## Critério de sucesso
 
-O sucesso da primeira versão é medido pelo número de eventos Lead registrados no GA4 e no Pixel da Meta, ou seja, cliques em botões de WhatsApp, e pela nota de desempenho do Lighthouse no celular igual ou acima de 90.
+Quando o rastreamento entrar, o sucesso é medido pelo número de eventos Lead registrados no GA4 e no Pixel da Meta, ou seja, cliques em botões de WhatsApp. Até lá, a referência são as conversas que chegam no WhatsApp da agência com a mensagem da página. A meta técnica é a nota de desempenho do Lighthouse no celular igual ou acima de 90, que ainda precisa ser medida no site publicado.
 
-Perguntas para você: existe uma meta de conversas por mês vindas da página? Existe data limite para a página estar no ar, por exemplo o início de uma campanha de tráfego pago?
+Perguntas para você: existe uma meta de conversas por mês vindas da página? Existe data limite para alguma campanha de tráfego pago?

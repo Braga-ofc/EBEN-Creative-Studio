@@ -1,62 +1,54 @@
 # Tarefas: EBEN Creative Studio
 
-Cada tarefa gera uma única entrega verificável e só começa depois que a anterior estiver concluída. Ao terminar uma tarefa, a caixa é marcada e qualquer decisão tomada durante ela é registrada no memory.md. Todo texto visível vem de copy.md, e trechos marcados como PENDENTE entram no código com um comentário TODO e ficam escondidos até a resposta chegar.
+Situação do projeto em 2026-10-14. O plano original, de 2026-10-09, foi substituído pelo que está abaixo: várias tarefas foram feitas de outro jeito (por exemplo, a primeira tela usa fotos em formato de Story em vez de vídeo, e a página tem um único botão, "Agendar uma consultoria") e outras foram adiadas junto com o rastreamento. As decisões de cada mudança estão no memory.md, e o texto de cada bloco está em copy.md.
 
-## Fase 1: base do projeto
+## Concluído
 
-- [ ] 1. Criar o projeto Next.js com TypeScript, App Router, Tailwind CSS e ESLint dentro da pasta src. Entrega: o comando de desenvolvimento abre a página padrão sem erros.
-- [ ] 2. Configurar output "export" e images.unoptimized no next.config.ts, Prettier com o plugin do Tailwind e strict no tsconfig. Entrega: o build gera a pasta out e os comandos de lint, formatação e checagem de tipos passam sem erro.
-- [ ] 3. Criar a árvore de pastas descrita em architecture.md e copiar os SVGs de docs/marca para public/images/brand. Entrega: estrutura de pastas igual à do documento.
-- [ ] 4. Criar lib/env.ts com validação Zod de NEXT_PUBLIC_GA_ID e NEXT_PUBLIC_META_PIXEL_ID, opcionais, e o arquivo .env.example. Entrega: o build passa sem os IDs, com um aviso no terminal.
-- [ ] 5. Declarar no globals.css os tokens de cor, fonte, raio e movimento de design.md, incluindo os três temas de seção, e carregar Fraunces e Manrope pelo next/font. Entrega: página de teste exibindo as cores, os três temas e a escala tipográfica.
-- [ ] 6. Criar a função cn em lib/utils.ts. Entrega: função exportada e usada em um componente de teste.
-- [ ] 7. Criar os componentes Logo, com as variantes monograma e assinatura completa, Star, EditorialLine e o contorno circular decorativo. Entrega: os quatro elementos exibidos nos três temas na página de teste.
+### Base do projeto
 
-## Fase 2: componentes básicos
+- [x] Projeto Next.js com TypeScript em modo estrito, App Router, Tailwind CSS, ESLint e Prettier com o plugin do Tailwind, dentro de `v1/src`.
+- [x] Exportação estática (`output: "export"` e `images.unoptimized`), com o build gerando a pasta `out`.
+- [x] `lib/env.ts` com validação Zod de `NEXT_PUBLIC_SITE_URL`, obrigatória no build, e o arquivo `.env.example`.
+- [x] Tokens de cor, fonte e movimento no `globals.css`, com Fraunces e Manrope pelo next/font.
+- [x] Função `cn` em `lib/cn.ts`.
+- [x] Componentes da marca: monograma, estrela e assinatura CREATIVE EBEN STUDIO, a partir do sprite em `public/brand`.
 
-- [ ] 8. Criar o componente Button com as variantes primary, secondary e ghost nos três temas. Entrega: as três variantes renderizadas nos três temas na página de teste.
-- [ ] 9. Criar o componente Accordion acessível, com um item aberto por vez. Entrega: sanfona funcionando pelo mouse e pelo teclado na página de teste.
-- [ ] 10. Criar o componente Modal acessível, com fechamento pela tecla Esc e por toque fora, e foco preso dentro dele. Entrega: modal funcionando pelo teclado na página de teste.
+### Conteúdo e WhatsApp
 
-## Fase 3: conteúdo, WhatsApp e consentimento
+- [x] `site.ts`, `landing.ts` e `portfolio.ts` com todo o texto e os dados da página.
+- [x] `lib/whatsapp.ts`, que monta o link wa.me, e o botão `ConsultationButton`, usado em todos os pontos com a mensagem da consultoria.
 
-- [ ] 11. Criar os tipos em types/content.ts e preencher site.ts com nome, números, links e a tabela de mensagens do WhatsApp de copy.md. Entrega: arquivo tipado e sem erro de tipo.
-- [ ] 12. Preencher landing.ts com o texto de todos os blocos de copy.md, e cases.ts, projects.ts e clients.ts com o que já for real. Entrega: todo o texto de copy.md presente em content, com TODO nos pendentes.
-- [ ] 13. Criar lib/whatsapp.ts, que monta o link wa.me a partir de uma chave de mensagem. Entrega: os cinco links da tabela de copy.md abrindo com o texto certo.
-- [ ] 14. Criar lib/consent.ts e o componente CookieBanner, com Aceitar, Recusar e reabertura pelo rodapé. Entrega: a escolha fica salva e o aviso some e volta conforme as regras de rules.md.
-- [ ] 15. Criar lib/analytics.ts e o ConsentManager, que carrega GA4 e Pixel só depois do aceite, guarda o utm_source e expõe trackLead. Entrega: com aceite, o evento Lead aparece no DebugView do GA4 e no Meta Pixel Helper, e sem aceite nenhuma requisição de rastreamento sai do navegador. Pode ser feita com IDs de teste. Sem os IDs reais, o site vai ao ar com o rastreamento desligado.
-- [ ] 16. Criar o WhatsAppButton, que chama trackLead e abre o link, e o botão fixo. Entrega: todos os botões abrem a conversa certa, com e sem bloqueador de anúncio.
+### Estrutura e blocos da página
 
-## Fase 4: estrutura da página
+- [x] Cabeçalho com âncoras, botão principal e menu em tela cheia no celular.
+- [x] Rodapé com slogan, atendimento, Instagram, links da página e o crédito da BRAGA SYSTEMS em destaque.
+- [x] Barra fixa com o botão principal no celular.
+- [x] Tela de abertura (a lente abrindo), uma vez por sessão.
+- [x] Primeira tela com a headline e o Story de três fotos da Geovana, com pausa e avanço por toque.
+- [x] Manifesto.
+- [x] Portfólio em abas (Social Media, Videomaker, Storymaker e Mobile Photo), com os cases da Sued Silva e da Juliana Arantes e o visualizador de fotos e vídeos.
+- [x] Dor, jeito EBEN com as três frentes, benefícios e como funciona, com as garantias e o investimento.
+- [x] Seção "Quem sou eu?", com a história da Geovana.
+- [x] Convite da consultoria gratuita, objeções, perguntas frequentes em sanfona, chamada final e PS.
+- [x] Fio dourado ligando as seções e animações de entrada com a rolagem.
 
-- [ ] 17. Criar o Header com âncoras, botão de WhatsApp e menu em tela cheia no celular. Entrega: cabeçalho funcionando nos tamanhos de 375px e 1280px.
-- [ ] 18. Criar o Footer com slogan, contato, links legais, Preferências de cookies e a linha de crédito da BRAGA SYSTEMS. Entrega: rodapé exibido em todas as páginas pelo layout raiz.
+### Páginas de apoio e publicação
 
-## Fase 5: blocos da página
+- [x] Página 404 no visual da marca.
+- [x] Metadados de SEO, canonical, `sitemap.xml`, `robots.txt`, `llms.txt` e dados estruturados (JSON-LD).
+- [x] Publicação no Netlify, em https://ebencreative.netlify.app, com publicação automática a cada envio para a branch `main`.
 
-- [ ] 19. Criar o bloco 1, abertura com vídeo, imagem de capa e respeito ao movimento reduzido. Entrega: headline e botão visíveis sem rolar em 375px por 667px.
-- [ ] 20. Criar os blocos 2 e 3, proposta de valor e dor, com SplitStatement e PainList. Entrega: os dois blocos publicados na página.
-- [ ] 21. Criar o bloco 4, jeito EBEN de trabalhar, com StepList e os três ServiceCard. Entrega: cada cartão abre o WhatsApp com a mensagem do seu serviço.
-- [ ] 22. Criar o bloco 5, benefícios, com BenefitList. Entrega: os oito benefícios publicados.
-- [ ] 23. Criar a parte de números e cases do bloco 6, com StatNumber e CaseCard. Entrega: números e cases publicados, com os pendentes escondidos.
-- [ ] 24. Criar o portfólio do bloco 6 com PortfolioCard, PortfolioFilter e o vídeo no Modal. Entrega: grade filtrável abrindo os vídeos. Bloqueada até a resposta sobre a hospedagem dos vídeos.
-- [ ] 25. Criar o LogoStrip do bloco 6. Entrega: logos dos clientes publicados. Bloqueada até o envio dos logos.
-- [ ] 26. Criar o bloco 7, oferta, com a lista do que entra, o StepList das cinco etapas, investimento e botão. Entrega: bloco de oferta publicado.
-- [ ] 27. Criar os blocos 8 e 11, objeções e perguntas frequentes, com Accordion. Entrega: os dois blocos publicados.
-- [ ] 28. Criar o bloco 9, garantia, com GuaranteeList. Entrega: os quatro compromissos publicados.
-- [ ] 29. Criar o bloco 10, vagas e diagnóstico, com DiagnosticBanner. Entrega: botão do diagnóstico abrindo a mensagem certa.
-- [ ] 30. Criar o bloco 12, chamada final e PS, com FinalCta. Entrega: bloco publicado com os dois botões.
+## Em aberto
 
-## Fase 6: páginas de apoio
-
-- [ ] 31. Criar a página de Política de Privacidade, cobrindo cookies, GA4, Pixel da Meta e o contato pelo WhatsApp. Entrega: página publicada com o texto aprovado. Bloqueada até o nome do responsável pelos dados, que é pessoa física, e o e-mail para pedidos dos titulares.
-- [ ] 32. Criar a not-found.tsx no visual da marca. Entrega: a tela aparece em um endereço inexistente.
-- [ ] 33. Configurar metadados, imagem de compartilhamento, sitemap.ts e robots.ts. Entrega: link compartilhado no WhatsApp exibe título, descrição e imagem.
-
-## Fase 7: publicação
-
-- [ ] 34. Rodar o Lighthouse no celular e corrigir o que impedir nota 90 em desempenho, acessibilidade e SEO. Entrega: relatório com as três notas iguais ou acima de 90.
-- [ ] 35. Publicar a pasta out na hospedagem escolhida, com os IDs de rastreamento configurados. Entrega: site acessível no endereço provisório da hospedagem. Bloqueada até a escolha da hospedagem.
-- [ ] 36. Registrar e apontar o domínio e testar todos os botões de WhatsApp e o rastreamento em produção. Entrega: evento Lead registrado a partir do domínio oficial, com a origem certa vinda de um link com UTM. Bloqueada até a definição do domínio.
+- [ ] Medir no Lighthouse, no celular, o site publicado e corrigir o que impedir nota 90 em desempenho, acessibilidade e SEO.
+- [ ] Rodar `npm run verify:seo` com o endereço público.
+- [ ] Animar as entradas das últimas seções (objeções, perguntas frequentes e fechamento) no mesmo estilo das demais.
+- [ ] Criar a imagem de compartilhamento para redes sociais (Open Graph).
+- [ ] Registrar o domínio próprio, configurar no Netlify e trocar o `NEXT_PUBLIC_SITE_URL`. Bloqueada até a escolha do domínio.
+- [ ] Faixa de logos de clientes. Bloqueada até o envio dos logos.
+- [ ] Depoimentos em frase e um terceiro case. Bloqueada até existirem e serem autorizados.
+- [ ] Aviso de cookies, GA4, Pixel da Meta e evento Lead em todo clique de WhatsApp, com o utm_source da chegada. Bloqueada até a criação das contas do GA4 e do Pixel.
+- [ ] Página de Política de Privacidade, cobrindo cookies, GA4, Pixel da Meta e o contato pelo WhatsApp, junto com o rastreamento. Bloqueada até o nome do responsável pelos dados, que é pessoa física, e o e-mail para pedidos dos titulares.
+- [ ] Corrigir ou aceitar de forma explícita os desvios listados no fim do rules.md.
 
 Pergunta para você: existe algum prazo que mude a ordem dessas tarefas?
