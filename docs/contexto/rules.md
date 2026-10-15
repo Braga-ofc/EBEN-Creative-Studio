@@ -44,7 +44,7 @@ Nunca usar o tipo any nem desativar regras do TypeScript ou do ESLint com coment
 
 Pontos em que o código atual não segue as regras acima. Ficam registrados para serem corrigidos ou aceitos de forma explícita.
 
-1. **Texto dentro de componentes.** Alguns textos visíveis estão escritos direto no componente, e não em `src/content`: os títulos "Atendimento" e "Na página" e o crédito "Site desenvolvido por" no rodapé (`SiteFooter.tsx`), a frase "Mais histórias, bastidores e coberturas no Instagram" (`Portfolio.tsx`), o link "Pular para o conteúdo" (`page.tsx`) e os rótulos para leitores de tela dos botões.
+1. **Texto dentro de componentes.** Alguns textos visíveis estão escritos direto no componente, e não em `src/content`: a frase "Mais histórias, bastidores e coberturas no Instagram" (`Portfolio.tsx`), o link "Pular para o conteúdo" (`page.tsx`) e os rótulos para leitores de tela dos botões.
 2. **Tamanhos em pixel nos componentes.** `h-[72px]` no cabeçalho, `text-[13px]` e `text-[15px]` na assinatura do cabeçalho e do rodapé, `rounded-[14px]` nos prints do portfólio e `size-[18px]` nos ícones do Story.
 3. **Estilo inline.** O ponto de foco das fotos do Story (`objectPosition`, em `StoryFrame.tsx`), que vem de um dado de `site.ts`.
 4. **Regra do ESLint desativada.** `@next/next/no-img-element`, nas miniaturas do Google Drive do portfólio, que não podem usar next/image.

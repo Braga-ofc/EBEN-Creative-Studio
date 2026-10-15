@@ -70,9 +70,22 @@ export const portfolioInstagram: InstagramProfile = {
 };
 
 export const developerCredit = {
+  label: "Site desenvolvido por",
   name: "BRAGA SYSTEMS",
   phoneDisplay: "61 99422-7093",
   whatsappNumber: "5561994227093",
+  /**
+   * Logo horizontal oficial da BRAGA SYSTEMS, versão para fundo escuro, copiado
+   * de github.com/Braga-ofc/BRAGASYSTEMS (logo/svg/logo-horizontal-escuro.svg).
+   * O guia da marca pede no mínimo 120px de largura e nenhum efeito no logo.
+   */
+  logo: { src: "/brand/braga-systems-horizontal.svg", width: 770, height: 168 },
+} as const;
+
+/** Títulos das colunas do rodapé. */
+export const footerLabels = {
+  contact: "Atendimento",
+  navigation: "Na página",
 } as const;
 
 export type HeroSlide = {

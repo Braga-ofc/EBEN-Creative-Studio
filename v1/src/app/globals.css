@@ -2895,6 +2895,159 @@ html:has(.viewer[open]) {
   }
 }
 
+/* Crédito do desenvolvedor -----------------------------------------------------
+ * Uma "placa" da BRAGA SYSTEMS dentro do rodapé da EBEN, por isso fora das cores
+ * da página: segue o guia da marca do desenvolvedor (github.com/Braga-ofc/
+ * BRAGASYSTEMS, design-system/tokens.json). Fundo preto-profundo, fio fino na
+ * cor line, cantos chanfrados em 45° como o símbolo e as listras diagonais da
+ * identidade deslizando devagar no canto. O logo horizontal oficial, na versão
+ * para fundo escuro, fica sem nenhum efeito, como o guia pede, e com pelo menos
+ * 120px de largura; o único ciano é o do próprio logo. No celular, o rodapé tem
+ * um respiro final para a barra fixa do botão não cobrir o crédito.
+ */
+
+.credit {
+  --braga-surface: #0b0f14; /* preto-profundo */
+  --braga-raised: #202833; /* grafite */
+  --braga-ink: #d6dde6; /* prata-fria */
+  --braga-ink-muted: #8a96a6; /* 4,9:1 ou mais sobre o preto-profundo */
+  --braga-line: #2e3946;
+  --cut: 12px;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-areas:
+    "label phone"
+    "logo phone";
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 8px;
+  padding: 16px 24px;
+  background-color: var(--braga-line);
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+  transition: background-color 0.3s ease;
+}
+
+/* O fundo é recortado com os mesmos chanfros, 1px para dentro: o que sobra da
+   camada de baixo vira o fio da moldura. */
+.credit::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background-color: var(--braga-surface);
+  clip-path: inherit;
+}
+
+/* Listras diagonais da identidade, no canto direito, sumindo para a esquerda. */
+.credit::after {
+  content: "";
+  position: absolute;
+  inset: 1px 1px 1px auto;
+  z-index: -1;
+  width: 45%;
+  background-image: repeating-linear-gradient(135deg, var(--braga-raised) 0 2px, transparent 2px 12px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(to left, black, transparent);
+  pointer-events: none;
+}
+
+.credit:hover {
+  background-color: var(--braga-ink-muted);
+}
+
+/* O recorte dos chanfros esconderia o contorno de foco: no teclado, o próprio
+   fio da moldura acende em prata-fria. */
+.credit:focus-visible {
+  outline: none;
+  background-color: var(--braga-ink);
+}
+
+.credit__label {
+  grid-area: label;
+  color: var(--braga-ink-muted);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.credit__logo {
+  grid-area: logo;
+  width: 168px;
+  height: auto;
+}
+
+.credit__phone {
+  grid-area: phone;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  border-left: 1px solid var(--braga-line);
+  color: var(--braga-ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-decoration-color: var(--braga-line);
+  text-underline-offset: 5px;
+  transition: text-decoration-color 0.3s ease;
+}
+
+.credit:hover .credit__phone,
+.credit:focus-visible .credit__phone {
+  text-decoration-color: var(--braga-ink);
+}
+
+@media (max-width: 479px) {
+  .credit {
+    grid-template-areas:
+      "label"
+      "logo"
+      "phone";
+    justify-items: center;
+    row-gap: 10px;
+    padding: 20px 28px;
+  }
+
+  .credit__logo {
+    width: 156px;
+  }
+
+  .credit__phone {
+    padding-top: 12px;
+    padding-left: 0;
+    border-top: 1px solid var(--braga-line);
+    border-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .credit::after {
+    animation: credit-stripes 3s linear infinite;
+  }
+
+  .credit:hover::after {
+    animation-duration: 1.2s;
+  }
+}
+
+@keyframes credit-stripes {
+  to {
+    background-position: 34px 0;
+  }
+}
+
 /* Botão da consultoria -------------------------------------------------------
  * Adaptado do botão enviado pelo responsável pelo projeto: pílula com um brilho
  * desfocado girando no centro, que encolhe quando o mouse passa. Mudanças: o

@@ -157,3 +157,15 @@ Impacto: architecture.md, copy.md, design.md, prd.md, rules.md e task.md reescri
 Decisão: a página 404 passa a seguir o estilo do site, com muita animação: o "404" com a lente da marca no lugar do zero (monograma, anéis girando, texto "PÁGINA NÃO ENCONTRADA · EBEN CREATIVE STUDIO" em volta, ondas de radar, linha de luz e foco que se perde e volta), estrelas piscando, o botão em pílula da consultoria e, com mouse, camadas que acompanham o cursor. Os textos da página continuam os mesmos e passam a morar em content/landing.ts (notFound).
 Motivo: pedido do responsável pelo projeto. Tira a página 404 da lista de desvios do rules.md, porque o texto saiu do componente.
 Impacto: copy.md, rules.md, DESIGN.md, app/not-found.tsx, components/layout/NotFoundStage.tsx, content/landing.ts e app/globals.css.
+
+### 2026-10-15: crédito do desenvolvedor visível no celular
+
+Decisão: no celular, o rodapé ganha um respiro final do tamanho da barra fixa do botão "Agendar uma consultoria", para o crédito "Site desenvolvido por BRAGA SYSTEMS" não ficar escondido atrás dela; o botão continua no mesmo lugar. O crédito passa a ficar em destaque, numa moldura dourada com BRAGA SYSTEMS em Fraunces e um reflexo dourado, e os textos do rodapé ("Atendimento", "Na página" e "Site desenvolvido por") passam a morar em content/site.ts.
+Motivo: pedido do responsável pelo projeto, que não conseguia ver o crédito no celular.
+Impacto: DESIGN.md, rules.md (sai o rodapé da lista de desvios), components/layout/SiteFooter.tsx, content/site.ts e app/globals.css.
+
+### 2026-10-15: crédito com a marca da BRAGA SYSTEMS
+
+Decisão: o crédito do rodapé passa a usar a identidade da BRAGA SYSTEMS, numa placa com as cores, os cantos chanfrados e as listras diagonais da marca do desenvolvedor, e o logo horizontal oficial (versão para fundo escuro) no lugar do nome escrito. O logo foi copiado de github.com/Braga-ofc/BRAGASYSTEMS para public/brand/braga-systems-horizontal.svg. Seguindo o guia da marca, o logo não recebe brilho nem efeito, e o reflexo dourado da versão anterior do crédito saiu. As cores da BRAGA SYSTEMS ficam só dentro dessa placa, como exceção às cores da página.
+Motivo: o responsável pelo projeto enviou o repositório com os logos e o brandkit da BRAGA SYSTEMS. Ajusta a entrada anterior sobre o crédito do desenvolvedor.
+Impacto: DESIGN.md, copy.md, components/layout/SiteFooter.tsx, content/site.ts, app/globals.css e public/brand.

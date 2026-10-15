@@ -1,9 +1,10 @@
 import { Lockup } from "@/components/brand/Lockup";
-import { Star } from "@/components/brand/Star";
+import Image from "next/image";
 import {
   brand,
   contact,
   developerCredit,
+  footerLabels,
   agencyInstagram,
   navigation,
   portfolioInstagram,
@@ -23,7 +24,7 @@ export function SiteFooter() {
         </div>
 
         <div className="md:col-span-3 lg:col-span-3 lg:col-start-7">
-          <h2 className="type-tag text-gold">Atendimento</h2>
+          <h2 className="type-tag text-gold">{footerLabels.contact}</h2>
           <p className="mt-4 type-small text-ash">{contact.hours.label}</p>
           <a
             href={consultationLink}
@@ -49,7 +50,7 @@ export function SiteFooter() {
         </div>
 
         <nav aria-label="Rodapé" className="md:col-span-3 lg:col-span-2">
-          <h2 className="type-tag text-gold">Na página</h2>
+          <h2 className="type-tag text-gold">{footerLabels.navigation}</h2>
           <ul className="mt-4 space-y-2">
             {navigation.map((item) => (
               <li key={item.href}>
@@ -62,31 +63,27 @@ export function SiteFooter() {
         </nav>
       </div>
 
+      {/* No celular, o respiro de baixo (pb-32) deixa o crédito acima da barra fixa do botão. */}
       <div className="border-t border-ivory/10">
-        <div className="shell flex flex-col gap-4 py-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="type-small text-ash">© 2026 {brand.name}</p>
-          {/* Crédito do desenvolvedor em destaque: nome em dourado, número em marfim. */}
-          <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 type-body text-mist">
-            <Star className="h-3.5 w-auto text-gold" />
-            Site desenvolvido por
-            <a
-              href={whatsappLink(developerCredit.whatsappNumber)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex flex-wrap items-baseline gap-x-2.5"
-            >
-              <span className="font-semibold tracking-[0.14em] text-gold uppercase transition-colors group-hover:text-ivory">
-                {developerCredit.name}
-              </span>
-              <span aria-hidden="true" className="text-gold">
-                ·
-              </span>
-              <span className="text-ivory underline decoration-gold/60 underline-offset-4 transition-colors group-hover:text-gold">
-                {developerCredit.phoneDisplay}
-              </span>
-              <span className="sr-only"> (WhatsApp, abre em uma nova aba)</span>
-            </a>
-          </p>
+        <div className="shell flex flex-col items-center gap-6 pt-8 pb-32 text-center md:flex-row md:justify-between md:pb-8 md:text-left">
+          <p className="type-small text-ash md:order-first">© 2026 {brand.name}</p>
+          <a
+            href={whatsappLink(developerCredit.whatsappNumber)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="credit"
+          >
+            <span className="credit__label">{developerCredit.label}</span>
+            <Image
+              src={developerCredit.logo.src}
+              alt={developerCredit.name}
+              width={developerCredit.logo.width}
+              height={developerCredit.logo.height}
+              className="credit__logo"
+            />
+            <span className="credit__phone">{developerCredit.phoneDisplay}</span>
+            <span className="sr-only"> (WhatsApp, abre em uma nova aba)</span>
+          </a>
         </div>
       </div>
     </footer>

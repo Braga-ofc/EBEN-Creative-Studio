@@ -242,7 +242,7 @@ Na página: Portfólio, Serviços, Processo, Quem sou eu e Dúvidas.
 
 Direito autoral: © 2026 EBEN Creative Studio
 
-Crédito: Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093
+Crédito: Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093, com o logo oficial da BRAGA SYSTEMS no lugar do nome escrito
 
 ## Página de erro (404)
 
