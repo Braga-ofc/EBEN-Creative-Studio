@@ -169,3 +169,9 @@ Impacto: DESIGN.md, rules.md (sai o rodapé da lista de desvios), components/lay
 Decisão: o crédito do rodapé passa a usar a identidade da BRAGA SYSTEMS, numa placa com as cores, os cantos chanfrados e as listras diagonais da marca do desenvolvedor, e o logo horizontal oficial (versão para fundo escuro) no lugar do nome escrito. O logo foi copiado de github.com/Braga-ofc/BRAGASYSTEMS para public/brand/braga-systems-horizontal.svg. Seguindo o guia da marca, o logo não recebe brilho nem efeito, e o reflexo dourado da versão anterior do crédito saiu. As cores da BRAGA SYSTEMS ficam só dentro dessa placa, como exceção às cores da página.
 Motivo: o responsável pelo projeto enviou o repositório com os logos e o brandkit da BRAGA SYSTEMS. Ajusta a entrada anterior sobre o crédito do desenvolvedor.
 Impacto: DESIGN.md, copy.md, components/layout/SiteFooter.tsx, content/site.ts, app/globals.css e public/brand.
+
+### 2026-10-15: mensagem no WhatsApp do crédito
+
+Decisão: o link do número técnico no crédito do rodapé passa a abrir o WhatsApp com a mensagem "Olá!! Vim pelo site da EBEN Creative, queria saber mais sobre o seu trabalho.".
+Motivo: pedido do responsável pelo projeto. Ajusta as entradas de 2026-10-09 sobre o crédito do desenvolvedor, em que o link abria sem mensagem.
+Impacto: copy.md, prd.md, README.md, content/site.ts e components/layout/SiteFooter.tsx.

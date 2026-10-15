@@ -74,6 +74,8 @@ export const developerCredit = {
   name: "BRAGA SYSTEMS",
   phoneDisplay: "61 99422-7093",
   whatsappNumber: "5561994227093",
+  /** Mensagem que abre preenchida no WhatsApp técnico. */
+  message: "Olá!! Vim pelo site da EBEN Creative, queria saber mais sobre o seu trabalho.",
   /**
    * Logo horizontal oficial da BRAGA SYSTEMS, versão para fundo escuro, copiado
    * de github.com/Braga-ofc/BRAGASYSTEMS (logo/svg/logo-horizontal-escuro.svg).

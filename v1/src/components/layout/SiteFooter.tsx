@@ -68,7 +68,7 @@ export function SiteFooter() {
         <div className="shell flex flex-col items-center gap-6 pt-8 pb-32 text-center md:flex-row md:justify-between md:pb-8 md:text-left">
           <p className="type-small text-ash md:order-first">© 2026 {brand.name}</p>
           <a
-            href={whatsappLink(developerCredit.whatsappNumber)}
+            href={whatsappLink(developerCredit.whatsappNumber, developerCredit.message)}
             target="_blank"
             rel="noopener noreferrer"
             className="credit"

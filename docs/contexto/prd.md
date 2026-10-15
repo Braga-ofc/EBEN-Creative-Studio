@@ -36,7 +36,7 @@ A primeira versão é uma página única, publicada no Netlify em https://ebencr
 14. Metadados de SEO, sitemap, robots, llms.txt e dados estruturados (JSON-LD).
 15. Página 404 no visual da marca.
 
-O projeto tem dois números de WhatsApp com papéis separados. O número da agência, +55 61 99454-1957, com o link https://wa.me/5561994541957, é o número usado em todos os botões e contatos da página, com a mensagem "Oii, EBEN! Vim pela página e quero agendar uma consultoria.". O número do responsável pelo código, pela criação e pela manutenção do site é +55 61 99422-7093, é usado só para assuntos técnicos e aparece em um único lugar, a linha de crédito do rodapé, no texto "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093", com o número levando ao link https://wa.me/5561994227093.
+O projeto tem dois números de WhatsApp com papéis separados. O número da agência, +55 61 99454-1957, com o link https://wa.me/5561994541957, é o número usado em todos os botões e contatos da página, com a mensagem "Oii, EBEN! Vim pela página e quero agendar uma consultoria.". O número do responsável pelo código, pela criação e pela manutenção do site é +55 61 99422-7093, é usado só para assuntos técnicos e aparece em um único lugar, a linha de crédito do rodapé, no texto "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093", com o número levando ao link https://wa.me/5561994227093 e a mensagem "Olá!! Vim pelo site da EBEN Creative, queria saber mais sobre o seu trabalho.".
 
 ## Funcionalidades para depois
 

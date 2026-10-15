@@ -10,7 +10,9 @@ Todos os botões "Agendar uma consultoria" (cabeçalho, primeira tela, barra fix
 
 > Oii, EBEN! Vim pela página e quero agendar uma consultoria.
 
-O número técnico, +55 61 99422-7093, aparece só no crédito do rodapé e abre https://wa.me/5561994227093, sem mensagem.
+O número técnico, +55 61 99422-7093, aparece só no crédito do rodapé e abre https://wa.me/5561994227093 com a mensagem:
+
+> Olá!! Vim pelo site da EBEN Creative, queria saber mais sobre o seu trabalho.
 
 ## Abertura
 
