@@ -17,3 +17,26 @@
   NEXT_PUBLIC_GA_ID = "G-91ZE5VCFTX"
   NEXT_PUBLIC_CLARITY_ID = "yyc2wuwh3l"
   # NEXT_PUBLIC_META_PIXEL_ID = ""
+
+# Cabeçalhos de segurança em todas as respostas.
+# - Content-Security-Policy: o navegador só aceita scripts, estilos, imagens,
+#   vídeos e conexões do próprio site e das ferramentas listadas (GA4, Clarity,
+#   Pixel da Meta, Google Drive). Um script injetado de outro endereço não roda.
+#   'unsafe-inline' em script-src é exigido pelo Next.js na exportação estática
+#   (scripts inline de hidratação), pelos snippets oficiais das ferramentas e
+#   pelo selo da Netlify. Ao incluir uma ferramenta nova, inclua o endereço aqui.
+# - frame-ancestors e X-Frame-Options: nenhum site pode exibir este dentro de um
+#   iframe (protege contra clickjacking).
+# - Permissions-Policy: desliga câmera, microfone, localização e pagamento, que
+#   o site não usa; tela cheia e reprodução automática só para o próprio site e
+#   para o player do Google Drive.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://lh3.googleusercontent.com https://*.google-analytics.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com; font-src 'self' data:; media-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com https://connect.facebook.net; frame-src https://drive.google.com https://accounts.google.com https://*.googleusercontent.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), fullscreen=(self \"https://drive.google.com\"), autoplay=(self \"https://drive.google.com\")"
+    Cross-Origin-Opener-Policy = "same-origin"

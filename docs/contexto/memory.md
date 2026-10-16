@@ -205,3 +205,9 @@ Impacto: v1/DESIGN.md, components/layout/SiteFooter.tsx e app/globals.css.
 Decisão: o site passa a responder em https://ebencreative.com.br, que vira o endereço oficial em `NEXT_PUBLIC_SITE_URL`. O canonical, o sitemap, o robots, o llms.txt e os dados estruturados passam a usar o domínio novo, e a análise (GA4 e Clarity) só liga nele.
 Motivo: o responsável pelo projeto registrou o domínio e o configurou no Netlify.
 Impacto: netlify.toml, README.md, v1/README.md, v1/PRODUCT.md, ANALYTICS_SETUP.md, architecture.md, prd.md e task.md.
+
+### 2026-10-16: cabeçalhos de segurança
+
+Decisão: o `netlify.toml` passa a enviar cabeçalhos de segurança em todas as páginas: Content-Security-Policy com a lista de endereços permitidos (próprio site, GA4, Clarity, Pixel da Meta e Google Drive, incluindo accounts.google.com, por onde o player do Drive passa), proibição de exibir o site dentro de iframes de outros sites, HSTS com subdomínios, nosniff, Referrer-Policy, Permissions-Policy e Cross-Origin-Opener-Policy. `'unsafe-inline'` continua em script-src porque a exportação estática do Next.js, os snippets oficiais das ferramentas e o selo da Netlify usam scripts inline. A política foi testada num servidor local com os mesmos cabeçalhos: GA4, Clarity, miniaturas e vídeos do Drive e o vídeo do site funcionaram sem bloqueio. As 5 vulnerabilidades do npm audit ficam como estão: estão só no braces, dependência do ESLint usada no desenvolvimento, que não vai para o site publicado.
+Motivo: pedido do responsável pelo projeto de uma análise de segurança completa.
+Impacto: netlify.toml, architecture.md, rules.md.

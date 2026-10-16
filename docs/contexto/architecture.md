@@ -26,9 +26,13 @@ O build exige a variável `NEXT_PUBLIC_SITE_URL`, com o endereço público do si
 
 ## Hospedagem
 
-O site está publicado no **Netlify**, em https://ebencreative.com.br. A configuração fica no `netlify.toml`, na raiz do repositório: pasta base `v1`, comando `npm ci && npm run build`, pasta publicada `out`, Node 22, `NEXT_PUBLIC_SITE_URL` apontando para o endereço do Netlify e os IDs do GA4 (`NEXT_PUBLIC_GA_ID`) e do Clarity (`NEXT_PUBLIC_CLARITY_ID`); o ID do Pixel entra no mesmo lugar quando a conta existir. Cada envio para a branch `main` do GitHub gera uma nova publicação.
+O site está publicado no **Netlify**, em https://ebencreative.com.br. A configuração fica no `netlify.toml`, na raiz do repositório: pasta base `v1`, comando `npm ci && npm run build`, pasta publicada `out`, Node 22, `NEXT_PUBLIC_SITE_URL` apontando para o domínio próprio e os IDs do GA4 (`NEXT_PUBLIC_GA_ID`) e do Clarity (`NEXT_PUBLIC_CLARITY_ID`); o ID do Pixel entra no mesmo lugar quando a conta existir. Cada envio para a branch `main` do GitHub gera uma nova publicação.
 
-A Vercel Hobby foi descartada porque proíbe uso comercial. O domínio próprio ainda não existe; quando for registrado, entra no Netlify e no `NEXT_PUBLIC_SITE_URL`.
+A Vercel Hobby foi descartada porque proíbe uso comercial. O domínio próprio ebencreative.com.br foi configurado no Netlify em 2026-10-16; o endereço www redireciona para ele.
+
+## Segurança
+
+O site é estático: não tem servidor, banco de dados, login, formulário nem chave secreta, então não há onde um invasor entre para roubar dados. Os riscos que sobram são três, e cada um tem a sua proteção. O primeiro é alguém injetar um script na página: o `netlify.toml` envia uma Content-Security-Policy que só aceita scripts, imagens, vídeos, iframes e conexões do próprio site e das ferramentas usadas (GA4, Clarity, Pixel da Meta e Google Drive). O segundo é outro site exibir este dentro de um iframe para enganar o visitante (clickjacking): `frame-ancestors 'none'` e `X-Frame-Options: DENY` impedem. O terceiro é perder o controle das contas que publicam o site (GitHub, Netlify, Registro.br e Google): isso se resolve fora do código, com verificação em duas etapas em todas elas. Os outros cabeçalhos são HSTS com subdomínios, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy` (câmera, microfone, localização e pagamento desligados) e `Cross-Origin-Opener-Policy: same-origin`. Toda ferramenta nova que carregar script, imagem ou iframe de outro endereço precisa ter esse endereço incluído na CSP, ou o navegador bloqueia.
 
 As mídias do portfólio ficam no Google Drive da agência, compartilhadas como "qualquer pessoa com o link". A página mostra a miniatura que o próprio Drive gera e toca os vídeos no player do Drive. A exceção é o vídeo principal do case da Sued Silva (MP4 de 11,7 MB), que fica no próprio site, em `public/videos/`.
 
