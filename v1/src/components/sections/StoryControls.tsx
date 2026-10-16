@@ -2,46 +2,59 @@
 
 import { Pause, Play } from "lucide-react";
 import { useState, type MouseEvent } from "react";
+import { hero } from "@/content/landing";
 import { heroSlides } from "@/content/site";
 
-/** Animações CSS do carrossel (trilha e barras), que dividem o mesmo ciclo. */
+/**
+ * Animações CSS do carrossel (trilha e barras), que dividem o mesmo ciclo. As
+ * de entrada do Story (story-open, story-rise...) ficam de fora.
+ */
 function storyAnimations(story: HTMLElement): CSSAnimation[] {
   return story
     .getAnimations({ subtree: true })
     .filter(
       (animation): animation is CSSAnimation =>
-        animation instanceof CSSAnimation && animation.animationName.startsWith("story-"),
+        animation instanceof CSSAnimation && /^story-(track|bar-\d)$/.test(animation.animationName),
     );
 }
 
 /**
- * Controles do Story da hero. Um toque ou clique no quadro pula para a próxima
- * foto, como no Instagram: a animação continua sendo só CSS, aqui apenas
- * adiantamos o relógio dela. O botão pausa e retoma o carrossel, para quem
- * precisa parar o movimento automático. Mouse em cima e foco pelo teclado
- * também pausam, pelo CSS.
+ * Leva o carrossel para o começo de outra foto: +1 é a próxima, -1 a anterior.
+ * A animação continua sendo só CSS; aqui apenas mudamos o relógio dela. Antes
+ * da primeira foto vem a última, como num ciclo.
+ */
+function jump(story: HTMLElement, step: 1 | -1) {
+  const animations = storyAnimations(story);
+  const timing = animations[0]?.effect?.getComputedTiming();
+  if (!timing) return;
+
+  const count = heroSlides.length;
+  const delay = Number(timing.delay ?? 0);
+  const cycle = Number(timing.duration);
+  // Antes do primeiro ciclo começar, conta como se já estivesse na primeira foto.
+  const elapsed = Math.max(0, Number(animations[0].currentTime ?? 0) - delay);
+  const iteration = Math.floor(elapsed / cycle);
+  const slide = Math.floor(((elapsed % cycle) / cycle) * count);
+  // A próxima da última é a primeira do ciclo seguinte; a anterior da primeira é a última do mesmo ciclo.
+  const target = step === 1 ? slide + 1 : (slide - 1 + count) % count;
+  // Início da foto: a trilha já parada nela, as barras anteriores cheias.
+  const time = delay + iteration * cycle + (target * cycle) / count;
+
+  for (const animation of animations) animation.currentTime = time;
+}
+
+/**
+ * Controles do Story da hero, como no Instagram: um toque ou clique nos dois
+ * terços da direita passa para a próxima foto e no terço da esquerda volta
+ * para a anterior. O botão pausa e retoma o carrossel, para quem precisa parar o
+ * movimento automático. Mouse em cima e foco pelo teclado também pausam, pelo CSS.
  */
 export function StoryControls() {
   const [paused, setPaused] = useState(false);
 
-  function advance(event: MouseEvent<HTMLDivElement>) {
+  function onTap(event: MouseEvent<HTMLButtonElement>, step: 1 | -1) {
     const story = event.currentTarget.closest<HTMLElement>(".story");
-    if (!story) return;
-
-    const animations = storyAnimations(story);
-    const timing = animations[0]?.effect?.getComputedTiming();
-    if (!timing) return;
-
-    const delay = Number(timing.delay ?? 0);
-    const cycle = Number(timing.duration);
-    // Antes do primeiro ciclo começar, conta como se já estivesse na primeira foto.
-    const elapsed = Math.max(0, Number(animations[0].currentTime ?? 0) - delay);
-    const iteration = Math.floor(elapsed / cycle);
-    const slide = Math.floor(((elapsed % cycle) / cycle) * heroSlides.length);
-    // Início da próxima foto: a trilha já parada nela, a barra anterior cheia.
-    const target = delay + iteration * cycle + ((slide + 1) * cycle) / heroSlides.length;
-
-    for (const animation of animations) animation.currentTime = target;
+    if (story) jump(story, step);
   }
 
   function togglePause(event: MouseEvent<HTMLButtonElement>) {
@@ -52,7 +65,18 @@ export function StoryControls() {
 
   return (
     <>
-      <div aria-hidden="true" className="story__tap" onClick={advance} />
+      <button
+        type="button"
+        className="story__tap story__tap--prev"
+        aria-label={hero.story.previous}
+        onClick={(event) => onTap(event, -1)}
+      />
+      <button
+        type="button"
+        className="story__tap story__tap--next"
+        aria-label={hero.story.next}
+        onClick={(event) => onTap(event, 1)}
+      />
       <button
         type="button"
         className="story__pause"

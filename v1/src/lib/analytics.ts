@@ -18,6 +18,7 @@ export const ctaLocations = [
   "cabecalho",
   "menu-celular",
   "topo",
+  "story",
   "barra-celular",
   "portfolio",
   "consultoria",

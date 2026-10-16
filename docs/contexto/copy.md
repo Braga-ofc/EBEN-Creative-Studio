@@ -34,6 +34,13 @@ Legendas do Story, uma por foto:
 2. Bastidores em tempo real.
 3. Vídeo com a cara da marca.
 
+Story no computador, no formato de um Story do Instagram:
+
+- Perfil no topo: o monograma da EBEN como foto de perfil e o nome eben.creative_, que abrem o Instagram da agência.
+- Campo de resposta na base: "Enviar mensagem", como no Instagram, que abre o WhatsApp com a mensagem da consultoria.
+- Botões ao lado do campo: Curtir (coração) e Compartilhar a página (avião de papel); sem o compartilhamento do sistema, o link é copiado e aparece "Link copiado".
+- Toque ou clique à direita passa para a próxima foto; à esquerda, volta para a anterior (celular e computador). Rótulos para leitores de tela: "Foto anterior" e "Próxima foto".
+
 ## Bloco 2: manifesto
 
 Título: Não capturamos momentos. Eternizamos histórias.

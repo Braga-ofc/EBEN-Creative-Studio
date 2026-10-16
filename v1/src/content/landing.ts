@@ -17,6 +17,18 @@ export const hero = {
   secondaryCta: { label: "Ver portfólio", href: "#portfolio" },
   /** Legendas do Story, uma por foto, na mesma ordem de `heroSlides` (site.ts). */
   storyBeats: ["Social media com direção.", "Bastidores em tempo real.", "Vídeo com a cara da marca."],
+  /** Peças do Story no formato do Instagram (perfil, resposta e botões). */
+  story: {
+    reply: "Enviar mensagem",
+    replyHint: " (abre o WhatsApp em uma nova aba)",
+    profileHint: " (Instagram da EBEN, abre em uma nova aba)",
+    previous: "Foto anterior",
+    next: "Próxima foto",
+    like: "Curtir",
+    unlike: "Remover curtida",
+    share: "Compartilhar a página",
+    copied: "Link copiado",
+  },
 } as const;
 
 export const manifesto = {

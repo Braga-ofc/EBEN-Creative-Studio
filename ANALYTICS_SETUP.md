@@ -74,7 +74,7 @@ No Pixel da Meta, o mesmo clique no WhatsApp envia o evento padrão **Contact**,
 
 **Valores dos parâmetros:**
 
-- `cta_location`: `cabecalho`, `menu-celular`, `topo`, `barra-celular`, `portfolio`, `consultoria`, `agendar` ou `rodape`.
+- `cta_location`: `cabecalho`, `menu-celular`, `topo`, `story` (perfil e campo "Enviar mensagem" do Story da primeira tela), `barra-celular`, `portfolio`, `consultoria`, `agendar` ou `rodape`.
 - `section_id`: `topo`, `manifesto`, `portfolio`, `dores`, `servicos`, `beneficios`, `processo`, `quem-sou-eu`, `consultoria`, `objecoes`, `duvidas`, `agendar` ou `rodape`.
 - `service_category`: `social-media`, `videomaker`, `storymaker` ou `mobile-photo`.
 - `faq_question`: o texto da pergunta, até 100 caracteres.

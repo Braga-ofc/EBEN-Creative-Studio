@@ -223,3 +223,9 @@ Impacto: app/opengraph-image.png, app/twitter-image.png, app/layout.tsx, app/pri
 Decisão: a primeira barra do Story da hero passa a ser a foto da Geovana filmando com o celular erguido num evento, de óculos e blazer vinho (`public/images/hero/geo-filmando.webp`), recortada em 9:16 com o rosto no terço de cima e o celular dentro do quadro, para não ficarem sob o título nem cortados no celular. A foto de estúdio de fundo vermelho (geo-estudio) sai do Story e continua no retrato do "Quem sou eu?". A legenda da primeira barra continua "Social media com direção.".
 Motivo: pedido do responsável pelo projeto.
 Impacto: content/site.ts, public/images/hero, copy.md e v1/DESIGN.md.
+
+### 2026-10-16: Story do Instagram na primeira tela
+
+Decisão: no computador (a partir de 1024px), o quadro da primeira tela vira um Story do Instagram: cantos arredondados, perfil da EBEN no topo (monograma como foto de perfil e o nome eben.creative_, que abrem o Instagram da agência), campo "Enviar mensagem" na base (abre o WhatsApp da consultoria, medido como `whatsapp_click` com `cta_location` = `story`), curtir e compartilhar a página, e um contorno em degradê dourado, rosa e marfim que se desenha numa entrada própria. Em qualquer tamanho de tela, um toque à direita passa para a próxima foto e à esquerda volta para a anterior. O texto do campo é "Enviar mensagem", o mesmo do Instagram em português, porque "Responder a eben.creative_..." não cabia no quadro.
+Motivo: pedido do responsável pelo projeto.
+Impacto: copy.md, ANALYTICS_SETUP.md, v1/DESIGN.md, content/landing.ts, lib/analytics.ts, components/sections/StoryFrame.tsx, StoryControls.tsx, StoryActions.tsx (novo) e app/globals.css.

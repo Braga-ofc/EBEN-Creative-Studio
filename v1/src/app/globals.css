@@ -1096,14 +1096,23 @@
 .story {
   --lead-in: 0.8s;
   --cycle: 12s;
+  height: 100%;
   container-type: inline-size;
   isolation: isolate;
   overflow: hidden;
   background-color: var(--color-charcoal);
 }
 
+:where(.story-shell),
 :where(.story) {
   position: relative;
+}
+
+/* Contorno do Story e peças do Instagram: só no computador (bloco no fim desta seção). */
+.story-ring,
+.story__profile,
+.story__reply {
+  display: none;
 }
 
 /* A trilha sobra 1px de cada lado do quadro: com largura fracionada, o
@@ -1202,11 +1211,28 @@
   animation-name: story-bar-3;
 }
 
+/* Toque na foto: terço da esquerda volta, o resto passa para a próxima. */
 .story__tap {
   position: absolute;
-  inset: 0;
+  inset-block: 0;
   z-index: 4;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.story__tap--prev {
+  left: 0;
+  width: 33.333%;
+}
+
+.story__tap--next {
+  right: 0;
+  width: 66.667%;
+}
+
+.story__tap:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: -4px;
 }
 
 .story__pause {
@@ -1295,6 +1321,392 @@
 @media (max-width: 767px) {
   .story__beat {
     display: none;
+  }
+}
+
+/* Story do Instagram no computador ------------------------------------------
+ * A partir de 1024px o quadro vira um Story do Instagram: cantos arredondados,
+ * barras finas no topo, o perfil da EBEN (monograma como foto de perfil e o
+ * nome, que abrem o Instagram da agência), o campo "Responder a..." (abre o
+ * WhatsApp) com curtir e compartilhar na base, e um contorno em degradê
+ * dourado, rosa e marfim a 8px do quadro, com um brilho desfocado por trás.
+ *
+ * Entrada (sem movimento reduzido): o contorno se desenha em volta do quadro,
+ * o quadro se abre de um retângulo menor e desfocado, as barras crescem uma a
+ * uma, o perfil desce com a foto de perfil girando, a legenda aparece e o
+ * campo de resposta sobe com os botões. O carrossel só começa a andar depois.
+ */
+@media (min-width: 1024px) {
+  .story-shell {
+    --story-radius: 18px;
+    --ring-gap: 8px;
+  }
+
+  .story {
+    border-radius: var(--story-radius);
+    box-shadow:
+      0 30px 60px -24px rgb(33 25 26 / 0.65),
+      0 0 0 1px rgb(247 234 215 / 0.08);
+  }
+
+  .story-ring {
+    position: absolute;
+    inset: calc(var(--ring-gap) * -1);
+    display: block;
+    width: calc(100% + var(--ring-gap) * 2);
+    height: calc(100% + var(--ring-gap) * 2);
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .story-ring rect {
+    fill: none;
+    stroke: url(#story-ring-gradient);
+    rx: calc(var(--story-radius) + var(--ring-gap));
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+
+  .story-ring__line {
+    stroke-width: 1.5px;
+  }
+
+  .story-ring__glow {
+    stroke-width: 6px;
+    opacity: 0.45;
+    filter: blur(8px);
+  }
+
+  .story__bars {
+    inset-inline: 10px;
+    top: 10px;
+    gap: 3px;
+  }
+
+  .story__bar {
+    border-radius: 2px;
+  }
+
+  .story__pause {
+    top: 20px;
+    right: 6px;
+  }
+
+  .story__profile {
+    position: absolute;
+    top: 24px;
+    left: 12px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    max-width: calc(100% - 64px);
+    padding: 2px 8px 2px 2px;
+    border-radius: 999px;
+    color: var(--color-ivory);
+    text-shadow: 0 1px 3px rgb(33 25 26 / 0.7);
+  }
+
+  .story__profile:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Foto de perfil: o monograma marfim num disco burgundy, com o anel em degradê
+     de quem tem Story novo. */
+  .story__avatar {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: 999px;
+    background-color: var(--color-burgundy);
+    box-shadow: 0 0 0 2px rgb(33 25 26 / 0.85);
+  }
+
+  .story__avatar::before {
+    content: "";
+    position: absolute;
+    inset: -3.5px;
+    z-index: -1;
+    border-radius: inherit;
+    background: conic-gradient(var(--color-gold), var(--color-rose), var(--color-ivory), var(--color-gold));
+  }
+
+  .story__avatar-mark {
+    width: 70%;
+    color: var(--color-ivory);
+  }
+
+  .story__name {
+    overflow: hidden;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .story__profile:hover .story__name {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .story__beat {
+    bottom: 74px;
+  }
+
+  .story__reply {
+    position: absolute;
+    inset-inline: 12px;
+    bottom: 14px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .story__reply-field {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    padding: 10px 16px;
+    border: 1px solid rgb(247 234 215 / 0.65);
+    border-radius: 999px;
+    color: rgb(247 234 215 / 0.9);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: rgb(33 25 26 / 0.18);
+    backdrop-filter: blur(6px);
+    transition:
+      border-color 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  .story__reply-field:hover {
+    border-color: var(--color-ivory);
+    background-color: rgb(33 25 26 / 0.32);
+  }
+
+  .story__reply-field:focus-visible,
+  .story__action:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .story__action {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    border-radius: 999px;
+    color: var(--color-ivory);
+    filter: drop-shadow(0 1px 2px rgb(33 25 26 / 0.6));
+    cursor: pointer;
+    transition: scale 0.2s ease;
+  }
+
+  .story__action:hover {
+    scale: 1.08;
+  }
+
+  .story__action:active {
+    scale: 0.92;
+  }
+
+  /* Curtida: o coração enche de vermelho, como no Instagram, e dá um pulo. */
+  .story__like--on {
+    color: #ff3040;
+  }
+
+  .story__like--on svg {
+    fill: currentColor;
+    animation: story-like 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .story__toast {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 8px);
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    background-color: var(--color-ivory);
+    opacity: 0;
+    translate: 0 4px;
+    pointer-events: none;
+    transition:
+      opacity 0.2s ease,
+      translate 0.2s ease;
+  }
+
+  .story__toast[data-show] {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* O carrossel espera a entrada terminar para começar a andar. */
+    .story {
+      --lead-in: calc(var(--hero-delay) + 1.9s);
+      animation: story-open 1.3s var(--ease-out-expo) calc(var(--hero-delay) + 0.15s) both;
+    }
+
+    .hero__frame {
+      animation: none;
+    }
+
+    .story-ring__line {
+      animation: story-ring-draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) var(--hero-delay) both;
+    }
+
+    .story-ring__glow {
+      animation:
+        story-ring-draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) var(--hero-delay) both,
+        story-ring-glow 1.6s ease-out calc(var(--hero-delay) + 1.4s) both;
+    }
+
+    .story__bar {
+      transform-origin: left center;
+      animation: story-bar-in 0.6s var(--ease-out-expo) both;
+    }
+
+    .story__bar:nth-child(1) {
+      animation-delay: calc(var(--hero-delay) + 0.75s);
+    }
+
+    .story__bar:nth-child(2) {
+      animation-delay: calc(var(--hero-delay) + 0.85s);
+    }
+
+    .story__bar:nth-child(3) {
+      animation-delay: calc(var(--hero-delay) + 0.95s);
+    }
+
+    .story__profile {
+      animation: story-drop 0.8s var(--ease-out-expo) calc(var(--hero-delay) + 0.9s) both;
+    }
+
+    .story__avatar {
+      animation: story-avatar 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--hero-delay) + 0.9s) both;
+    }
+
+    .story__pause {
+      animation: story-fade 0.6s ease calc(var(--hero-delay) + 1.05s) both;
+    }
+
+    .story__track .story__slide:first-child .story__beat {
+      animation: story-rise 0.9s var(--ease-out-expo) calc(var(--hero-delay) + 1.15s) both;
+    }
+
+    .story__reply {
+      animation: story-rise 0.9s var(--ease-out-expo) calc(var(--hero-delay) + 1.05s) both;
+    }
+
+    .story__like {
+      animation: story-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--hero-delay) + 1.3s) both;
+    }
+
+    .story__share {
+      animation: story-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--hero-delay) + 1.4s) both;
+    }
+  }
+}
+
+@keyframes story-open {
+  from {
+    opacity: 0;
+    scale: 0.94;
+    filter: blur(14px);
+    clip-path: inset(7% 9% round 44px);
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    filter: blur(0);
+    clip-path: inset(0 round var(--story-radius));
+  }
+}
+
+@keyframes story-ring-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes story-ring-glow {
+  0% {
+    opacity: 0.45;
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes story-bar-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes story-drop {
+  from {
+    opacity: 0;
+    translate: 0 -10px;
+    filter: blur(6px);
+  }
+}
+
+@keyframes story-avatar {
+  from {
+    scale: 0.3;
+    rotate: -120deg;
+  }
+}
+
+@keyframes story-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes story-rise {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+    filter: blur(6px);
+  }
+}
+
+@keyframes story-pop {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+}
+
+@keyframes story-like {
+  0% {
+    scale: 1;
+  }
+  40% {
+    scale: 1.35;
+  }
+  100% {
+    scale: 1;
   }
 }
 
