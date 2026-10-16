@@ -1,11 +1,16 @@
-// Publicação na Cloudflare (Worker só com arquivos estáticos). O build gera
-// a pasta out/ e o "npx wrangler deploy" envia essa pasta. O nome precisa ser
-// igual ao do Worker criado no painel da Cloudflare.
+// Publicação na Cloudflare (Worker com os arquivos estáticos do site). O build
+// gera a pasta out/ e o "npx wrangler deploy" envia essa pasta. O nome precisa
+// ser igual ao do Worker criado no painel da Cloudflare.
 {
   "name": "ebencreative",
   "compatibility_date": "2026-10-01",
+  // Só entrega os vídeos em partes, para o Safari do iPhone (cloudflare/worker.js).
+  "main": "cloudflare/worker.js",
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
+    // O script só roda para os vídeos; o resto sai direto dos arquivos.
+    "run_worker_first": ["/videos/*"],
     // Endereço inexistente mostra o 404.html do site, com status 404.
     "not_found_handling": "404-page",
     // /privacidade serve privacidade.html, como na Netlify.
