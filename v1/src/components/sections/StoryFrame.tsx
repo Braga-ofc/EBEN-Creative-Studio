@@ -48,6 +48,18 @@ export function StoryFrame({ className }: StoryFrameProps) {
         </defs>
         <rect className="story-ring__glow" width="100%" height="100%" rx={26} pathLength={1} />
         <rect className="story-ring__line" width="100%" height="100%" rx={26} pathLength={1} />
+        <g className="story-ring__comets">
+          {(["glow", "tail", "mid", "head"] as const).map((part) => (
+            <rect
+              key={part}
+              className={`story-ring__comet story-ring__comet--${part}`}
+              width="100%"
+              height="100%"
+              rx={26}
+              pathLength={1}
+            />
+          ))}
+        </g>
       </svg>
 
       <figure className="story m-0">

@@ -1,9 +1,12 @@
 "use client";
 
 import { Pause, Play } from "lucide-react";
-import { useState, type MouseEvent } from "react";
+import { useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import { hero } from "@/content/landing";
 import { heroSlides } from "@/content/site";
+
+/** Quanto tempo segurando conta como "segurar" (pausa) e não como toque (troca a foto). */
+const HOLD_DELAY = 220;
 
 /**
  * Animações CSS do carrossel (trilha e barras), que dividem o mesmo ciclo. As
@@ -46,16 +49,48 @@ function jump(story: HTMLElement, step: 1 | -1) {
 /**
  * Controles do Story da hero, como no Instagram: um toque ou clique nos dois
  * terços da direita passa para a próxima foto e no terço da esquerda volta
- * para a anterior. O botão pausa e retoma o carrossel, para quem precisa parar o
- * movimento automático. Mouse em cima e foco pelo teclado também pausam, pelo CSS.
+ * para a anterior. Depois do toque, o tempo da foto continua correndo sozinho.
+ * Segurar o clique ou o dedo pausa enquanto estiver segurando, e soltar retoma
+ * sem trocar de foto. O botão pausa e retoma de vez, para quem precisa parar o
+ * movimento automático; o foco pelo teclado também pausa, pelo CSS.
  */
 export function StoryControls() {
   const [paused, setPaused] = useState(false);
+  const holdTimer = useRef<number | null>(null);
+  const held = useRef(false);
+
+  function startHold(event: PointerEvent<HTMLButtonElement>) {
+    const story = event.currentTarget.closest<HTMLElement>(".story");
+    held.current = false;
+    holdTimer.current = window.setTimeout(() => {
+      held.current = true;
+      story?.setAttribute("data-held", "");
+    }, HOLD_DELAY);
+  }
+
+  function endHold(event: PointerEvent<HTMLButtonElement>) {
+    if (holdTimer.current !== null) window.clearTimeout(holdTimer.current);
+    holdTimer.current = null;
+    event.currentTarget.closest(".story")?.removeAttribute("data-held");
+  }
 
   function onTap(event: MouseEvent<HTMLButtonElement>, step: 1 | -1) {
+    // Segurar e soltar só pausa: não troca de foto.
+    if (held.current) {
+      held.current = false;
+      return;
+    }
     const story = event.currentTarget.closest<HTMLElement>(".story");
     if (story) jump(story, step);
   }
+
+  const holdHandlers = {
+    onPointerDown: startHold,
+    onPointerUp: endHold,
+    onPointerLeave: endHold,
+    onPointerCancel: endHold,
+    onContextMenu: (event: MouseEvent<HTMLButtonElement>) => event.preventDefault(),
+  };
 
   function togglePause(event: MouseEvent<HTMLButtonElement>) {
     const next = !paused;
@@ -70,12 +105,14 @@ export function StoryControls() {
         className="story__tap story__tap--prev"
         aria-label={hero.story.previous}
         onClick={(event) => onTap(event, -1)}
+        {...holdHandlers}
       />
       <button
         type="button"
         className="story__tap story__tap--next"
         aria-label={hero.story.next}
         onClick={(event) => onTap(event, 1)}
+        {...holdHandlers}
       />
       <button
         type="button"

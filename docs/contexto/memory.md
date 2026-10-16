@@ -229,3 +229,9 @@ Impacto: content/site.ts, public/images/hero, copy.md e v1/DESIGN.md.
 Decisão: no computador (a partir de 1024px), o quadro da primeira tela vira um Story do Instagram: cantos arredondados, perfil da EBEN no topo (monograma como foto de perfil e o nome eben.creative_, que abrem o Instagram da agência), campo "Enviar mensagem" na base (abre o WhatsApp da consultoria, medido como `whatsapp_click` com `cta_location` = `story`), curtir e compartilhar a página, e um contorno em degradê dourado, rosa e marfim que se desenha numa entrada própria. Em qualquer tamanho de tela, um toque à direita passa para a próxima foto e à esquerda volta para a anterior. O texto do campo é "Enviar mensagem", o mesmo do Instagram em português, porque "Responder a eben.creative_..." não cabia no quadro.
 Motivo: pedido do responsável pelo projeto.
 Impacto: copy.md, ANALYTICS_SETUP.md, v1/DESIGN.md, content/landing.ts, lib/analytics.ts, components/sections/StoryFrame.tsx, StoryControls.tsx, StoryActions.tsx (novo) e app/globals.css.
+
+### 2026-10-16: perfil do Story no celular, luz no contorno e tempo que segue depois do toque
+
+Decisão: o perfil do Story (foto de perfil e eben.creative_) passa a aparecer também no celular e no tablet; o campo de resposta, os botões, os cantos arredondados e o contorno continuam só no computador, para não disputar a base da tela com o botão principal e a barra fixa. A foto de perfil passa a ter o anel desenhado na borda do próprio disco, porque a animação de entrada fazia o anel antigo cobrir o fundo vinho. O contorno ganha movimento contínuo: uma luz que dá uma volta a cada 7s e um brilho que respira. O mouse em cima do Story deixa de pausar o carrossel, porque depois de passar uma foto com o mouse o tempo ficava parado; no lugar, segurar o clique ou o dedo pausa, como no Instagram.
+Motivo: pedidos do responsável pelo projeto.
+Impacto: v1/DESIGN.md, components/sections/StoryFrame.tsx, StoryControls.tsx e app/globals.css.

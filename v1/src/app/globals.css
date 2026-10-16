@@ -1085,7 +1085,7 @@
  * Três fotos, uma por barra, passando lado a lado em carrossel. O ciclo dura
  * 12 s: cada foto fica 3,2 s parada e desliza em 0,8 s para a próxima, no
  * instante em que a sua barra termina de encher. Os percentuais dos keyframes
- * saem dessa conta (4 s por foto). Mouse em cima, foco pelo teclado e o botão
+ * saem dessa conta (4 s por foto). Segurar a foto, foco pelo teclado e o botão
  * de pausa congelam a trilha e as barras juntas.
  *
  * Sem bloco de movimento reduzido de propósito, como no Instagram: o
@@ -1108,11 +1108,78 @@
   position: relative;
 }
 
-/* Contorno do Story e peças do Instagram: só no computador (bloco no fim desta seção). */
+/* Contorno e campo de resposta: só no computador (bloco no fim desta seção). */
 .story-ring,
-.story__profile,
 .story__reply {
   display: none;
+}
+
+/* Perfil no topo, como no Instagram, em todos os tamanhos: a foto de perfil e
+   o nome eben.creative_, alinhados com o botão de pausa. */
+.story__profile {
+  position: absolute;
+  top: 23px;
+  left: 12px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  max-width: calc(100% - 64px);
+  padding: 2px 8px 2px 2px;
+  border-radius: 999px;
+  color: var(--color-ivory);
+  text-shadow: 0 1px 3px rgb(33 25 26 / 0.7);
+}
+
+.story__profile:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Foto de perfil: o monograma marfim no disco vinho (burgundy), com o anel em
+   degradê de quem tem Story novo. O anel é a borda do próprio disco (fundo em
+   duas camadas), e uma sombra interna abre o respiro escuro entre os dois. */
+.story__avatar {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(var(--color-burgundy), var(--color-burgundy)) padding-box,
+    conic-gradient(var(--color-gold), var(--color-rose), var(--color-ivory), var(--color-gold)) border-box;
+  box-shadow: inset 0 0 0 2px rgb(33 25 26 / 0.9);
+}
+
+.story__avatar-mark {
+  width: 62%;
+  color: var(--color-ivory);
+}
+
+.story__name {
+  overflow: hidden;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.story__profile:hover .story__name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .story__profile {
+    animation: story-drop 0.8s var(--ease-out-expo) calc(var(--hero-delay) + 0.9s) both;
+  }
+
+  .story__avatar {
+    animation: story-avatar 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--hero-delay) + 0.9s) both;
+  }
 }
 
 /* A trilha sobra 1px de cada lado do quadro: com largura fracionada, o
@@ -1218,6 +1285,9 @@
   z-index: 4;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  touch-action: manipulation;
 }
 
 .story__tap--prev {
@@ -1256,16 +1326,13 @@
   opacity: 1;
 }
 
+/* Pausam o carrossel: o botão de pausa, o foco pelo teclado e segurar o
+   clique ou o dedo na foto (data-held, como no Instagram). O mouse em cima não
+   pausa: depois de passar uma foto, o tempo continua correndo sozinho. */
 .story[data-paused] :is(.story__track, .story__bar > span),
+.story[data-held] :is(.story__track, .story__bar > span),
 .story:has(:focus-visible) :is(.story__track, .story__bar > span) {
   animation-play-state: paused;
-}
-
-/* Só pausa com o mouse em cima onde existe mouse: no celular, o toque deixaria o carrossel parado. */
-@media (hover: hover) {
-  .story:hover :is(.story__track, .story__bar > span) {
-    animation-play-state: paused;
-  }
 }
 
 @keyframes story-track {
@@ -1393,65 +1460,45 @@
   }
 
   .story__profile {
-    position: absolute;
-    top: 24px;
-    left: 12px;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    max-width: calc(100% - 64px);
-    padding: 2px 8px 2px 2px;
-    border-radius: 999px;
-    color: var(--color-ivory);
-    text-shadow: 0 1px 3px rgb(33 25 26 / 0.7);
+    top: 21px;
   }
 
-  .story__profile:focus-visible {
-    outline: 2px solid var(--color-gold);
-    outline-offset: 2px;
+  /* Luz que corre pelo contorno, sem parar: três traços sobrepostos com a
+     ponta no mesmo lugar (rastro rosa longo, meio dourado e cabeça marfim) e um
+     brilho desfocado na cabeça. Só aparece com movimento (bloco abaixo). */
+  .story-ring__comets {
+    display: none;
   }
 
-  /* Foto de perfil: o monograma marfim num disco burgundy, com o anel em degradê
-     de quem tem Story novo. */
-  .story__avatar {
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    flex: none;
-    border-radius: 999px;
-    background-color: var(--color-burgundy);
-    box-shadow: 0 0 0 2px rgb(33 25 26 / 0.85);
+  .story-ring .story-ring__comet {
+    stroke-linecap: round;
   }
 
-  .story__avatar::before {
-    content: "";
-    position: absolute;
-    inset: -3.5px;
-    z-index: -1;
-    border-radius: inherit;
-    background: conic-gradient(var(--color-gold), var(--color-rose), var(--color-ivory), var(--color-gold));
+  .story-ring .story-ring__comet--tail {
+    stroke: var(--color-rose);
+    stroke-width: 1.5px;
+    stroke-dasharray: 0.2 0.8;
+    opacity: 0.55;
   }
 
-  .story__avatar-mark {
-    width: 70%;
-    color: var(--color-ivory);
+  .story-ring .story-ring__comet--mid {
+    stroke: var(--color-gold);
+    stroke-width: 2px;
+    stroke-dasharray: 0.08 0.92;
   }
 
-  .story__name {
-    overflow: hidden;
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 600;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  .story-ring .story-ring__comet--head {
+    stroke: var(--color-ivory);
+    stroke-width: 2.5px;
+    stroke-dasharray: 0.022 0.978;
   }
 
-  .story__profile:hover .story__name {
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  .story-ring .story-ring__comet--glow {
+    stroke: var(--color-ivory);
+    stroke-width: 8px;
+    stroke-dasharray: 0.05 0.95;
+    opacity: 0.7;
+    filter: blur(6px);
   }
 
   .story__beat {
@@ -1569,10 +1616,38 @@
       animation: story-ring-draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) var(--hero-delay) both;
     }
 
+    /* Depois de desenhado, o brilho do contorno respira devagar, sem parar. */
     .story-ring__glow {
       animation:
         story-ring-draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) var(--hero-delay) both,
-        story-ring-glow 1.6s ease-out calc(var(--hero-delay) + 1.4s) both;
+        story-ring-glow 1.6s ease-out calc(var(--hero-delay) + 1.4s) both,
+        story-ring-breathe 5s ease-in-out calc(var(--hero-delay) + 3s) infinite alternate;
+    }
+
+    /* A luz entra quando o contorno termina de se desenhar e dá uma volta a cada 7s. */
+    .story-ring__comets {
+      display: inline;
+      animation: story-fade 1.2s ease calc(var(--hero-delay) + 1.6s) both;
+    }
+
+    .story-ring .story-ring__comet {
+      animation: 7s linear calc(var(--hero-delay) + 1.6s) infinite both;
+    }
+
+    .story-ring .story-ring__comet--glow {
+      animation-name: story-comet-glow;
+    }
+
+    .story-ring .story-ring__comet--tail {
+      animation-name: story-comet-tail;
+    }
+
+    .story-ring .story-ring__comet--mid {
+      animation-name: story-comet-mid;
+    }
+
+    .story-ring .story-ring__comet--head {
+      animation-name: story-comet-head;
     }
 
     .story__bar {
@@ -1590,14 +1665,6 @@
 
     .story__bar:nth-child(3) {
       animation-delay: calc(var(--hero-delay) + 0.95s);
-    }
-
-    .story__profile {
-      animation: story-drop 0.8s var(--ease-out-expo) calc(var(--hero-delay) + 0.9s) both;
-    }
-
-    .story__avatar {
-      animation: story-avatar 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--hero-delay) + 0.9s) both;
     }
 
     .story__pause {
@@ -1640,6 +1707,54 @@
 @keyframes story-ring-draw {
   from {
     stroke-dashoffset: 1;
+  }
+}
+
+/* A ponta de cada traço sai do mesmo ponto: o deslocamento começa no tamanho
+   do traço e anda uma volta inteira (pathLength = 1). Um keyframe por traço,
+   com números fixos: com var() o Chrome não interpola o stroke-dashoffset. */
+@keyframes story-comet-glow {
+  from {
+    stroke-dashoffset: 0.05;
+  }
+  to {
+    stroke-dashoffset: -0.95;
+  }
+}
+
+@keyframes story-comet-tail {
+  from {
+    stroke-dashoffset: 0.2;
+  }
+  to {
+    stroke-dashoffset: -0.8;
+  }
+}
+
+@keyframes story-comet-mid {
+  from {
+    stroke-dashoffset: 0.08;
+  }
+  to {
+    stroke-dashoffset: -0.92;
+  }
+}
+
+@keyframes story-comet-head {
+  from {
+    stroke-dashoffset: 0.022;
+  }
+  to {
+    stroke-dashoffset: -0.978;
+  }
+}
+
+@keyframes story-ring-breathe {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.7;
   }
 }
 
