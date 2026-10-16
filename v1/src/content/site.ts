@@ -108,8 +108,8 @@ export type HeroSlide = {
  */
 export const heroSlides: readonly [HeroSlide, HeroSlide, HeroSlide] = [
   {
-    src: "/images/hero/geo-estudio.webp",
-    alt: "Geovana sorrindo com a mão na cintura em um estúdio de fundo vermelho, ao lado de um ring light",
+    src: "/images/hero/geo-filmando.webp",
+    alt: "Geovana, de óculos e blazer vinho, filmando com o celular erguido durante um evento",
     width: 900,
     height: 1600,
   },
@@ -140,9 +140,9 @@ export const manifestoPortrait = {
 } as const;
 
 /**
- * Retrato da Geovana na seção "Quem sou eu": a mesma foto de estúdio da
- * primeira barra do Story (9:16, 900 x 1600 px), que o navegador já baixou na
- * hero. O círculo mostra do cabelo à cintura, com um zoom leve no rosto e no
+ * Retrato da Geovana na seção "Quem sou eu": a foto de estúdio de fundo
+ * vermelho (9:16, 900 x 1600 px), que já foi a primeira barra do Story. O
+ * círculo mostra do cabelo à cintura, com um zoom leve no rosto e no
  * tronco (bloco "Quem sou eu" em globals.css).
  */
 export const aboutPortrait = {

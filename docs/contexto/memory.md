@@ -217,3 +217,9 @@ Impacto: netlify.toml, architecture.md, rules.md.
 Decisão: o site ganha a imagem de compartilhamento (Open Graph e X/Twitter, 1200 x 630): a assinatura CREATIVE, monograma e STUDIO em marfim sobre o burgundy, com o slogan em Fraunces itálica, um fio dourado e duas estrelas. Fica em `src/app/opengraph-image.png` e `twitter-image.png`, pela convenção de arquivos do Next.js, e a Política de Privacidade repete a imagem porque define o próprio openGraph. O cartão do X passa a ser o grande (summary_large_image).
 Motivo: ao compartilhar o link, o WhatsApp mostrava a foto da Geovana, a primeira imagem que encontrava na página. O responsável pelo projeto pediu a logo no lugar.
 Impacto: app/opengraph-image.png, app/twitter-image.png, app/layout.tsx, app/privacidade/page.tsx, prd.md, task.md e v1/README.md.
+
+### 2026-10-16: nova primeira foto do Story
+
+Decisão: a primeira barra do Story da hero passa a ser a foto da Geovana filmando com o celular erguido num evento, de óculos e blazer vinho (`public/images/hero/geo-filmando.webp`), recortada em 9:16 com o rosto no terço de cima e o celular dentro do quadro, para não ficarem sob o título nem cortados no celular. A foto de estúdio de fundo vermelho (geo-estudio) sai do Story e continua no retrato do "Quem sou eu?". A legenda da primeira barra continua "Social media com direção.".
+Motivo: pedido do responsável pelo projeto.
+Impacto: content/site.ts, public/images/hero, copy.md e v1/DESIGN.md.

@@ -162,7 +162,7 @@ Assinatura: Geovana Silva
 
 Texto em volta do retrato: EBEN · CREATIVE STUDIO · EBEN · CREATIVE STUDIO ·
 
-Foto: a mesma foto de estúdio da primeira barra do Story (geo-estudio), recortada em círculo com zoom leve.
+Foto: a foto de estúdio de fundo vermelho (geo-estudio), recortada em círculo com zoom leve.
 
 ## Bloco 9: convite da consultoria
 
