@@ -2902,16 +2902,50 @@ html:has(.viewer[open]) {
  * cor line, cantos chanfrados em 45° como o símbolo e as listras diagonais da
  * identidade deslizando devagar no canto. O logo horizontal oficial, na versão
  * para fundo escuro, fica sem nenhum efeito, como o guia pede, e com pelo menos
- * 120px de largura; o único ciano é o do próprio logo. No celular, o rodapé tem
- * um respiro final para a barra fixa do botão não cobrir o crédito.
+ * 120px de largura. O movimento (feixe na moldura e varredura) usa o ciano do
+ * logo e passa sempre por trás dele. No celular, o rodapé tem um respiro final
+ * para a barra fixa do botão não cobrir o crédito.
  */
 
+.credit-stage,
 .credit {
   --braga-surface: #0b0f14; /* preto-profundo */
   --braga-raised: #202833; /* grafite */
   --braga-ink: #d6dde6; /* prata-fria */
   --braga-ink-muted: #8a96a6; /* 4,9:1 ou mais sobre o preto-profundo */
   --braga-line: #2e3946;
+  --braga-accent: #35d5e8; /* ciano, o mesmo do logo */
+}
+
+/* Palco da placa: recebe os estados de entrada do InView e desenha as duas
+   linhas de luz que abrem a placa a partir do centro (só com movimento). */
+.credit-stage {
+  position: relative;
+}
+
+.credit-stage::before,
+.credit-stage::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  height: 1px;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    var(--braga-accent) 18%,
+    var(--braga-ink) 50%,
+    var(--braga-accent) 82%,
+    transparent
+  );
+  box-shadow: 0 0 10px rgb(53 213 232 / 0.7);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.credit {
   --cut: 12px;
   position: relative;
   isolation: isolate;
@@ -2956,6 +2990,72 @@ html:has(.viewer[open]) {
   background-image: repeating-linear-gradient(135deg, var(--braga-raised) 0 2px, transparent 2px 12px);
   background-size: 34px 34px;
   mask-image: linear-gradient(to left, black, transparent);
+  pointer-events: none;
+}
+
+/* Feixe: um quadrado maior que a placa, com um traço de luz num gradiente cônico,
+   girando atrás do fundo. Como o fundo (::before) cobre tudo menos o fio de 1px,
+   a luz só aparece na moldura, correndo pelos chanfros com um rastro que apaga.
+   O reflexo repete o mesmo giro por cima do fundo, numa faixa estreita junto às
+   bordas, para a luz vazar um pouco para dentro da placa. */
+.credit__beam,
+.credit__glow::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background-image: conic-gradient(
+    transparent 0 70%,
+    rgb(53 213 232 / 0.25) 84%,
+    var(--braga-accent) 97%,
+    var(--braga-ink) 99.5%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.credit__beam {
+  z-index: -2;
+  display: none;
+}
+
+.credit__glow {
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  display: none;
+  overflow: hidden;
+  opacity: 0.35;
+  mask-image:
+    linear-gradient(to right, black, transparent 14px, transparent calc(100% - 14px), black),
+    linear-gradient(to bottom, black, transparent 14px, transparent calc(100% - 14px), black);
+  pointer-events: none;
+}
+
+.credit__glow::before {
+  content: "";
+}
+
+/* Varredura: uma faixa de luz fria inclinada que atravessa a placa por trás do
+   texto e do logo, e descansa alguns segundos antes de passar de novo. */
+.credit__scan {
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  display: none;
+  background-image: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgb(53 213 232 / 0.1) 46%,
+    rgb(214 221 230 / 0.22) 49.6%,
+    rgb(214 221 230 / 0.32) 50%,
+    rgb(214 221 230 / 0.22) 50.4%,
+    rgb(53 213 232 / 0.1) 54%,
+    transparent 62%
+  );
+  translate: -100% 0;
   pointer-events: none;
 }
 
@@ -3040,11 +3140,174 @@ html:has(.viewer[open]) {
   .credit:hover::after {
     animation-duration: 1.2s;
   }
+
+  .credit__beam,
+  .credit__glow {
+    display: block;
+  }
+
+  /* Uma volta rápida na entrada, que desacelera até a velocidade da volta lenta
+     (a curva termina na mesma velocidade), e depois uma volta a cada 7s. */
+  .credit__beam,
+  .credit__glow::before {
+    animation:
+      credit-beam-burst 1.6s cubic-bezier(0.3, 0.6, 0.6, 0.91) 0.6s,
+      credit-beam 7s linear 2.2s infinite;
+  }
+
+  .credit__scan {
+    display: block;
+    animation: credit-scan 8s cubic-bezier(0.45, 0, 0.25, 1) 2s infinite;
+  }
+
+  /* Antes de a placa aparecer, e enquanto está fora da tela, os laços ficam
+     parados: a entrada começa sempre do início, à vista. */
+  .credit-stage[data-armed]:not([data-revealed]) .credit::after,
+  .credit-stage[data-armed]:not([data-revealed]) .credit__beam,
+  .credit-stage[data-armed]:not([data-revealed]) .credit__glow::before,
+  .credit-stage[data-armed]:not([data-revealed]) .credit__scan,
+  .credit-stage[data-armed]:not([data-inview]) .credit::after,
+  .credit-stage[data-armed]:not([data-inview]) .credit__beam,
+  .credit-stage[data-armed]:not([data-inview]) .credit__glow::before,
+  .credit-stage[data-armed]:not([data-inview]) .credit__scan {
+    animation-play-state: paused;
+  }
+
+  /* Entrada: uma linha ciano acende no meio, se divide em duas que abrem a
+     placa até as bordas e somem; o fio da moldura pisca em ciano, o feixe dá
+     a volta rápida, o rótulo é digitado e o logo e o número sobem. */
+  .credit-stage[data-armed] {
+    clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0);
+    transition: clip-path 0.65s cubic-bezier(0.65, 0, 0.35, 1) 0.4s;
+  }
+
+  .credit-stage[data-armed]::before,
+  .credit-stage[data-armed]::after {
+    opacity: 1;
+    scale: 0 1;
+    transition:
+      scale 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      top 0.65s cubic-bezier(0.65, 0, 0.35, 1) 0.4s,
+      opacity 0.5s ease 1.05s;
+  }
+
+  .credit-stage[data-armed] .credit__label {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .credit-stage[data-armed] .credit__logo,
+  .credit-stage[data-armed] .credit__phone {
+    opacity: 0;
+    translate: 0 8px;
+  }
+
+  .credit-stage[data-armed] .credit__phone {
+    filter: blur(6px);
+  }
+
+  .credit-stage[data-revealed] {
+    clip-path: inset(0);
+  }
+
+  .credit-stage[data-revealed]::before,
+  .credit-stage[data-revealed]::after {
+    opacity: 0;
+    scale: 1;
+  }
+
+  .credit-stage[data-revealed]::before {
+    top: 0;
+  }
+
+  .credit-stage[data-revealed]::after {
+    top: calc(100% - 1px);
+  }
+
+  .credit-stage[data-revealed] .credit {
+    animation: credit-frame-flash 1.4s ease-out 0.9s;
+  }
+
+  .credit-stage[data-revealed] .credit__glow {
+    animation: credit-glow-flash 2s ease-out 0.6s;
+  }
+
+  /* "SITE DESENVOLVIDO POR" tem 21 caracteres: um passo por letra. */
+  .credit-stage[data-revealed] .credit__label {
+    clip-path: inset(0);
+    transition: clip-path 0.8s steps(21, end) 0.85s;
+  }
+
+  .credit-stage[data-revealed] .credit__logo {
+    opacity: 1;
+    translate: 0 0;
+    transition:
+      opacity 0.6s ease 1s,
+      translate 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1s;
+  }
+
+  .credit-stage[data-revealed] .credit__phone {
+    opacity: 1;
+    translate: 0 0;
+    filter: none;
+    transition:
+      opacity 0.6s ease 1.2s,
+      translate 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.2s,
+      filter 0.6s ease 1.2s,
+      text-decoration-color 0.3s ease;
+  }
+}
+
+@keyframes credit-frame-flash {
+  0%,
+  100% {
+    background-color: var(--braga-line);
+  }
+
+  25% {
+    background-color: var(--braga-accent);
+  }
+}
+
+@keyframes credit-glow-flash {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  20% {
+    opacity: 0.9;
+  }
 }
 
 @keyframes credit-stripes {
   to {
     background-position: 34px 0;
+  }
+}
+
+@keyframes credit-beam {
+  to {
+    rotate: 1turn;
+  }
+}
+
+/* O mesmo giro com outro nome: o Chrome ignora o segundo uso de um mesmo nome
+   na lista de animações de um pseudo-elemento. */
+@keyframes credit-beam-burst {
+  to {
+    rotate: 1turn;
+  }
+}
+
+/* Atravessa em 2,8s (35% de 8s) e espera fora da placa até a próxima volta. */
+@keyframes credit-scan {
+  0% {
+    translate: -100% 0;
+  }
+
+  35%,
+  100% {
+    translate: 100% 0;
   }
 }
 

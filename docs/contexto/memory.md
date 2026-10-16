@@ -187,3 +187,15 @@ Impacto: ANALYTICS_SETUP.md (novo), netlify.toml, architecture.md, copy.md, prd.
 Decisão: a Política de Privacidade passa a indicar Geovana dos Santos Silva como responsável pelos dados e o e-mail ebencreativestudio@gmail.com para os pedidos dos titulares, além do WhatsApp da agência. O Microsoft Clarity entra com o ID yyc2wuwh3l no netlify.toml. O GA4 foi configurado na conta pelo responsável pelo projeto (evento principal e dimensões personalizadas). O Pixel da Meta continua sem ID, então o aviso de cookies mostra só Aceitar e Recusar, sem a categoria Anúncios.
 Motivo: respostas do responsável pelo projeto. Fecha a pergunta pendente 7 do copy.md.
 Impacto: copy.md, prd.md, task.md, architecture.md, v1/README.md, ANALYTICS_SETUP.md, netlify.toml e content/privacy.ts.
+
+### 2026-10-15: animação da placa da BRAGA SYSTEMS
+
+Decisão: a placa do crédito ganha um movimento futurista e contido no ciano do logo (#35D5E8): um feixe de luz que corre sem parar pelo fio da moldura chanfrada, com um reflexo fraco junto às bordas, e uma faixa de luz fria que atravessa a placa a cada 8 segundos. Os dois passam por trás do texto e do logo, que continua sem efeito, como pede o guia da marca, e somem para quem pede movimento reduzido. As animações usam só rotação e deslocamento, que rodam na placa de vídeo sem pesar a página.
+Motivo: pedido do responsável pelo projeto, de uma animação que chame atenção para o crédito sem exagero. Ajusta a entrada sobre o crédito com a marca da BRAGA SYSTEMS, em que o único ciano era o do logo.
+Impacto: v1/DESIGN.md, components/layout/SiteFooter.tsx e app/globals.css.
+
+### 2026-10-16: entrada da placa da BRAGA SYSTEMS
+
+Decisão: a placa do crédito ganha uma entrada quando aparece na tela, marcada pelo componente InView: uma linha ciano acende no meio e se abre em duas até as bordas, revelando a placa; o fio da moldura pisca em ciano, o feixe dá uma volta rápida, o rótulo é digitado e o logo e o número sobem. Os laços (feixe, varredura e listras) ficam parados antes da entrada e fora da tela. O logo continua sem efeito, só aparece e sobe junto com o resto.
+Motivo: pedido do responsável pelo projeto, de uma entrada que também chame atenção.
+Impacto: v1/DESIGN.md, components/layout/SiteFooter.tsx e app/globals.css.

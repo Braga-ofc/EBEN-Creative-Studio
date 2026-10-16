@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ConsentPreferencesButton } from "@/components/analytics/ConsentPreferencesButton";
 import { Lockup } from "@/components/brand/Lockup";
+import { InView } from "@/components/ui/InView";
 import { legalLinks } from "@/content/privacy";
 import {
   brand,
@@ -88,23 +89,29 @@ export function SiteFooter() {
               />
             ) : null}
           </div>
-          <a
-            href={whatsappLink(developerCredit.whatsappNumber, developerCredit.message)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="credit"
-          >
-            <span className="credit__label">{developerCredit.label}</span>
-            <Image
-              src={developerCredit.logo.src}
-              alt={developerCredit.name}
-              width={developerCredit.logo.width}
-              height={developerCredit.logo.height}
-              className="credit__logo"
-            />
-            <span className="credit__phone">{developerCredit.phoneDisplay}</span>
-            <span className="sr-only"> (WhatsApp, abre em uma nova aba)</span>
-          </a>
+          {/* A placa liga quando aparece na tela (InView): globals.css, bloco "Crédito do desenvolvedor". */}
+          <InView className="credit-stage" threshold={0.6}>
+            <a
+              href={whatsappLink(developerCredit.whatsappNumber, developerCredit.message)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="credit"
+            >
+              <span className="credit__beam" aria-hidden="true" />
+              <span className="credit__glow" aria-hidden="true" />
+              <span className="credit__scan" aria-hidden="true" />
+              <span className="credit__label">{developerCredit.label}</span>
+              <Image
+                src={developerCredit.logo.src}
+                alt={developerCredit.name}
+                width={developerCredit.logo.width}
+                height={developerCredit.logo.height}
+                className="credit__logo"
+              />
+              <span className="credit__phone">{developerCredit.phoneDisplay}</span>
+              <span className="sr-only"> (WhatsApp, abre em uma nova aba)</span>
+            </a>
+          </InView>
         </div>
       </div>
     </footer>
