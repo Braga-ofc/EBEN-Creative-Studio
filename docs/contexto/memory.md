@@ -241,3 +241,9 @@ Impacto: v1/DESIGN.md, components/sections/StoryFrame.tsx, StoryControls.tsx e a
 Decisão: o número do crédito do rodapé passa a ser +55 61 99575-2594, exibido como "61 99575-2594", com o link https://wa.me/5561995752594 e a mesma mensagem pronta. Substitui o +55 61 99422-7093 das entradas anteriores sobre o crédito do desenvolvedor.
 Motivo: pedido do responsável pelo projeto.
 Impacto: content/site.ts, copy.md, prd.md e README.md.
+
+### 2026-10-16: migração da hospedagem para a Cloudflare Pages
+
+Decisão: a hospedagem sai da Netlify e vai para a Cloudflare Pages, que é gratuita e não limita publicações de site estático. Os cabeçalhos de segurança ganham uma cópia em `v1/public/_headers` (formato da Cloudflare, mesma política do `netlify.toml`, mais cache longo para `/_next/static`), e a versão do Node passa a ficar em `v1/.node-version`. As variáveis públicas (`NEXT_PUBLIC_SITE_URL` e os IDs do GA4 e do Clarity) vão para o ambiente de produção no painel da Cloudflare, porque o `.gitignore` não versiona arquivos `.env`. O `netlify.toml` fica até o DNS passar para a Cloudflare.
+Motivo: o novo plano gratuito da Netlify dá 300 créditos por mês e cobra 15 por publicação; depois de muitas publicações em outubro, a publicação do novo número da BRAGA SYSTEMS não saiu. O responsável pelo projeto escolheu migrar.
+Impacto: v1/public/_headers (novo), v1/.node-version (novo), architecture.md. Pendente: remover o netlify.toml e atualizar README.md, v1/README.md, prd.md, task.md, rules.md, ANALYTICS_SETUP.md e v1/PRODUCT.md depois da troca.
