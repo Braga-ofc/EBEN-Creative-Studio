@@ -235,3 +235,9 @@ Impacto: copy.md, ANALYTICS_SETUP.md, v1/DESIGN.md, content/landing.ts, lib/anal
 Decisão: o perfil do Story (foto de perfil e eben.creative_) passa a aparecer também no celular e no tablet; o campo de resposta, os botões, os cantos arredondados e o contorno continuam só no computador, para não disputar a base da tela com o botão principal e a barra fixa. A foto de perfil passa a ter o anel desenhado na borda do próprio disco, porque a animação de entrada fazia o anel antigo cobrir o fundo vinho. O contorno ganha movimento contínuo: uma luz que dá uma volta a cada 7s e um brilho que respira. O mouse em cima do Story deixa de pausar o carrossel, porque depois de passar uma foto com o mouse o tempo ficava parado; no lugar, segurar o clique ou o dedo pausa, como no Instagram.
 Motivo: pedidos do responsável pelo projeto.
 Impacto: v1/DESIGN.md, components/sections/StoryFrame.tsx, StoryControls.tsx e app/globals.css.
+
+### 2026-10-16: novo número técnico da BRAGA SYSTEMS
+
+Decisão: o número do crédito do rodapé passa a ser +55 61 99575-2594, exibido como "61 99575-2594", com o link https://wa.me/5561995752594 e a mesma mensagem pronta. Substitui o +55 61 99422-7093 das entradas anteriores sobre o crédito do desenvolvedor.
+Motivo: pedido do responsável pelo projeto.
+Impacto: content/site.ts, copy.md, prd.md e README.md.

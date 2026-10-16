@@ -74,8 +74,8 @@ export const portfolioInstagram: InstagramProfile = {
 export const developerCredit = {
   label: "Site desenvolvido por",
   name: "BRAGA SYSTEMS",
-  phoneDisplay: "61 99422-7093",
-  whatsappNumber: "5561994227093",
+  phoneDisplay: "61 99575-2594",
+  whatsappNumber: "5561995752594",
   /** Mensagem que abre preenchida no WhatsApp técnico. */
   message: "Olá!! Vim pelo site da EBEN Creative, queria saber mais sobre o seu trabalho.",
   /**

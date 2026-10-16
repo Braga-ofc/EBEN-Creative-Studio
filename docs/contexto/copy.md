@@ -10,7 +10,7 @@ Todos os botões "Agendar uma consultoria" (cabeçalho, primeira tela, barra fix
 
 > Oii, EBEN! Vim pela página e quero agendar uma consultoria.
 
-O número técnico, +55 61 99422-7093, aparece só no crédito do rodapé e abre https://wa.me/5561994227093 com a mensagem:
+O número técnico, +55 61 99575-2594, aparece só no crédito do rodapé e abre https://wa.me/5561995752594 com a mensagem:
 
 > Olá!! Vim pelo site da EBEN Creative, queria saber mais sobre o seu trabalho.
 
@@ -251,7 +251,7 @@ Na página: Portfólio, Serviços, Processo, Quem sou eu e Dúvidas.
 
 Direito autoral: © 2026 EBEN Creative Studio
 
-Crédito: Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093, com o logo oficial da BRAGA SYSTEMS no lugar do nome escrito
+Crédito: Site desenvolvido por BRAGA SYSTEMS · 61 99575-2594, com o logo oficial da BRAGA SYSTEMS no lugar do nome escrito
 
 Links legais, ao lado do direito autoral: Política de Privacidade e Preferências de cookies. O segundo só aparece quando alguma ferramenta de análise ou de anúncios está configurada.
 
