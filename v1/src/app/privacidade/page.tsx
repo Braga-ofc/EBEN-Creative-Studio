@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     siteName: brand.name,
     title: `${privacyPolicy.title} | ${brand.name}`,
     description: privacyPolicy.metaDescription,
+    // O openGraph desta página substitui o da raiz: a imagem de compartilhamento precisa ser repetida.
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: brand.name }],
   },
 };
 

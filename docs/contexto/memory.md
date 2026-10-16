@@ -211,3 +211,9 @@ Impacto: netlify.toml, README.md, v1/README.md, v1/PRODUCT.md, ANALYTICS_SETUP.m
 Decisão: o `netlify.toml` passa a enviar cabeçalhos de segurança em todas as páginas: Content-Security-Policy com a lista de endereços permitidos (próprio site, GA4, Clarity, Pixel da Meta e Google Drive, incluindo accounts.google.com, por onde o player do Drive passa), proibição de exibir o site dentro de iframes de outros sites, HSTS com subdomínios, nosniff, Referrer-Policy, Permissions-Policy e Cross-Origin-Opener-Policy. `'unsafe-inline'` continua em script-src porque a exportação estática do Next.js, os snippets oficiais das ferramentas e o selo da Netlify usam scripts inline. A política foi testada num servidor local com os mesmos cabeçalhos: GA4, Clarity, miniaturas e vídeos do Drive e o vídeo do site funcionaram sem bloqueio. As 5 vulnerabilidades do npm audit ficam como estão: estão só no braces, dependência do ESLint usada no desenvolvimento, que não vai para o site publicado.
 Motivo: pedido do responsável pelo projeto de uma análise de segurança completa.
 Impacto: netlify.toml, architecture.md, rules.md.
+
+### 2026-10-16: imagem de compartilhamento
+
+Decisão: o site ganha a imagem de compartilhamento (Open Graph e X/Twitter, 1200 x 630): a assinatura CREATIVE, monograma e STUDIO em marfim sobre o burgundy, com o slogan em Fraunces itálica, um fio dourado e duas estrelas. Fica em `src/app/opengraph-image.png` e `twitter-image.png`, pela convenção de arquivos do Next.js, e a Política de Privacidade repete a imagem porque define o próprio openGraph. O cartão do X passa a ser o grande (summary_large_image).
+Motivo: ao compartilhar o link, o WhatsApp mostrava a foto da Geovana, a primeira imagem que encontrava na página. O responsável pelo projeto pediu a logo no lugar.
+Impacto: app/opengraph-image.png, app/twitter-image.png, app/layout.tsx, app/privacidade/page.tsx, prd.md, task.md e v1/README.md.

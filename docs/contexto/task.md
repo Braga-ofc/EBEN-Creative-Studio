@@ -50,7 +50,7 @@ Situação do projeto em 2026-10-15. O plano original, de 2026-10-09, foi substi
 - [ ] Medir no Lighthouse, no celular, o site publicado e corrigir o que impedir nota 90 em desempenho, acessibilidade e SEO.
 - [ ] Rodar `npm run verify:seo` com o endereço público.
 - [ ] Animar as entradas das últimas seções (objeções, perguntas frequentes e fechamento) no mesmo estilo das demais.
-- [ ] Criar a imagem de compartilhamento para redes sociais (Open Graph).
+- [x] Imagem de compartilhamento para redes sociais (Open Graph): assinatura marfim e slogan sobre o burgundy, em `src/app/opengraph-image.png` e `twitter-image.png`.
 - [x] Domínio próprio ebencreative.com.br configurado no Netlify e no `NEXT_PUBLIC_SITE_URL`.
 - [ ] Faixa de logos de clientes. Bloqueada até o envio dos logos.
 - [ ] Depoimentos em frase e um terceiro case. Bloqueada até existirem e serem autorizados.

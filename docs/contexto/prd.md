@@ -44,15 +44,14 @@ O projeto tem dois números de WhatsApp com papéis separados. O número da agê
 ## Funcionalidades para depois
 
 1. ID do Pixel da Meta, quando a conta for criada.
-2. Imagem de compartilhamento para redes sociais (Open Graph), que ainda não existe.
-3. Faixa de logos de clientes, depoimentos em frase e um terceiro case, quando existirem e forem autorizados.
-4. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
-5. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
-6. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
-7. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
-8. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
-9. Agendamento de reunião integrado a uma agenda.
-10. Área do cliente para aprovação de conteúdos e entrega de arquivos.
+2. Faixa de logos de clientes, depoimentos em frase e um terceiro case, quando existirem e forem autorizados.
+3. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
+4. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
+5. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
+6. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
+7. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
+8. Agendamento de reunião integrado a uma agenda.
+9. Área do cliente para aprovação de conteúdos e entrega de arquivos.
 
 ## Critério de sucesso
 

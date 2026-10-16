@@ -147,7 +147,6 @@ Dois perfis, cada um com o ícone animado ([src/components/ui/InstagramLink.tsx]
 - Depoimentos em frase, se houver.
 - Logos de clientes.
 - Domínio final, para o build de produção e a validação de SEO publicada.
-- Imagem de compartilhamento para redes sociais (Open Graph).
 - Medir o Lighthouse no celular com o site publicado.
 - Entradas animadas das últimas seções (objeções, perguntas frequentes e fechamento).
 - ID do Pixel da Meta.
