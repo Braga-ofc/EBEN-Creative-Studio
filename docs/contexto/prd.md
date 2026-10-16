@@ -18,7 +18,7 @@ Pergunta para você: qual é a cidade ou região de atuação para gravações p
 
 ## Funcionalidades da primeira versão (publicada)
 
-A primeira versão é uma página única, publicada no Netlify em https://ebencreative.netlify.app, com todo o conteúdo estático versionado no repositório e uma única ação: o botão "Agendar uma consultoria", que é gratuita e abre o WhatsApp. O texto de cada bloco está em copy.md.
+A primeira versão é uma página única, publicada no Netlify em https://ebencreative.com.br, com todo o conteúdo estático versionado no repositório e uma única ação: o botão "Agendar uma consultoria", que é gratuita e abre o WhatsApp. O texto de cada bloco está em copy.md.
 
 1. Tela de abertura com o monograma da EBEN e uma lente que se abre revelando a página, uma vez por sessão.
 2. Primeira tela com a headline, o subtítulo, o botão principal, o link "Ver portfólio" e três fotos da Geovana passando em formato de Story.
@@ -46,14 +46,13 @@ O projeto tem dois números de WhatsApp com papéis separados. O número da agê
 1. ID do Pixel da Meta, quando a conta for criada.
 2. Imagem de compartilhamento para redes sociais (Open Graph), que ainda não existe.
 3. Faixa de logos de clientes, depoimentos em frase e um terceiro case, quando existirem e forem autorizados.
-4. Domínio próprio no lugar do endereço do Netlify.
-5. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
-6. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
-7. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
-8. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
-9. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
-10. Agendamento de reunião integrado a uma agenda.
-11. Área do cliente para aprovação de conteúdos e entrega de arquivos.
+4. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
+5. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
+6. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
+7. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
+8. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
+9. Agendamento de reunião integrado a uma agenda.
+10. Área do cliente para aprovação de conteúdos e entrega de arquivos.
 
 ## Critério de sucesso
 

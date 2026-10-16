@@ -180,7 +180,7 @@ O site é publicado no **Netlify**, com esta configuração (já definida em [`n
 | Comando de build | `npm ci && npm run build` |
 | Pasta publicada | `out` |
 | Versão do Node | `22` |
-| `NEXT_PUBLIC_SITE_URL` | `https://ebencreative.netlify.app` |
+| `NEXT_PUBLIC_SITE_URL` | `https://ebencreative.com.br` |
 
 Com o repositório ligado ao Netlify, cada atualização enviada para a branch principal gera uma nova publicação.
 

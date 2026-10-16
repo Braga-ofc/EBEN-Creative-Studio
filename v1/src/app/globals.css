@@ -2919,12 +2919,12 @@ html:has(.viewer[open]) {
 
 /* Palco da placa: recebe os estados de entrada do InView e desenha as duas
    linhas de luz que abrem a placa a partir do centro (só com movimento). */
-.credit-stage {
+.credit-shutter {
   position: relative;
 }
 
-.credit-stage::before,
-.credit-stage::after {
+.credit-shutter::before,
+.credit-shutter::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -3176,13 +3176,13 @@ html:has(.viewer[open]) {
   /* Entrada: uma linha ciano acende no meio, se divide em duas que abrem a
      placa até as bordas e somem; o fio da moldura pisca em ciano, o feixe dá
      a volta rápida, o rótulo é digitado e o logo e o número sobem. */
-  .credit-stage[data-armed] {
+  .credit-stage[data-armed] .credit-shutter {
     clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0);
     transition: clip-path 0.65s cubic-bezier(0.65, 0, 0.35, 1) 0.4s;
   }
 
-  .credit-stage[data-armed]::before,
-  .credit-stage[data-armed]::after {
+  .credit-stage[data-armed] .credit-shutter::before,
+  .credit-stage[data-armed] .credit-shutter::after {
     opacity: 1;
     scale: 0 1;
     transition:
@@ -3205,21 +3205,21 @@ html:has(.viewer[open]) {
     filter: blur(6px);
   }
 
-  .credit-stage[data-revealed] {
+  .credit-stage[data-revealed] .credit-shutter {
     clip-path: inset(0);
   }
 
-  .credit-stage[data-revealed]::before,
-  .credit-stage[data-revealed]::after {
+  .credit-stage[data-revealed] .credit-shutter::before,
+  .credit-stage[data-revealed] .credit-shutter::after {
     opacity: 0;
     scale: 1;
   }
 
-  .credit-stage[data-revealed]::before {
+  .credit-stage[data-revealed] .credit-shutter::before {
     top: 0;
   }
 
-  .credit-stage[data-revealed]::after {
+  .credit-stage[data-revealed] .credit-shutter::after {
     top: calc(100% - 1px);
   }
 

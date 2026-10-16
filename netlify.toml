@@ -8,8 +8,8 @@
 [build.environment]
   NODE_VERSION = "22"
   # Endereço público usado em canonical, sitemap.xml, robots.txt e llms.txt.
-  # Troque pelo domínio próprio quando ele estiver configurado.
-  NEXT_PUBLIC_SITE_URL = "https://ebencreative.netlify.app"
+  # Domínio próprio, configurado no Netlify em 2026-10-16.
+  NEXT_PUBLIC_SITE_URL = "https://ebencreative.com.br"
   # IDs das ferramentas de análise e de anúncios (públicos, aparecem no código
   # de qualquer site). O rastreamento só liga no endereço acima: deploy
   # previews e cópias locais não enviam nada. Sem um ID, a ferramenta fica

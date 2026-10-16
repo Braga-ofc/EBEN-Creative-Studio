@@ -53,7 +53,7 @@ O código fica em:
 
 ### Só no endereço oficial
 
-O rastreamento só liga quando a página está no endereço de `NEXT_PUBLIC_SITE_URL` (hoje `https://ebencreative.netlify.app`). Deploy previews, branch deploys, cópias locais e o servidor de desenvolvimento não mostram o aviso e não enviam nada, e os testes não se misturam com os dados reais. Quando o domínio próprio entrar, basta trocar o `NEXT_PUBLIC_SITE_URL`.
+O rastreamento só liga quando a página está no endereço de `NEXT_PUBLIC_SITE_URL` (hoje `https://ebencreative.com.br`). Deploy previews, branch deploys, cópias locais e o servidor de desenvolvimento não mostram o aviso e não enviam nada, e os testes não se misturam com os dados reais. Quando o domínio próprio entrar, basta trocar o `NEXT_PUBLIC_SITE_URL`.
 
 ## Eventos
 
@@ -163,8 +163,8 @@ O Netlify redireciona o endereço `.netlify.app` para o domínio principal, ent�
 
 O GA4 registra sozinho a origem de cada sessão. Para separar o Instagram, use links com UTM na bio:
 
-- **Perfil da EBEN:** `https://ebencreative.netlify.app/?utm_source=instagram&utm_medium=social&utm_content=perfil-eben`
-- **Perfil da Geovana:** `https://ebencreative.netlify.app/?utm_source=instagram&utm_medium=social&utm_content=perfil-geovana`
+- **Perfil da EBEN:** `https://ebencreative.com.br/?utm_source=instagram&utm_medium=social&utm_content=perfil-eben`
+- **Perfil da Geovana:** `https://ebencreative.com.br/?utm_source=instagram&utm_medium=social&utm_content=perfil-geovana`
 - **Anúncios:** `?utm_source=instagram&utm_medium=paid&utm_campaign=nome-da-campanha`
 
 Nunca coloque UTM no link do WhatsApp: o WhatsApp ignora esses parâmetros. Os eventos do site não leem a URL e não criam identificadores próprios.
@@ -213,7 +213,7 @@ Os testes locais usaram IDs falsos (`G-TESTE00000` e outros); nenhum deles usou 
 
 ### Teste com dados reais (depois da publicação)
 
-1. Abra `https://ebencreative.netlify.app/?ga_debug=1` numa janela anônima e aceite os cookies.
+1. Abra `https://ebencreative.com.br/?ga_debug=1` numa janela anônima e aceite os cookies.
 2. No GA4, abra Administrador > **DebugView**: os eventos aparecem em segundos, com os parâmetros.
 3. Toque num botão de WhatsApp, abra uma pergunta e role a página até o fim.
 4. Confira também Relatórios > **Tempo real**.

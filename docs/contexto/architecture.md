@@ -26,7 +26,7 @@ O build exige a variável `NEXT_PUBLIC_SITE_URL`, com o endereço público do si
 
 ## Hospedagem
 
-O site está publicado no **Netlify**, em https://ebencreative.netlify.app. A configuração fica no `netlify.toml`, na raiz do repositório: pasta base `v1`, comando `npm ci && npm run build`, pasta publicada `out`, Node 22, `NEXT_PUBLIC_SITE_URL` apontando para o endereço do Netlify e os IDs do GA4 (`NEXT_PUBLIC_GA_ID`) e do Clarity (`NEXT_PUBLIC_CLARITY_ID`); o ID do Pixel entra no mesmo lugar quando a conta existir. Cada envio para a branch `main` do GitHub gera uma nova publicação.
+O site está publicado no **Netlify**, em https://ebencreative.com.br. A configuração fica no `netlify.toml`, na raiz do repositório: pasta base `v1`, comando `npm ci && npm run build`, pasta publicada `out`, Node 22, `NEXT_PUBLIC_SITE_URL` apontando para o endereço do Netlify e os IDs do GA4 (`NEXT_PUBLIC_GA_ID`) e do Clarity (`NEXT_PUBLIC_CLARITY_ID`); o ID do Pixel entra no mesmo lugar quando a conta existir. Cada envio para a branch `main` do GitHub gera uma nova publicação.
 
 A Vercel Hobby foi descartada porque proíbe uso comercial. O domínio próprio ainda não existe; quando for registrado, entra no Netlify e no `NEXT_PUBLIC_SITE_URL`.
 

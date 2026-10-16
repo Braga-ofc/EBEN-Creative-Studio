@@ -199,3 +199,9 @@ Impacto: v1/DESIGN.md, components/layout/SiteFooter.tsx e app/globals.css.
 Decisão: a placa do crédito ganha uma entrada quando aparece na tela, marcada pelo componente InView: uma linha ciano acende no meio e se abre em duas até as bordas, revelando a placa; o fio da moldura pisca em ciano, o feixe dá uma volta rápida, o rótulo é digitado e o logo e o número sobem. Os laços (feixe, varredura e listras) ficam parados antes da entrada e fora da tela. O logo continua sem efeito, só aparece e sobe junto com o resto.
 Motivo: pedido do responsável pelo projeto, de uma entrada que também chame atenção.
 Impacto: v1/DESIGN.md, components/layout/SiteFooter.tsx e app/globals.css.
+
+### 2026-10-16: domínio próprio
+
+Decisão: o site passa a responder em https://ebencreative.com.br, que vira o endereço oficial em `NEXT_PUBLIC_SITE_URL`. O canonical, o sitemap, o robots, o llms.txt e os dados estruturados passam a usar o domínio novo, e a análise (GA4 e Clarity) só liga nele.
+Motivo: o responsável pelo projeto registrou o domínio e o configurou no Netlify.
+Impacto: netlify.toml, README.md, v1/README.md, v1/PRODUCT.md, ANALYTICS_SETUP.md, architecture.md, prd.md e task.md.

@@ -1,6 +1,6 @@
 # EBEN Creative Studio, landing page v1
 
-Landing page da EBEN Creative Studio, publicada no Netlify em https://ebencreative.netlify.app. O nome `v1` vem de quando a página foi criada como a primeira de três versões independentes; neste repositório só existe esta, e ela é um projeto completo, que não depende de nada fora da pasta.
+Landing page da EBEN Creative Studio, publicada no Netlify em https://ebencreative.com.br. O nome `v1` vem de quando a página foi criada como a primeira de três versões independentes; neste repositório só existe esta, e ela é um projeto completo, que não depende de nada fora da pasta.
 
 O objetivo principal da página é levar o visitante a **agendar uma consultoria gratuita**, e o secundário é mostrar o portfólio. O botão "Agendar uma consultoria" abre o WhatsApp da EBEN (+55 61 99454-1957) com a mensagem "Oii, EBEN! Vim pela página e quero agendar uma consultoria."
 

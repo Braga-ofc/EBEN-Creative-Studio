@@ -36,7 +36,7 @@ Situação do projeto em 2026-10-15. O plano original, de 2026-10-09, foi substi
 
 - [x] Página 404 no visual da marca.
 - [x] Metadados de SEO, canonical, `sitemap.xml`, `robots.txt`, `llms.txt` e dados estruturados (JSON-LD).
-- [x] Publicação no Netlify, em https://ebencreative.netlify.app, com publicação automática a cada envio para a branch `main`.
+- [x] Publicação no Netlify, em https://ebencreative.com.br, com publicação automática a cada envio para a branch `main`.
 
 ### Análise e privacidade
 
@@ -51,7 +51,7 @@ Situação do projeto em 2026-10-15. O plano original, de 2026-10-09, foi substi
 - [ ] Rodar `npm run verify:seo` com o endereço público.
 - [ ] Animar as entradas das últimas seções (objeções, perguntas frequentes e fechamento) no mesmo estilo das demais.
 - [ ] Criar a imagem de compartilhamento para redes sociais (Open Graph).
-- [ ] Registrar o domínio próprio, configurar no Netlify e trocar o `NEXT_PUBLIC_SITE_URL`. Bloqueada até a escolha do domínio.
+- [x] Domínio próprio ebencreative.com.br configurado no Netlify e no `NEXT_PUBLIC_SITE_URL`.
 - [ ] Faixa de logos de clientes. Bloqueada até o envio dos logos.
 - [ ] Depoimentos em frase e um terceiro case. Bloqueada até existirem e serem autorizados.
 - [ ] Colocar no `netlify.toml` o ID do Pixel da Meta. Bloqueada até a criação da conta.

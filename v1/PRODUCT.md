@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-TypeScript, React, Next.js (App Router) e Tailwind CSS, definidos pelo responsável pelo projeto. Exportação estática (`output: "export"`), sem servidor, publicada no Netlify em https://ebencreative.netlify.app. O nome `v1/` vem de quando a página foi criada como a primeira de três versões independentes; neste repositório só existe esta.
+TypeScript, React, Next.js (App Router) e Tailwind CSS, definidos pelo responsável pelo projeto. Exportação estática (`output: "export"`), sem servidor, publicada no Netlify em https://ebencreative.com.br. O nome `v1/` vem de quando a página foi criada como a primeira de três versões independentes; neste repositório só existe esta.
 
 ## Users
 
