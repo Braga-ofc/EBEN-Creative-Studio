@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Manrope } from "next/font/google";
+import { Tracking } from "@/components/analytics/Tracking";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { brand, seo } from "@/content/site";
-import { absoluteUrl, siteUrl } from "@/lib/env";
+import { absoluteUrl, hasTracking, siteUrl, trackingIds } from "@/lib/env";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -58,6 +59,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         {children}
         <SmoothScroll />
+        {/* Aviso de cookies e ferramentas de análise, só com algum ID configurado (lib/env.ts). */}
+        {hasTracking ? <Tracking siteUrl={siteUrl} ids={trackingIds} /> : null}
       </body>
     </html>
   );

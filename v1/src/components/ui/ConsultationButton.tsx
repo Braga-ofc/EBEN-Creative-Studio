@@ -1,8 +1,11 @@
 import { ctaLabel } from "@/content/landing";
+import { trackLink, type CtaLocation } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import { consultationLink } from "@/lib/whatsapp";
 
 type ConsultationButtonProps = {
+  /** Onde o botão está na página: vai no evento whatsapp_click do GA4. */
+  location: CtaLocation;
   /** "light" para fundos burgundy e charcoal; "dark" para o papel marfim. */
   tone?: "light" | "dark";
   size?: "md" | "sm";
@@ -17,12 +20,18 @@ type ConsultationButtonProps = {
  * botão escolhido pelo responsável pelo projeto (globals.css, bloco "Botão
  * da consultoria").
  */
-export function ConsultationButton({ tone = "light", size = "md", className }: ConsultationButtonProps) {
+export function ConsultationButton({
+  location,
+  tone = "light",
+  size = "md",
+  className,
+}: ConsultationButtonProps) {
   return (
     <a
       href={consultationLink}
       target="_blank"
       rel="noopener noreferrer"
+      {...trackLink("whatsapp_click", location)}
       className={cn("cta", tone === "dark" && "cta--dark", size === "sm" && "cta--sm", className)}
     >
       <span className="cta__glow" aria-hidden="true">

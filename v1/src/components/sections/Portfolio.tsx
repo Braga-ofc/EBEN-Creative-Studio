@@ -12,6 +12,7 @@ export function Portfolio() {
   return (
     <section
       id="portfolio"
+      data-section="portfolio"
       aria-labelledby="portfolio-title"
       className="overflow-x-clip bg-charcoal section-pad defer-render"
     >
@@ -50,8 +51,8 @@ export function Portfolio() {
             .
           </p>
           <div className="mb-10 flex gap-16 sm:mr-28 sm:mb-8">
-            <InstagramLink profile={portfolioInstagram} />
-            <InstagramLink profile={agencyInstagram} />
+            <InstagramLink profile={portfolioInstagram} location="portfolio" />
+            <InstagramLink profile={agencyInstagram} location="portfolio" />
           </div>
         </div>
       </div>

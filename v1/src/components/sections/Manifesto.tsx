@@ -14,7 +14,11 @@ const paragraphColumns = ["lg:col-span-4 lg:col-start-5", "lg:col-span-4 lg:col-
  */
 export function Manifesto() {
   return (
-    <section aria-labelledby="manifesto-title" className="manifesto border-t border-ivory/15 section-pad">
+    <section
+      data-section="manifesto"
+      aria-labelledby="manifesto-title"
+      className="manifesto border-t border-ivory/15 section-pad"
+    >
       <div className="shell">
         <h2 id="manifesto-title" className="rack-focus max-w-[15ch] type-statement">
           {manifesto.titleStart} <em className="text-gold">{manifesto.titleEnd}</em>

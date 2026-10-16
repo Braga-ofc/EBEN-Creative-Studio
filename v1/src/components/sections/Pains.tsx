@@ -2,7 +2,7 @@ import { pains } from "@/content/landing";
 
 export function Pains() {
   return (
-    <section aria-labelledby="dor-title" className="section-pad defer-render">
+    <section data-section="dores" aria-labelledby="dor-title" className="section-pad defer-render">
       <div className="shell">
         {/* O título fica fixo só enquanto a lista passa: o fecho mora fora deste
             bloco para o título não descer por cima dele. */}

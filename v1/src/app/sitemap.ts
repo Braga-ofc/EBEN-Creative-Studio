@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 import { seo } from "@/content/site";
-import { siteUrl } from "@/lib/env";
+import { absoluteUrl, siteUrl } from "@/lib/env";
 
 export const dynamic = "force-static";
 
-/** Só a página inicial é pública e indexável nesta versão. */
+/** A página inicial e a Política de Privacidade são as páginas públicas e indexáveis. */
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -13,6 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: seo.contentUpdatedAt,
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: absoluteUrl("/privacidade"),
+      lastModified: seo.privacyUpdatedAt,
+      changeFrequency: "yearly",
+      priority: 0.2,
     },
   ];
 }

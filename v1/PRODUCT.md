@@ -28,7 +28,7 @@ O contato e a aprovação dos conteúdos acontecem pelo WhatsApp. Atendimento de
 
 ## Capabilities and Constraints
 
-Conversão só pelo WhatsApp, sem formulário e sem rastreamento nesta versão. O texto aprovado da página está em `../docs/contexto/copy.md`. Todas as fotos do site são reais (a Geovana na primeira tela, no manifesto e no "Quem sou eu?", as fotos de perfil das clientes e as mídias do portfólio); nenhuma imagem pode ser gerada ou buscada em banco de imagens. O domínio final ainda não existe: o site usa o endereço do Netlify, pela variável `NEXT_PUBLIC_SITE_URL`. Os perfis do Instagram são @eben.creative_ (agência) e @geoo.silvaz (trabalhos da Geovana). A região de atuação e a lista de logos de clientes ainda não foram informadas.
+Conversão só pelo WhatsApp, sem formulário. A medição (GA4, e o Clarity e o Pixel da Meta quando os IDs chegarem) só carrega depois do aceite num aviso de cookies discreto, no canto de baixo, que não pode cobrir o botão principal. O texto aprovado da página está em `../docs/contexto/copy.md`. Todas as fotos do site são reais (a Geovana na primeira tela, no manifesto e no "Quem sou eu?", as fotos de perfil das clientes e as mídias do portfólio); nenhuma imagem pode ser gerada ou buscada em banco de imagens. O domínio final ainda não existe: o site usa o endereço do Netlify, pela variável `NEXT_PUBLIC_SITE_URL`. Os perfis do Instagram são @eben.creative_ (agência) e @geoo.silvaz (trabalhos da Geovana). A região de atuação e a lista de logos de clientes ainda não foram informadas.
 
 ## Brand Commitments
 

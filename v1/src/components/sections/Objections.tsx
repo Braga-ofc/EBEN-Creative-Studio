@@ -2,7 +2,11 @@ import { objections } from "@/content/landing";
 
 export function Objections() {
   return (
-    <section aria-labelledby="objecoes-title" className="bg-burgundy-deep section-pad defer-render">
+    <section
+      data-section="objecoes"
+      aria-labelledby="objecoes-title"
+      className="bg-burgundy-deep section-pad defer-render"
+    >
       <div className="shell">
         <h2 id="objecoes-title" className="max-w-[18ch] type-h2">
           {objections.title}

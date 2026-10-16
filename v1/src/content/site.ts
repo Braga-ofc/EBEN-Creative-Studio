@@ -17,7 +17,9 @@ export const seo = {
   description:
     "Agência criativa e audiovisual: gestão de redes sociais, vídeos e bastidores em tempo real, com estratégia. Agende uma consultoria gratuita pelo WhatsApp.",
   /** Data da última mudança de conteúdo, usada no sitemap. Atualize quando o texto mudar. */
-  contentUpdatedAt: "2026-10-14",
+  contentUpdatedAt: "2026-10-15",
+  /** Data da última mudança da Política de Privacidade (a mesma escrita no topo dela). */
+  privacyUpdatedAt: "2026-10-15",
 } as const;
 
 export const contact = {

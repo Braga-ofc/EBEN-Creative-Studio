@@ -29,6 +29,7 @@ export function About() {
   return (
     <section
       id="quem-sou-eu"
+      data-section="quem-sou-eu"
       aria-labelledby="quem-sou-eu-title"
       className="about bg-burgundy-deep section-pad defer-render"
     >

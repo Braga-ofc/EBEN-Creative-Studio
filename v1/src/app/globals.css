@@ -3420,3 +3420,155 @@ html:has(.viewer[open]) {
 /* Sem bloco de movimento reduzido de propósito: o leque só se move quando a
    pessoa passa o mouse ou foca o ícone, e o responsável pelo projeto quer o
    efeito do vídeo de referência mesmo com as animações do sistema desligadas. */
+
+/* Aviso de cookies ---------------------------------------------------------
+ * Cartão charcoal com fio dourado no alto, cantos retos e sem sombra, preso
+ * embaixo: no celular ocupa a largura (16px de margem) e sobe para cima da
+ * barra fixa do botão quando ela aparece (data-cta-bar, posto pela barra);
+ * a partir de 768px fica no canto de baixo à esquerda. Entra depois da
+ * abertura do site; reaberto pelo rodapé, entra na hora. Não é modal. */
+
+.consent {
+  --consent-delay: 2s;
+  position: fixed;
+  z-index: 30;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  left: 1rem;
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--color-ivory) 14%, transparent);
+  border-top-color: color-mix(in srgb, var(--color-gold) 70%, transparent);
+  background-color: var(--color-charcoal);
+  color: var(--color-ivory);
+  transition: bottom 0.3s ease-out;
+  animation: consent-in 0.6s var(--ease-out-expo) var(--consent-delay) both;
+}
+
+:root[data-intro="seen"] .consent {
+  --consent-delay: 0.6s;
+}
+
+.consent.consent--now {
+  --consent-delay: 0s;
+}
+
+.consent:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (max-width: 47.99rem) {
+  :root[data-cta-bar] .consent {
+    bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (min-width: 48rem) {
+  .consent {
+    right: auto;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 26rem;
+    padding: 1.5rem;
+  }
+}
+
+.consent__link {
+  color: var(--color-ivory);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-gold) 60%, transparent);
+  transition: color 0.2s ease;
+}
+
+.consent__link:hover {
+  color: var(--color-gold);
+}
+
+.consent__options {
+  display: grid;
+  gap: 0.875rem;
+  padding-block: 0.25rem;
+}
+
+.consent__option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  cursor: pointer;
+}
+
+.consent__check {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.2rem;
+  accent-color: var(--color-gold);
+  cursor: pointer;
+}
+
+/* Aceitar e Recusar: o mesmo tamanho e o mesmo peso, como manda a regra. */
+.consent__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.consent__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--color-ivory) 45%, transparent);
+  border-radius: 10rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-ivory);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.consent__button:hover {
+  border-color: var(--color-ivory);
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+}
+
+.consent__button:active {
+  scale: 0.97;
+}
+
+.consent__more {
+  justify-self: start;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-mist);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-gold) 60%, transparent);
+  text-underline-offset: 0.24em;
+  transition: color 0.2s ease;
+}
+
+.consent__more:hover {
+  color: var(--color-ivory);
+}
+
+/* Sem visibility no início: o aviso precisa receber o foco já no primeiro quadro
+   quando é reaberto pelo rodapé. Enquanto espera, não recebe cliques. */
+@keyframes consent-in {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consent {
+    transition: none;
+    animation: none;
+  }
+}

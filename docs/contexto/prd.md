@@ -35,27 +35,28 @@ A primeira versão é uma página única, publicada no Netlify em https://ebencr
 13. Fio dourado ligando todas as seções e animações de entrada que acompanham a rolagem, desligadas para quem pede movimento reduzido.
 14. Metadados de SEO, sitemap, robots, llms.txt e dados estruturados (JSON-LD).
 15. Página 404 no visual da marca.
+16. Aviso de cookies com Aceitar e Recusar de mesmo peso e um painel Personalizar (Análise e Anúncios), que volta pelo link "Preferências de cookies" do rodapé.
+17. Medição com o Google Analytics 4, e com o Microsoft Clarity, os dois ligados com os IDs reais, e com o Pixel da Meta pronto no código, esperando o ID. Nada carrega antes do aceite, e só no endereço oficial do site. Eventos: clique no WhatsApp com o lugar do botão (`whatsapp_click`, e o Contact no Pixel), clique no Instagram, seções vistas, profundidade de rolagem, perguntas frequentes abertas e uso do portfólio. A configuração das contas está em `ANALYTICS_SETUP.md`.
+18. Página de Política de Privacidade em /privacidade, com Geovana dos Santos Silva como responsável pelos dados e o e-mail ebencreativestudio@gmail.com para pedidos.
 
 O projeto tem dois números de WhatsApp com papéis separados. O número da agência, +55 61 99454-1957, com o link https://wa.me/5561994541957, é o número usado em todos os botões e contatos da página, com a mensagem "Oii, EBEN! Vim pela página e quero agendar uma consultoria.". O número do responsável pelo código, pela criação e pela manutenção do site é +55 61 99422-7093, é usado só para assuntos técnicos e aparece em um único lugar, a linha de crédito do rodapé, no texto "Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093", com o número levando ao link https://wa.me/5561994227093 e a mensagem "Olá!! Vim pelo site da EBEN Creative, queria saber mais sobre o seu trabalho.".
 
 ## Funcionalidades para depois
 
-1. Google Analytics 4 e Pixel da Meta, carregados só depois que o visitante aceita os cookies, com o evento Lead em todo clique de botão de WhatsApp. Aguarda a criação das contas.
-2. Aviso de cookies com os botões Aceitar e Recusar e opção de mudar a escolha depois pelo rodapé, junto com o rastreamento.
-3. Página de Política de Privacidade, exigida pela LGPD quando o rastreamento entrar.
-4. Imagem de compartilhamento para redes sociais (Open Graph), que ainda não existe.
-5. Faixa de logos de clientes, depoimentos em frase e um terceiro case, quando existirem e forem autorizados.
-6. Domínio próprio no lugar do endereço do Netlify.
-7. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
-8. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
-9. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
-10. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
-11. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
-12. Agendamento de reunião integrado a uma agenda.
-13. Área do cliente para aprovação de conteúdos e entrega de arquivos.
+1. ID do Pixel da Meta, quando a conta for criada.
+2. Imagem de compartilhamento para redes sociais (Open Graph), que ainda não existe.
+3. Faixa de logos de clientes, depoimentos em frase e um terceiro case, quando existirem e forem autorizados.
+4. Domínio próprio no lugar do endereço do Netlify.
+5. Formulário de contato com envio por e-mail para gubragah.oficiaal@gmail.com e caixa de consentimento da LGPD.
+6. Página de detalhe de cada projeto do portfólio, com contexto, o que foi feito e o resultado.
+7. Páginas de destino separadas por serviço ou por segmento, para anúncios pagos.
+8. Blog ou área de conteúdos para atrair visitantes por busca orgânica.
+9. Gerenciador de conteúdo externo, para editar textos e portfólio sem mexer no código.
+10. Agendamento de reunião integrado a uma agenda.
+11. Área do cliente para aprovação de conteúdos e entrega de arquivos.
 
 ## Critério de sucesso
 
-Quando o rastreamento entrar, o sucesso é medido pelo número de eventos Lead registrados no GA4 e no Pixel da Meta, ou seja, cliques em botões de WhatsApp. Até lá, a referência são as conversas que chegam no WhatsApp da agência com a mensagem da página. A meta técnica é a nota de desempenho do Lighthouse no celular igual ou acima de 90, que ainda precisa ser medida no site publicado.
+O sucesso é medido pela taxa de sessões com clique no WhatsApp, a "taxa de eventos principais da sessão" do GA4 com o `whatsapp_click` marcado como evento principal, separada por origem da visita. O clique mostra a intenção de contato, não uma conversa iniciada: a confirmação continua sendo as conversas que chegam no WhatsApp da agência com a mensagem da página. A meta técnica é a nota de desempenho do Lighthouse no celular igual ou acima de 90, que ainda precisa ser medida no site publicado.
 
 Perguntas para você: existe uma meta de conversas por mês vindas da página? Existe data limite para alguma campanha de tráfego pago?

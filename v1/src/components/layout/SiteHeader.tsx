@@ -32,7 +32,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ConsultationButton size="sm" className="hidden md:inline-flex" />
+          <ConsultationButton location="cabecalho" size="sm" className="hidden md:inline-flex" />
           <MobileMenu />
         </div>
       </div>

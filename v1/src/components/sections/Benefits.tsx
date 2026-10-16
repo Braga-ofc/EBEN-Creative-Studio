@@ -3,7 +3,11 @@ import { benefits } from "@/content/landing";
 
 export function Benefits() {
   return (
-    <section aria-labelledby="beneficios-title" className="section-pad defer-render">
+    <section
+      data-section="beneficios"
+      aria-labelledby="beneficios-title"
+      className="section-pad defer-render"
+    >
       <div className="shell">
         <h2 id="beneficios-title" className="rack-focus type-h2">
           {benefits.title}

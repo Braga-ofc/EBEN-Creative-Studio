@@ -4,7 +4,12 @@ export function HowItWorks() {
   const { steps, guarantee, investment, costOfWaiting } = howItWorks;
 
   return (
-    <section id="processo" aria-labelledby="processo-title" className="bg-charcoal section-pad defer-render">
+    <section
+      id="processo"
+      data-section="processo"
+      aria-labelledby="processo-title"
+      className="bg-charcoal section-pad defer-render"
+    >
       <div className="shell grid gap-16 lg:grid-cols-12 lg:gap-x-6">
         <div className="lg:col-span-6">
           <h2 id="processo-title" className="rack-focus type-h2">

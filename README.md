@@ -89,6 +89,7 @@ Este site é uma **landing page de conversão**. Ela foi pensada primeiro para o
 
   Quem ativa "reduzir movimento" no aparelho vê a página parada.
 - 🎞️ **Portfólio integrado ao Google Drive:** fotos e vídeos carregam direto do Drive e abrem num visualizador sem sair da página.
+- 📊 **Análise com privacidade:** Google Analytics 4, com o Microsoft Clarity e o Pixel da Meta prontos para ligar, todos carregados só depois do aceite no aviso de cookies. Mede os cliques no WhatsApp por botão, as seções vistas, a rolagem, as perguntas abertas e o uso do portfólio, sem nenhum dado pessoal. Política de Privacidade em `/privacidade`. Passo a passo em [`ANALYTICS_SETUP.md`](ANALYTICS_SETUP.md).
 - 🔎 **SEO e dados para IA:** `robots.txt`, `sitemap.xml`, `llms.txt`, dados estruturados (JSON-LD) e página 404 própria.
 - ♿ **Acessibilidade:** navegação completa pelo teclado, textos alternativos nas imagens e contraste pensado para o padrão WCAG AA.
 - ⚡ **Desempenho:** site 100% estático, sem servidor, com seções carregadas sob demanda e animações feitas em CSS.
@@ -109,6 +110,7 @@ Este site é uma **landing page de conversão**. Ela foi pensada primeiro para o
 | [Lucide](https://lucide.dev/) | Ícones |
 | [Zod](https://zod.dev/) | Validação das variáveis de ambiente |
 | Fraunces e Manrope | Fontes oficiais da marca (títulos e textos) |
+| Google Analytics 4, Microsoft Clarity e Pixel da Meta | Análise de visitas e de anúncios, nos planos gratuitos, só com o aceite do visitante |
 
 ### Backend / CMS
 
@@ -156,13 +158,15 @@ O site abre em **http://localhost:3000**.
 | `npm run format` | Formata o código com o Prettier |
 | `npm run verify:seo -- https://seudominio.com.br` | Confere o SEO no site já publicado |
 
-### Variável de ambiente
+### Variáveis de ambiente
 
 O build de produção exige a variável `NEXT_PUBLIC_SITE_URL`, com o endereço público do site sem barra no final. Ela alimenta o canonical, o `sitemap.xml`, o `robots.txt`, o `llms.txt` e os dados estruturados. Use [`v1/.env.example`](v1/.env.example) como modelo.
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://seudominio.com.br
 ```
+
+Os IDs das ferramentas de análise são opcionais e ficam no [`netlify.toml`](netlify.toml): `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_CLARITY_ID` e `NEXT_PUBLIC_META_PIXEL_ID`. Sem um ID, a ferramenta fica desligada, e o rastreamento só liga no endereço de `NEXT_PUBLIC_SITE_URL`. Detalhes em [`ANALYTICS_SETUP.md`](ANALYTICS_SETUP.md).
 
 ---
 
@@ -273,6 +277,7 @@ A **primeira mídia** do grupo vira a capa do cartão.
 
 ```
 EBEN-Creative-Studio/
+├── ANALYTICS_SETUP.md        configuração do GA4, do Clarity e do Pixel da Meta
 ├── netlify.toml              configuração de publicação no Netlify
 ├── docs/
 │   ├── contexto/             PRD, copy aprovada, design, regras, tarefas e histórico de decisões
@@ -286,10 +291,10 @@ EBEN-Creative-Studio/
     │   └── videos/           vídeo principal do case da Sued Silva
     ├── scripts/              preview local e verificação de SEO
     └── src/
-        ├── app/              página, layout, estilos, 404, robots, sitemap e llms.txt
-        ├── components/       marca, layout, seções da página e botões
+        ├── app/              página, layout, estilos, privacidade, 404, robots, sitemap e llms.txt
+        ├── components/       marca, layout, seções da página, botões e aviso de cookies
         ├── content/          ✏️ textos, contatos e portfólio (onde o conteúdo é editado)
-        └── lib/              WhatsApp, variáveis de ambiente, dados estruturados e llms.txt
+        └── lib/              WhatsApp, variáveis de ambiente, eventos, consentimento, dados estruturados e llms.txt
 ```
 
 ---
@@ -299,6 +304,7 @@ EBEN-Creative-Studio/
 | Documento | Conteúdo |
 | --- | --- |
 | [`v1/README.md`](v1/README.md) | Guia técnico detalhado: build, SEO, decisões e pendências |
+| [`ANALYTICS_SETUP.md`](ANALYTICS_SETUP.md) | GA4, Clarity e Pixel da Meta: contas, eventos, consentimento e testes |
 | [`v1/DESIGN.md`](v1/DESIGN.md) | Sistema visual completo e regras de design |
 | [`v1/PRODUCT.md`](v1/PRODUCT.md) | Propósito, público e princípios do produto |
 | [`docs/contexto/prd.md`](docs/contexto/prd.md) | Requisitos do produto |

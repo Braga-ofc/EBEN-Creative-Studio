@@ -10,7 +10,7 @@ import { StoryFrame } from "./StoryFrame";
  */
 export function Hero() {
   return (
-    <section id="topo" aria-labelledby="hero-title" className="hero">
+    <section id="topo" data-section="topo" aria-labelledby="hero-title" className="hero">
       <div className="hero__inner shell">
         <StoryFrame className="hero__frame" />
         <div className="hero__veil" aria-hidden="true" />
@@ -24,7 +24,7 @@ export function Hero() {
           <p className="hero__sub type-lead text-mist">{hero.subtitle}</p>
 
           <div className="hero__actions">
-            <ConsultationButton className="max-sm:w-full" />
+            <ConsultationButton location="topo" className="max-sm:w-full" />
             <a
               href={hero.secondaryCta.href}
               className="group inline-flex items-center gap-2 py-2 font-sans text-[0.9375rem] font-semibold text-ivory underline decoration-gold/70 underline-offset-[0.4em] transition-colors hover:text-gold"

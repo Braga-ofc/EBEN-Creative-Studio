@@ -1,3 +1,4 @@
+import { PageEvents } from "@/components/analytics/PageEvents";
 import { IntroScript } from "@/components/layout/IntroScript";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -17,6 +18,7 @@ import { Manifesto } from "@/components/sections/Manifesto";
 import { Objections } from "@/components/sections/Objections";
 import { Pains } from "@/components/sections/Pains";
 import { Portfolio } from "@/components/sections/Portfolio";
+import { hasTracking } from "@/lib/env";
 import { buildHomeStructuredData, serializeJsonLd } from "@/lib/structured-data";
 
 export default function HomePage() {
@@ -70,6 +72,7 @@ export default function HomePage() {
 
       <SiteFooter />
       <MobileCtaBar />
+      {hasTracking ? <PageEvents /> : null}
 
       <script
         type="application/ld+json"

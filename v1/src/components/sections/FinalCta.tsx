@@ -6,6 +6,7 @@ export function FinalCta() {
   return (
     <section
       id="agendar"
+      data-section="agendar"
       aria-labelledby="agendar-title"
       className="relative overflow-clip border-t border-ivory/15 section-pad defer-render"
     >
@@ -24,7 +25,7 @@ export function FinalCta() {
         <p className="mt-10 type-h3">{finalCta.closing}</p>
 
         <div className="mt-10 flex flex-col items-center gap-4">
-          <ConsultationButton className="max-sm:w-full" />
+          <ConsultationButton location="agendar" className="max-sm:w-full" />
           <p className="type-small text-mist">{finalCta.note}</p>
         </div>
 

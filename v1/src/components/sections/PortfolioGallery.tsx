@@ -12,6 +12,7 @@ import {
   type PortfolioGroup,
   type PortfolioMedia,
 } from "@/content/portfolio";
+import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import { pauseSmoothScroll, resumeSmoothScroll } from "@/lib/smooth-scroll";
 
@@ -62,12 +63,20 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
     const next = moves[event.key];
     if (next === undefined) return;
     event.preventDefault();
-    setActive(next);
+    selectTab(next);
     tabRefs.current[next]?.focus();
+  }
+
+  // Troca de aba pelo visitante: conta no GA4 qual serviço ele foi ver.
+  function selectTab(index: number) {
+    if (index === active) return;
+    setActive(index);
+    trackEvent({ name: "portfolio_tab_select", params: { service_category: categories[index].id } });
   }
 
   function open(category: number, group: number, media: number, trigger: HTMLElement) {
     returnFocus.current = trigger;
+    trackEvent({ name: "portfolio_item_click", params: { service_category: categories[category].id } });
     setOpened({ category, group, media });
   }
 
@@ -125,7 +134,7 @@ export function PortfolioGallery({ categories }: PortfolioGalleryProps) {
             aria-selected={active === index}
             aria-controls={panelId(index)}
             tabIndex={active === index ? 0 : -1}
-            onClick={() => setActive(index)}
+            onClick={() => selectTab(index)}
             onKeyDown={onTabKeyDown}
             className="portfolio-tab"
           >

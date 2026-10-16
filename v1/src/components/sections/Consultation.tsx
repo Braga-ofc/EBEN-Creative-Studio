@@ -11,7 +11,12 @@ import { contact } from "@/content/site";
  */
 export function Consultation() {
   return (
-    <section id="consultoria" aria-labelledby="consultoria-title" className="section-pad defer-render">
+    <section
+      id="consultoria"
+      data-section="consultoria"
+      aria-labelledby="consultoria-title"
+      className="section-pad defer-render"
+    >
       <div className="shell">
         <div className="relative mx-auto max-w-[60rem]">
           <span aria-hidden="true" className="invite__glow" />
@@ -40,7 +45,7 @@ export function Consultation() {
               </ul>
 
               <div className="mt-10 flex flex-col items-center gap-4">
-                <ConsultationButton tone="dark" className="max-sm:w-full" />
+                <ConsultationButton location="consultoria" tone="dark" className="max-sm:w-full" />
                 <p className="type-small text-ivory-muted">{contact.responseTime}</p>
               </div>
 

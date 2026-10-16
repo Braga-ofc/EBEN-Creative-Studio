@@ -133,7 +133,7 @@ v1/
 - A consultoria é gratuita, confirmado pelo responsável pelo projeto.
 - O brandkit manda nas cores e fontes; não foi usada referência visual externa.
 - A headline é a aprovada na copy: "Postar todo dia não é ter presença."
-- Sem GA4, Pixel da Meta nem aviso de cookies nesta versão: as contas ainda não existem.
+- Análise com o Google Analytics 4 e o Microsoft Clarity (ligados) e com o Pixel da Meta (pronto, esperando o ID), carregados só depois do aceite no aviso de cookies e só no endereço oficial do site. O passo a passo das contas, os eventos e os testes estão em [../ANALYTICS_SETUP.md](../ANALYTICS_SETUP.md); o código fica em [src/components/analytics](src/components/analytics), [src/lib/analytics.ts](src/lib/analytics.ts) e [src/lib/consent.ts](src/lib/consent.ts).
 - As seções abaixo da primeira tela usam `content-visibility: auto` para o celular não calcular o que ainda não apareceu.
 - A rolagem suave usa o [Lenis](https://github.com/darkroomengineering/lenis), em [src/components/layout/SmoothScroll.tsx](src/components/layout/SmoothScroll.tsx). Ele suaviza a rodinha do mouse e as viagens pelos links de âncora (de 0,6 a 1,6 segundo, conforme a distância), mantém o `#` no endereço e leva o foco ao destino. No toque do celular, a rolagem continua nativa. Quando o sistema pede movimento reduzido, o Lenis nem liga. Um elemento com rolagem própria precisa do atributo `data-lenis-prevent`, como o painel do menu do celular, que também pausa o Lenis enquanto está aberto.
 
@@ -150,4 +150,4 @@ Dois perfis, cada um com o ícone animado ([src/components/ui/InstagramLink.tsx]
 - Imagem de compartilhamento para redes sociais (Open Graph).
 - Medir o Lighthouse no celular com o site publicado.
 - Entradas animadas das últimas seções (objeções, perguntas frequentes e fechamento).
-- GA4, Pixel da Meta e aviso de cookies, quando as contas existirem, e a Política de Privacidade junto com eles.
+- ID do Pixel da Meta.

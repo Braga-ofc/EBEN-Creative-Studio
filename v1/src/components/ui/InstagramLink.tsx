@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { Monogram } from "@/components/brand/Monogram";
 import type { InstagramProfile } from "@/content/site";
+import { trackLink, type CtaLocation } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
 type InstagramLinkProps = {
   profile: InstagramProfile;
+  /** Onde o link está na página: vai no evento instagram_click do GA4. */
+  location: CtaLocation;
   className?: string;
 };
 
@@ -15,7 +18,7 @@ type InstagramLinkProps = {
  * A animação é só CSS (globals.css, bloco "Instagram").
  * Desenho do ícone: Font Awesome Free (CC BY 4.0).
  */
-export function InstagramLink({ profile: instagram, className }: InstagramLinkProps) {
+export function InstagramLink({ profile: instagram, location, className }: InstagramLinkProps) {
   return (
     <div className={cn("ig", className)}>
       <div className="ig__tooltip" aria-hidden="true">
@@ -43,7 +46,13 @@ export function InstagramLink({ profile: instagram, className }: InstagramLinkPr
         </div>
       </div>
 
-      <a className="ig__link" href={instagram.url} target="_blank" rel="noopener noreferrer">
+      <a
+        className="ig__link"
+        href={instagram.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...trackLink("instagram_click", location)}
+      >
         <span className="ig__layers" aria-hidden="true">
           <span />
           <span />

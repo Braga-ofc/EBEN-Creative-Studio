@@ -4,6 +4,7 @@ export function Approach() {
   return (
     <section
       id="servicos"
+      data-section="servicos"
       aria-labelledby="servicos-title"
       className="bg-burgundy-deep section-pad defer-render"
     >

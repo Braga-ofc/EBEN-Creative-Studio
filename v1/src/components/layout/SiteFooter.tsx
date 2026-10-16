@@ -1,5 +1,8 @@
-import { Lockup } from "@/components/brand/Lockup";
 import Image from "next/image";
+import Link from "next/link";
+import { ConsentPreferencesButton } from "@/components/analytics/ConsentPreferencesButton";
+import { Lockup } from "@/components/brand/Lockup";
+import { legalLinks } from "@/content/privacy";
 import {
   brand,
   contact,
@@ -9,11 +12,15 @@ import {
   navigation,
   portfolioInstagram,
 } from "@/content/site";
+import { trackLink } from "@/lib/analytics";
+import { hasTracking, siteUrl } from "@/lib/env";
 import { consultationLink, whatsappLink } from "@/lib/whatsapp";
+
+const legalLinkClass = "type-small text-ash underline decoration-gold/60 transition-colors hover:text-ivory";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-charcoal text-ivory defer-render">
+    <footer data-section="rodape" className="bg-charcoal text-ivory defer-render">
       <div className="shell grid gap-12 py-16 md:grid-cols-12 md:gap-x-6 lg:py-20">
         <div className="md:col-span-6 lg:col-span-5">
           <p className="text-[13px] sm:text-[15px]">
@@ -30,6 +37,7 @@ export function SiteFooter() {
             href={consultationLink}
             target="_blank"
             rel="noopener noreferrer"
+            {...trackLink("whatsapp_click", "rodape")}
             className="mt-2 inline-block type-body underline decoration-gold/60 transition-colors hover:text-gold"
           >
             WhatsApp {contact.whatsapp.display}
@@ -41,6 +49,7 @@ export function SiteFooter() {
               href={profile.url}
               target="_blank"
               rel="noopener noreferrer"
+              {...trackLink("instagram_click", "rodape")}
               className="mt-2 block type-body underline decoration-gold/60 transition-colors hover:text-gold"
             >
               Instagram {profile.handle}
@@ -66,7 +75,19 @@ export function SiteFooter() {
       {/* No celular, o respiro de baixo (pb-32) deixa o crédito acima da barra fixa do botão. */}
       <div className="border-t border-ivory/10">
         <div className="shell flex flex-col items-center gap-6 pt-8 pb-32 text-center md:flex-row md:justify-between md:pb-8 md:text-left">
-          <p className="type-small text-ash md:order-first">© 2026 {brand.name}</p>
+          <div className="flex flex-col items-center gap-3 md:order-first md:flex-row md:gap-6">
+            <p className="type-small text-ash">© 2026 {brand.name}</p>
+            <Link href="/privacidade" className={legalLinkClass}>
+              {legalLinks.privacy}
+            </Link>
+            {hasTracking ? (
+              <ConsentPreferencesButton
+                siteUrl={siteUrl}
+                label={legalLinks.preferences}
+                className={legalLinkClass}
+              />
+            ) : null}
+          </div>
           <a
             href={whatsappLink(developerCredit.whatsappNumber, developerCredit.message)}
             target="_blank"

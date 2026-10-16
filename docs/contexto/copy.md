@@ -246,6 +246,8 @@ Direito autoral: © 2026 EBEN Creative Studio
 
 Crédito: Site desenvolvido por BRAGA SYSTEMS · 61 99422-7093, com o logo oficial da BRAGA SYSTEMS no lugar do nome escrito
 
+Links legais, ao lado do direito autoral: Política de Privacidade e Preferências de cookies. O segundo só aparece quando alguma ferramenta de análise ou de anúncios está configurada.
+
 ## Página de erro (404)
 
 Visual: o número 404 com a lente da marca no lugar do zero.
@@ -257,6 +259,56 @@ Texto: O endereço que você abriu não existe. A página da EBEN continua no me
 Botão: Voltar para a página inicial
 
 Texto em volta da lente: PÁGINA NÃO ENCONTRADA · EBEN CREATIVE STUDIO ·
+
+## Aviso de cookies
+
+Aparece na primeira visita, depois da abertura, e volta quando o visitante usa "Preferências de cookies" no rodapé ou na Política de Privacidade. Só aparece quando alguma ferramenta está configurada, e só mostra as categorias que existem.
+
+Texto, com o Pixel da Meta configurado: A EBEN usa cookies para entender como o site é usado e para mostrar anúncios mais relevantes. Você decide se aceita.
+
+Texto, sem o Pixel: A EBEN usa cookies para entender como o site é usado. Você decide se aceita.
+
+Link: Política de Privacidade
+
+Botões: Recusar · Aceitar · Personalizar
+
+Painel Personalizar:
+
+- **Análise.** Google Analytics e Microsoft Clarity: mostram quais partes do site funcionam melhor, com mapas de calor e gravações da navegação, sem identificar você pelo nome.
+- **Anúncios.** Pixel da Meta: mede os anúncios da EBEN no Instagram e no Facebook e permite mostrar anúncios a quem já visitou o site.
+- Botão: Salvar escolhas
+
+## Política de Privacidade
+
+Endereço: /privacidade. Título: Política de Privacidade. Abaixo do título: Atualizada em 15 de outubro de 2026. Botão: Mudar minhas preferências de cookies. Link no fim: Voltar para a página inicial.
+
+Abertura: Esta política explica quais dados o site da EBEN Creative Studio coleta, para quê, com quem eles são compartilhados e como você controla isso.
+
+**Quem cuida dos seus dados.** O site é da EBEN Creative Studio, agência de comunicação criativa e audiovisual. Para qualquer assunto sobre os seus dados, fale com a gente pelo WhatsApp +55 61 99454-1957, de segunda a sábado, das 8h às 18h. A responsável pelos dados é Geovana dos Santos Silva, e os pedidos também podem ser enviados para ebencreativestudio@gmail.com.
+
+**O que o site coleta.**
+- Sem o seu aceite, o site não carrega nenhuma ferramenta de análise ou de anúncios. Ele guarda só duas informações no seu próprio navegador, que não saem do seu aparelho: a sua escolha sobre os cookies e se a abertura animada já foi vista nesta visita.
+- Se você aceitar a Análise, o Google Analytics registra as páginas vistas, de onde você chegou (Instagram, Google ou link direto, por exemplo), o tipo de aparelho e de navegador, a cidade ou região aproximada e como você usa a página: cliques nos botões do WhatsApp e do Instagram, seções vistas, quanto da página foi rolado, perguntas frequentes abertas e trabalhos do portfólio abertos. O Microsoft Clarity registra cliques, rolagem e movimentos na página para montar mapas de calor e gravações da navegação.
+- Se você aceitar os Anúncios, o Pixel da Meta registra a sua visita e o clique no botão do WhatsApp, para medir os anúncios da EBEN no Instagram e no Facebook e mostrar anúncios a quem já visitou o site.
+- O site não tem formulário nem campo para digitar, e não pede nome, telefone ou e-mail. Nenhuma dessas ferramentas recebe algo que você escreveu.
+
+**Quando você chama no WhatsApp.** Os botões abrem o WhatsApp com uma mensagem pronta, que você pode mudar ou não enviar. Se enviar, a conversa acontece no WhatsApp, sob as regras do próprio aplicativo, e a EBEN usa o seu nome, o seu número e o que você escrever para responder e tratar do serviço que você procura.
+
+**Por que coletamos e com qual base.** A análise serve para entender o que funciona no site e melhorar a página. Os anúncios servem para medir campanhas e falar de novo com quem já conheceu a EBEN. As duas coisas só acontecem com o seu consentimento (artigo 7º, inciso I, da LGPD), que você pode retirar quando quiser, sem prejuízo nenhum para o uso do site.
+
+**Cookies e dados guardados no navegador.**
+- Google Analytics: _ga e _ga_ seguido do código da medição, por até 2 anos. Separam uma visita da outra.
+- Microsoft Clarity: _clck, por até 1 ano, e _clsk, por 1 dia, além de cookies da própria Microsoft, como o MUID. Juntam as páginas de uma mesma visita.
+- Pixel da Meta: _fbp, por até 90 dias, além de cookies da própria Meta para quem tem conta no Facebook ou no Instagram. Ligam a visita aos anúncios.
+- Do próprio site: eben-consent, com a sua escolha, até você mudá-la, e eben-intro, que lembra que a abertura já tocou e some quando a aba fecha. São necessários e não rastreiam nada.
+
+**Com quem os dados são compartilhados.** Google (Google Analytics), Microsoft (Clarity) e Meta (Pixel e WhatsApp) recebem os dados descritos acima e também os tratam segundo as suas próprias políticas. O site fica hospedado na Netlify, que registra dados técnicos de acesso, como o endereço IP, para entregar as páginas e proteger o servidor. As fotos e os vídeos do portfólio vêm do Google Drive, então o seu navegador se conecta aos servidores do Google para exibi-los. Essas empresas podem armazenar dados fora do Brasil, numa transferência internacional tratada no artigo 33 da LGPD.
+
+**Por quanto tempo.** No Google Analytics, os dados ficam guardados por 14 meses. No Clarity e na Meta, pelos prazos definidos por cada empresa. A sua escolha sobre os cookies fica no navegador até você mudá-la ou limpar os dados do site.
+
+**Seus direitos.** Pela LGPD (artigo 18), você pode pedir a confirmação de que existem dados seus, o acesso a eles, a correção, a anonimização, o bloqueio ou a eliminação, a portabilidade, a informação sobre com quem eles foram compartilhados e a revogação do consentimento. Para pedir, use o contato do início desta página. Você também pode reclamar à Autoridade Nacional de Proteção de Dados (ANPD). Os dados de análise não trazem o seu nome, então o caminho mais rápido para interrompê-los é escolher Recusar em Preferências de cookies e limpar os cookies do navegador.
+
+**Mudanças nesta política.** Quando esta política mudar, a data no topo muda junto. Se a mudança trouxer uma ferramenta nova, o aviso de cookies volta a aparecer para você escolher de novo.
 
 ## Regras de conteúdo
 
@@ -277,8 +329,6 @@ Ficam guardados para uso futuro. Nenhum deles aparece hoje no site.
 - **Vagas:** título "Poucos perfis por vez. Atenção de verdade." e a frase "As vagas para novos clientes abrem conforme a agenda." Hoje a página usa só a frase de escassez no convite da consultoria.
 - **Diagnóstico como bônus:** título "Diagnóstico gratuito do seu perfil", botão "Quero meu diagnóstico gratuito" e a mensagem "Oii, EBEN! Vim pela página e quero saber mais sobre o diagnóstico gratuito do meu perfil." O diagnóstico virou parte da consultoria gratuita.
 - **PS completo:** ...Se você quer uma presença que faça sentido pro seu negócio, o primeiro passo é uma mensagem. Link: Falar no WhatsApp agora.
-- **Aviso de cookies:** "A EBEN usa cookies para entender como o site é usado e para mostrar anúncios mais relevantes. Você decide se aceita.", com os botões Aceitar e Recusar e o link Política de Privacidade. Só entra junto com o GA4 e o Pixel da Meta.
-- **Links legais do rodapé:** Política de Privacidade e Preferências de cookies. Só entram junto com o rastreamento.
 
 A quantidade de clientes atendidos hoje, 3 ao mesmo tempo, com capacidade já comprovada de até 7, é informação interna e não vai para a página.
 
@@ -290,4 +340,3 @@ A quantidade de clientes atendidos hoje, 3 ao mesmo tempo, com capacidade já co
 4. Existe limite de rodadas de ajuste por conteúdo?
 5. O projeto original citava "criação de conteúdo digital" como quarto serviço, e a página fala em três frentes. A criação de conteúdo faz parte de Social Media, ou é um serviço à parte?
 6. Existem depoimentos em frase das clientes, autorizados, para entrar nos cases?
-7. Quando o rastreamento entrar: qual é o nome completo da pessoa responsável pelos dados e qual e-mail recebe os pedidos dos titulares, para a Política de Privacidade? O CPF não é publicado.
