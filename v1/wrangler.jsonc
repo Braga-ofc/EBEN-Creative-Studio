@@ -1,0 +1,14 @@
+// Publicação na Cloudflare (Worker só com arquivos estáticos). O build gera
+// a pasta out/ e o "npx wrangler deploy" envia essa pasta. O nome precisa ser
+// igual ao do Worker criado no painel da Cloudflare.
+{
+  "name": "ebencreative",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./out",
+    // Endereço inexistente mostra o 404.html do site, com status 404.
+    "not_found_handling": "404-page",
+    // /privacidade serve privacidade.html, como na Netlify.
+    "html_handling": "auto-trailing-slash"
+  }
+}
