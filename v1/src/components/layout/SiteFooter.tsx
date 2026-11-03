@@ -77,7 +77,9 @@ export function SiteFooter() {
       <div className="border-t border-ivory/10">
         <div className="shell flex flex-col items-center gap-6 pt-8 pb-32 text-center md:flex-row md:justify-between md:pb-8 md:text-left">
           <div className="flex flex-col items-center gap-3 md:order-first md:flex-row md:gap-6">
-            <p className="type-small text-ash">© 2026 {brand.name}</p>
+            <p className="type-small text-ash">
+              © 2026 {brand.name} · CNPJ {brand.cnpj}
+            </p>
             <Link href="/privacidade" className={legalLinkClass}>
               {legalLinks.privacy}
             </Link>

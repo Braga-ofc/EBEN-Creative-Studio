@@ -10,6 +10,8 @@ export const brand = {
     "Agência de comunicação criativa e audiovisual com três frentes: Social Media, Videomaker e Storymaker.",
   language: "pt-BR",
   locale: "pt_BR",
+  /** CNPJ do rodapé (Decreto 7.962/2013). */
+  cnpj: "68.983.627/0001-43",
 } as const;
 
 export const seo = {
