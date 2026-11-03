@@ -21,7 +21,9 @@ export const seo = {
   /** Data da última mudança de conteúdo, usada no sitemap. Atualize quando o texto mudar. */
   contentUpdatedAt: "2026-10-15",
   /** Data da última mudança da Política de Privacidade (a mesma escrita no topo dela). */
-  privacyUpdatedAt: "2026-10-15",
+  privacyUpdatedAt: "2026-11-03",
+  /** Data da última mudança dos Termos de Uso. */
+  termsUpdatedAt: "2026-11-03",
 } as const;
 
 export const contact = {

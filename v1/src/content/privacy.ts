@@ -39,6 +39,7 @@ export const consentBanner = {
 export const legalLinks = {
   privacy: "Política de Privacidade",
   preferences: "Preferências de cookies",
+  terms: "Termos de Uso",
 } as const;
 
 export type PolicySection = {
@@ -94,7 +95,7 @@ const policySections: PolicySection[] = [
     id: "compartilhamento",
     title: "Com quem os dados são compartilhados",
     paragraphs: [
-      "Google (Google Analytics), Microsoft (Clarity) e Meta (Pixel e WhatsApp) recebem os dados descritos acima e também os tratam segundo as suas próprias políticas. O site fica hospedado na Netlify, que registra dados técnicos de acesso, como o endereço IP, para entregar as páginas e proteger o servidor. As fotos e os vídeos do portfólio vêm do Google Drive, então o seu navegador se conecta aos servidores do Google para exibi-los. Essas empresas podem armazenar dados fora do Brasil, numa transferência internacional tratada no artigo 33 da LGPD.",
+      "Google (Google Analytics), Microsoft (Clarity) e Meta (Pixel e WhatsApp) recebem os dados descritos acima e também os tratam segundo as suas próprias políticas. O site fica hospedado na Cloudflare, que registra dados técnicos de acesso, como o endereço IP, para entregar as páginas e proteger o servidor. As fotos e os vídeos do portfólio vêm do Google Drive, então o seu navegador se conecta aos servidores do Google para exibi-los. Essas empresas podem armazenar dados fora do Brasil, numa transferência internacional tratada no artigo 33 da LGPD.",
     ],
   },
   {
@@ -123,7 +124,7 @@ const policySections: PolicySection[] = [
 
 export const privacyPolicy = {
   title: "Política de Privacidade",
-  updatedAt: "Atualizada em 15 de outubro de 2026.",
+  updatedAt: "Atualizada em 3 de novembro de 2026.",
   preferencesButton: "Mudar minhas preferências de cookies",
   backLink: "Voltar para a página inicial",
   intro:

@@ -83,6 +83,9 @@ export function SiteFooter() {
             <Link href="/privacidade" className={legalLinkClass}>
               {legalLinks.privacy}
             </Link>
+            <Link href="/termos" className={legalLinkClass}>
+              {legalLinks.terms}
+            </Link>
             {hasTracking ? (
               <ConsentPreferencesButton
                 siteUrl={siteUrl}
